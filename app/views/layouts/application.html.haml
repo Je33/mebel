@@ -1,0 +1,40 @@
+!!!
+%html
+  %head
+    %title Mebel
+    %link{:href => "css/bootstrap.min.css", :rel => "stylesheet"}
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    .container
+      #top-bar.row
+        .span8.logo
+          %a{:href => "/"}
+            %font
+              WOOD
+            STOK.com
+        .span4.options
+          %ul#languages.nav.nav-pills.pull-right
+            %li.active
+              %a{:href => "#", :title => "English"} en
+            %li
+              %a{:href => "#", :title => "Français (French)"} fr
+          %ul#curency.nav.nav-pills.pull-right
+            %li.active
+              %a{:href => "#", :title => "Dollar"} $
+            %li
+              %a{:href => "#", :title => "Euro"} €
+            %li
+              %a{:href => "#", :title => "Pound"} £
+          .account.pull-right
+            %a{"data-toggle" => "modal", :href => "#myModal", :role => "button"}
+              %i.icon-user
+              Your account
+            |
+            %a{:href => "cart.html"}
+              %i.icon-shopping-cart
+              Shopping cart
+    = yield
+
+  
