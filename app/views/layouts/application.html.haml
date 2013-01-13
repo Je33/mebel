@@ -2,39 +2,112 @@
 %html
   %head
     %title Mebel
-    %link{:href => "css/bootstrap.min.css", :rel => "stylesheet"}
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
     .container
       #top-bar.row
-        .span8.logo
+        .span4.logo
           %a{:href => "/"}
-            %font
+            %span
               WOOD
-            STOK.com
-        .span4.options
-          %ul#languages.nav.nav-pills.pull-right
-            %li.active
-              %a{:href => "#", :title => "English"} en
-            %li
-              %a{:href => "#", :title => "Français (French)"} fr
-          %ul#curency.nav.nav-pills.pull-right
-            %li.active
-              %a{:href => "#", :title => "Dollar"} $
-            %li
-              %a{:href => "#", :title => "Euro"} €
-            %li
-              %a{:href => "#", :title => "Pound"} £
-          .account.pull-right
-            %a{"data-toggle" => "modal", :href => "#myModal", :role => "button"}
-              %i.icon-user
-              Your account
-            |
-            %a{:href => "cart.html"}
-              %i.icon-shopping-cart
-              Shopping cart
-    = yield
+            STOK.ru
 
-  
+        .span8.options
+          %ul.nav.nav-pills.pull-right
+            %li.active
+              %a{:href => "#", :title => "Call me"} Заказать обратный звонок
+            %li.pad
+              |
+            %li
+              %a{:href => "call:+78008888888", :title => ""} 8 (800) 888 88-88
+            %li.pad
+              |
+            %li
+              .basket
+                %a{:href => "cart.html"}
+                  %i.icon-shopping-cart
+                  Корзина
+      .row
+        .span12
+          #main-menu.navbar.navbar-inverse
+            .navbar-inner
+              .container
+                .nav-collapse
+                  %ul.nav
+                    %li.active
+                      %a{:href => "index.html"}
+                        %i.icon-home
+
+                    %li.dropdown
+                      %a.dropdown-toggle{:href => "products.html"}
+                        Каталог
+                        %b.caret
+                      %ul.dropdown-menu
+                        %li
+                          %a{:href => "products.html"} Шкафы
+                        %li
+                          %a{:href => "products.html"} Столы
+                        %li
+                          %a{:href => "products.html"} Кресла
+                    %li.dropdown
+                      %a.dropdown-toggle{:href => "#"}
+                        Акции и спецпредложения
+                    %li.dropdown
+                      %a.dropdown-toggle{:href => "#"}
+                        Контакты
+                    %li.search_form.pull-right
+                      %form.navbar-search{:method => "POST"}
+                        %input.icon-search{:type => 'submit', :value => ""}
+                        %input.input-medium.search-query{:placeholder => "Поиск...", :type => "text"}
+      = yield
+
+    %footer
+      .container
+        .row
+          .span3
+            %h4 Информация
+            %ul
+              %li
+                %a{:href => "about.html"} О нас
+              %li
+                %a{:href => "#"} Информация о доставке
+              %li
+                %a{:href => "#"} Условия и соглашения
+          .span3
+            %h4 Наши разделы
+            %ul
+              %li
+                %a{:href => "#"} Каталог
+              %li
+                %a{:href => "#"} Корзина
+              %li
+                %a{:href => "#"} Акции и спецпоедложения
+              %li
+                %a{:href => "#"} Контакты
+          .span3.socseti
+            %h4.logo-title Присоеденяйтесь к нам
+            %a{:href => "#"}
+              %img{:alt => "vk", :src => "/assets/vk.png"}/
+            %a{:href => "#"}
+              %img{:alt => "odnoklassniky", :src => "/assets/ok.png"}/
+            %a{:href => "#"}
+              %img{:alt => "facebook", :src => "/assets/facebook.png"}/
+            %a{:href => "#"}
+              %img{:alt => "twitter", :src => "/assets/twitter.png"}/
+            %a{:href => "#"}
+              %img{:alt => "google plus", :src => "/assets/gplus.png"}/
+          .span3
+            .company_info
+              %h4.title
+                %strong WOODSTOK.ru
+              %p
+                %i.icon-home
+                Россия. Москва.
+                %br
+                  Красная площадь 1/21
+                  %br
+                    %i.icon-ok-circle
+                    %a{:href => "call:+78008888888", :title => ""} 8 (800) 888 88-88
+

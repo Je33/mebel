@@ -1,8 +1,8 @@
+@import url("http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic")
 body
   font-size: 12px
   font-family: sans-serif, arial, tahoma
   background: none #f2f2f2 0 -80px
-
 a
   &:link, &:visited
     color: #666
@@ -10,25 +10,18 @@ a
   &:hover
     color: #91c113
     text-decoration: none
-
 i
   opacity: .6
-
 .center
   text-align: center !important
-
 p.center
   margin: 0
-
 table td
   vertical-align: middle !important
-
 h1, h2, h3, h4
   font-family: 'PT Sans', sans-serif, arial, tahoma
-
 ul
   list-style-type: square
-
 h4.title
   border-bottom: 2px solid #ddd
   padding-bottom: 1px
@@ -42,37 +35,26 @@ h4.title
     padding-bottom: 7px
   strong
     color: #91c113
-
-section.products h4.title
+div.products_list h4.title
   .pull-left
     padding-left: 6px
   .pull-right
     padding-right: 10px
-
-.span3.col h4.title .pull-right
-  padding-right: 0
-
+  span
+    i
+      margin-top: 2px
+.span3.col
+  h4.title
+    .pull-right
+      padding-right: 0
 h4.title
-  .left
-    background: url(../img/arrow-pleft.png) no-repeat center center
-  .right
-    background: url(../img/arrow-p.png) no-repeat center center
   .left, .right
     display: inline-block
     width: 22px
     height: 22px
     cursor: pointer
-  .left:hover, .right:hover
-    background-color: #ddd
   .button:hover
     text-decoration: none
-  &.feature
-    background: url(../img/star.png) no-repeat 5px 0px
-    text-indent: 20px
-  &.latest
-    background: url(../img/ribbon.png) no-repeat 5px 1px
-    text-indent: 20px
-
 .navbar-inner
   padding-left: 0
   padding-right: 0
@@ -80,7 +62,6 @@ h4.title
   -webkit-border-radius: 4px
   -moz-border-radius: 4px
   border-radius: 4px
-
 .navbar-inverse .nav
   > li > a
     color: #fff
@@ -93,12 +74,13 @@ h4.title
       -moz-border-radius: 4px
       border-radius: 4px 0 0 4px
       margin-left: -1px
-
 #top-bar
   padding: 20px 0 15px 0
   ul
+    .pad
+      margin: 0 10px
     a
-      padding: 2px 5px
+      padding: 2px 0
     &#languages
       background-color: #ddd
       margin-top: -1px
@@ -108,30 +90,33 @@ h4.title
   .active a
     background-color: transparent
     color: #91c113
-  .span3.options ul
+  .span8.options ul
     margin: 0
     padding: 0
   .logo
     position: relative
     top: 0px
     left: 0px
-    a  		
-			font-size: 24px	
-			font-weight: bold	
-			span
-				color: rgb(145, 193, 19)
+    a
+      font-size: 26px
+      font-weight: bold
+
+      span
+        color: rgb(145, 193, 19) !important
+        margin-right: -5px
   .nav-pills > li > a
     padding-top: 0
 
-.account
+.basket
   color: #999
-  margin-top: -13px
   width: 100%
   text-align: right
   a
-    padding: 1px 5px
+    padding: 1px 0px
     font-size: 8pt
     text-transform: uppercase
+    i
+      margin-top: -2px
   span.btn-group
     top: 3px
 
@@ -146,6 +131,8 @@ h4.title
   img
     margin-right: 10px
     vertical-align: -10px
+    width: 32px
+    height: 32px
   .service
     border: 1px solid #ddd
     background-color: #fff
@@ -215,11 +202,22 @@ footer
   .search_form
     float: right !important
     margin-right: 5px
+    position: relative
     input
-      background: url(../img/search.png) #555555 no-repeat 97% 6px
       color: #fff
       text-shadow: none
       padding-right: 25px
+      &:focus
+        color: #333333 !important
+    input[type=submit]
+      position: absolute
+      top: 6px
+      right: 9px
+      width: 14px
+      background-color: transparent
+      border: none
+      padding-right: 0
+
   ul.nav li
     &.dropdown:hover ul.dropdown-menu
       display: block
@@ -228,7 +226,7 @@ footer
   a.menu:after, .dropdown-toggle:after
     content: none
 
-section.products
+div.products_list
   .carousel, .thumbnails > li
     margin-bottom: 0
 
@@ -239,18 +237,31 @@ section.products
     width: 200px
     min-height: 260px
     padding: 8px
+    position: relative
     &:hover
       background-color: #f4f4f4
     h4
       font-size: 14px
       margin: 3px 0
-  span.sale_tag
-    background: url(../img/sale_tag.png) no-repeat scroll 0 0 transparent
+    a.img_box
+      display: block
+      width: 200px
+      height: 150px
+      overflow: hidden
+      img
+        width: 100%
+
+  span.sale
     height: 54px
     margin: -1px 0px 0px -1px
     position: absolute
     width: 55px
+    overflow: hidden
     z-index: 100
+    top:  -2px
+    left:  -2px
+    img
+      width: 100%
   p.price
     font-weight: bold
     margin-top: 0px
@@ -288,34 +299,55 @@ section.products
 #myModal
   width: 515px
 
-#slides
-  width: 700px
-  height: 370px
+#slider
+  width: 100%
   overflow: hidden
-
-.slides_container
-  width: 700px
+  height: 250px
+  position: relative
+.slider_container
+  width: 100%
   overflow: hidden
   position: relative
-  display: none
   a
-    width: 700px
-    height: 370px
+    width: 100%
+    height: 250px
     display: block
+    text-align: center
     img
       display: block
+      height: 250px
+      width: 100%
 
-#slides
+#slider
   .next, .prev
     float: right
-    top: -365px
-    right: 5px
-    width: 24px
-    height: 43px
+    bottom: 5%
+    right: 5%
+    width: 30px
+    height: 30px
     display: block
     z-index: 100
     position: relative
+    -webkit-border-radius: 50px
+    text-align: center
+    -moz-border-radius: 50px
+    border-radius: 50px
+    background: rgba( 0, 0, 0, 0.5 )
+    line-height: 27px
+    font-size: 20px
+    font-weight: bold
+    position: absolute
+#slider
+  .next
+    margin-right: -25px
 
+
+.mini_rek
+  a
+    overflow: hidden
+    img
+      width: 100%
+      height: 250px
 .main-content
   padding: 7px 0px
   section
@@ -368,3 +400,12 @@ ul.social
 
 .bg-colleft
   background: url(../img/bg_page.png) white repeat-y 715px 0
+
+.company_info p i
+  margin-top: -1px
+.socseti
+  a
+    text-decoration: none !important
+    img
+
+      width: 30px
