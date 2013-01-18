@@ -1,0 +1,166 @@
+!!!
+%html
+  %head
+    %title Mebel
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    .container
+      .shopping_cart
+        .container
+          .shopping_box
+            %h4.title
+              %span
+                Корзина
+            .shopping_box_inner
+              .row.overview
+
+                .span3
+                  .block_content
+                    .products_list.text_block
+                      %h4.title
+                        %span.pull-left
+                          %i.icon-book
+                          %strong Название шкафа
+                      %a{:href => "/catalog/detail", :title => ""}
+                        %p.obj_img
+                          %span.sale
+                            %img{:alt => "", :src => "/assets/sale.png"}
+                          %img{:alt => "", :src => "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT2SVoUu9_ohsYS4DQh8GuXl2f0AyGoEu7gMSTp1MRumZWzJjkkfQ", :width => "100%"}
+                        %p.obj_info_mini
+                          %span
+                            Цена:
+                          %span
+                            12 000
+                        %p.obj_info_mini
+                          %span
+                            Размеры:
+                          %span
+                            220 x 220 x 220
+                        %p.obj_info_mini
+                          %span
+                            Декор:
+                          %span
+                            Красивая ткань
+                        %p.obj_info_mini
+                          %span
+                            Колл:
+                          %span
+                            +  1  -
+            .shopping_box_tottal
+              %p
+                ИТОГО: 15 500 р
+            .shopping_box_footer
+              %a.btn.btn-success{:href => "javascript:;"}
+                Оформить заказ
+              %a{:href => "javascript:;"}
+                Заказать звонок
+              .clear
+              %a{:href => "javascript:;"}
+                Закрыть
+      #top-bar.row
+        .span4.logo
+          %a{:href => "/"}
+            %span
+              WOOD
+            STOK.ru
+
+        .span8.options
+          %ul.nav.nav-pills.pull-right
+            %li.active
+              %a{:href => "#", :title => "Call me"} Заказать обратный звонок
+            %li.pad
+              |
+            %li
+              %a{:href => "call:+78008888888", :title => ""} 8 (800) 888 88-88
+            %li.pad
+              |
+            %li
+              .basket
+                %a{:href => "cart.html"}
+                  %i.icon-shopping-cart
+                  Корзина
+                  %span
+                    (12)
+      .row
+        .span12
+          #main-menu.navbar.navbar-inverse
+            .navbar-inner
+              .container
+                .nav-collapse
+                  %ul.nav
+                    %li.active
+                      %a{:href => "/"}
+                        %i.icon-home
+
+                    %li.dropdown
+                      %a.dropdown-toggle{:href => "/catalog/index"}
+                        Каталог
+                        %b.caret
+                      %ul.dropdown-menu
+                        %li
+                          %a{:href => "products.html"} Шкафы
+                        %li
+                          %a{:href => "products.html"} Столы
+                        %li
+                          %a{:href => "products.html"} Кресла
+                    %li.dropdown
+                      %a.dropdown-toggle{:href => "/special/index"}
+                        Акции и спецпредложения
+                    %li.dropdown
+                      %a.dropdown-toggle{:href => "/contact/index"}
+                        Контакты
+                    %li.search_form.pull-right
+                      %form.navbar-search{:method => "POST"}
+                        %input.icon-search{:type => 'submit', :value => ""}
+                        %input.input-medium.search-query{:placeholder => "Поиск...", :type => "text"}
+      = yield
+
+    .footer
+      .container
+        .row
+          .span3
+            %h4 Информация
+            %ul
+              %li
+                %a{:href => "about.html"} О нас
+              %li
+                %a{:href => "#"} Информация о доставке
+              %li
+                %a{:href => "#"} Условия и соглашения
+          .span3
+            %h4 Наши разделы
+            %ul
+              %li
+                %a{:href => "#"} Каталог
+              %li
+                %a{:href => "#"} Корзина
+              %li
+                %a{:href => "#"} Акции и спецпоедложения
+              %li
+                %a{:href => "#"} Контакты
+          .span3.socseti
+            %h4.logo-title Присоеденяйтесь к нам
+            %a{:href => "#"}
+              %img{:alt => "vk", :src => "/assets/vk.png"}/
+            %a{:href => "#"}
+              %img{:alt => "odnoklassniky", :src => "/assets/ok.png"}/
+            %a{:href => "#"}
+              %img{:alt => "facebook", :src => "/assets/facebook.png"}/
+            %a{:href => "#"}
+              %img{:alt => "twitter", :src => "/assets/twitter.png"}/
+            %a{:href => "#"}
+              %img{:alt => "google plus", :src => "/assets/gplus.png"}/
+          .span3
+            .company_info
+              %h4.title
+                %strong WOODSTOK.ru
+              %p
+                Россия. Москва.
+                %br
+                  Красная площадь 1/21
+                  %br
+                    %i.icon-ok-circle
+                    %a{:href => "call:+78008888888", :title => ""} 8 (800) 888 88-88
+
