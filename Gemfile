@@ -6,7 +6,7 @@ gem 'rails', '3.2.11'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
-
+gem 'mysql2'
 
 gem 'haml-rails'
 gem 'sass-rails'
@@ -15,6 +15,9 @@ gem 'coffee-rails'
 gem 'uglifier'
 
 gem 'jquery-rails'
+
+gem 'devise'
+gem 'paperclip'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

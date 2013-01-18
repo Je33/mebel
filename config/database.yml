@@ -9,31 +9,27 @@
 # And be sure to use new-style password hashing:
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
 development:
-  host: "ec2-54-243-130-137.compute-1.amazonaws.com"
-  adapter: pg
+  adapter: mysql2
   encoding: utf8
-  database: d2ijgghekc3vj5
-  port: 5432
-  username: dtoosjntufnpwd
-  password: iND_gw2TGsJRWVAzLqFxS1B4KR
+  database: mebel_development
+  username: root
+  password: "666999"
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  host: "ec2-54-243-130-137.compute-1.amazonaws.com"
-  adapter: pg
+  adapter: mysql2
   encoding: utf8
-  database: d2ijgghekc3vj5
-  port: 5432
-  username: dtoosjntufnpwd
-  password: iND_gw2TGsJRWVAzLqFxS1B4KR
+  database: mebel_test
+  username: root
+  password: "666999"
+
 
 production:
-  host: "ec2-54-243-130-137.compute-1.amazonaws.com"
-  adapter: pg
+  adapter: mysql2
   encoding: utf8
-  database: d2ijgghekc3vj5
-  port: 5432
-  username: dtoosjntufnpwd
-  password: iND_gw2TGsJRWVAzLqFxS1B4KR
+  database: mebel_production
+  username: root
+  password: "666999"
+
