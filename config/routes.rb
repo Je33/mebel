@@ -1,5 +1,13 @@
 Mebel::Application.routes.draw do
 
+  get "catalog/list"
+
+  get "catalog/index"
+
+  get "special/index"
+
+  get "contact/index"
+
   root :to => "index#index"
 
   # The priority is based upon order of creation:
