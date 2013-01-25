@@ -78,11 +78,11 @@ M.slider = () ->
 $.fn.cardfly = (o) ->
   o = $.extend(
     basket: "none"
-    animspeed: 1000
+    animspeed: 500
     sdv: -10
   , o)
   @each ->
-    btn = $(this).parents(".block_content")
+    btn = $(this).parent().parent()
     clone = btn.clone().addClass("clone-block")
     posX = btn.offset().left
     posY = btn.offset().top
@@ -102,12 +102,8 @@ $.fn.cardfly = (o) ->
 
 $ ->
   $('.add_to_shopping_cart').bind 'click', ->
-    if $('.product-box').get(0)
-      b = $('.product-box')
-    else
-      b = if $('.shopping_cart_link:visible').get(0) then $('.shopping_cart_link') else $('.basket')
     $(this).cardfly {
-      basket: b
+      basket: if $('.shopping_cart_link:visible').get(0) then $('.shopping_cart_link') else $('.basket')
     }
 
   M.menu_slide()
