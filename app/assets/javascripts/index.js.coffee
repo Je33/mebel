@@ -102,9 +102,12 @@ $.fn.cardfly = (o) ->
 
 $ ->
   $('.add_to_shopping_cart').bind 'click', ->
-
+    if $('.product-box').get(0)
+      b = $('.product-box')
+    else
+      b = if $('.shopping_cart_link:visible').get(0) then $('.shopping_cart_link') else $('.basket')
     $(this).cardfly {
-      basket: if $('.shopping_cart_link:visible') then $('.shopping_cart_link') else $('.buscket')
+      basket: b
     }
 
   M.menu_slide()
