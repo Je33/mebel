@@ -78,7 +78,7 @@ M.slider = () ->
 $.fn.cardfly = (o) ->
   o = $.extend(
     basket: "none"
-    animspeed: 500
+    animspeed: 1000
     sdv: -10
   , o)
   @each ->
@@ -105,6 +105,30 @@ $ ->
     $(this).cardfly {
       basket: if $('.shopping_cart_link:visible').get(0) then $('.shopping_cart_link') else $('.basket')
     }
+
+  $('.scl').bind 'click', ->
+    if $('.shopping_cart').hasClass('open') == false
+      $('.shopping_cart')
+        .addClass('open')
+        .show()
+      $('.shopping_box').tinyscrollbar({ axis: 'x'})
+    else
+      $('.shopping_cart')
+        .removeClass('open')
+        .hide()
+    return false
+  $('.shop_cart_close').bind 'click', ->
+    $('.shopping_cart')
+      .removeClass('open')
+      .hide()
+
+  $('.coll_change').find('i').bind 'click', ->
+    coll = parseInt( $(this).parent().find('.coll').text() )
+    if $(this).hasClass('icon-minus') == true && coll > 1
+      $(this).parent().find('.coll').text( coll - 1 )
+    if $(this).hasClass('icon-plus') == true && coll < 99
+      $(this).parent().find('.coll').text( coll + 1 )
+
 
   M.menu_slide()
   M.slider()
