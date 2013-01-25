@@ -10,12 +10,14 @@ M.menu_slide = ->
         top: 0
         opacity: 0.5
       }
+      $('.shopping_cart_link').show()
     else
       el.css {
         position: 'absolute'
         top: 60
         opacity: 1
       }
+      $('.shopping_cart_link').hide()
   el.mouseenter ->
     if parseInt( $(this).css('opacity') ) < 1
       $(this).css('opacity', 1)

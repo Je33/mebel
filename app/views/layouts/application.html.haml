@@ -117,10 +117,18 @@
                     %li.dropdown
                       %a.dropdown-toggle{:href => "/contact/index"}
                         Контакты
+
+                    %li.shopping_cart_link.pull-right.hide
+                      %a{:href => "cart.html"}
+                        %i.icon-shopping-cart.icon-white
+                        Корзина
+                        %span
+                          (12)
                     %li.search_form.pull-right
                       %form.navbar-search{:method => "POST"}
                         %input.icon-search{:type => 'submit', :value => ""}
                         %input.input-medium.search-query{:placeholder => "Поиск...", :type => "text"}
+
       = yield
       .block_content.container.dop_info_footer
         .products_list.text_block

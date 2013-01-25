@@ -13,7 +13,7 @@ development:
   encoding: utf8
   database: mebel_development
   username: root
-  password: "666999"
+  password: ""
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -23,7 +23,7 @@ test:
   encoding: utf8
   database: mebel_test
   username: root
-  password: "666999"
+  password: ""
 
 
 production:
@@ -31,5 +31,5 @@ production:
   encoding: utf8
   database: mebel_production
   username: root
-  password: "666999"
+  password: ""
 
