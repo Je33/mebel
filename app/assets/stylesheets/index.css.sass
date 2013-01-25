@@ -48,18 +48,24 @@ h4.title
   span
     i
       margin-top: 2px
-.span3.col
-  h4.title
-    .pull-right
-      padding-right: 0
-h4.title
-  .left, .right
-    display: inline-block
-    width: 22px
-    height: 22px
-    cursor: pointer
-  .button:hover
-    text-decoration: none
+.products_list
+  div
+    div
+      .slide_left,
+      .slide_right
+        display: inline-block
+        cursor: pointer
+        position: absolute
+        top: 40%
+        background: rgba(0, 0, 0, 0.3)
+      .slide_left
+        left: -27px
+        border-radius: 10px 0 0 10px
+        padding: 20px 5px 20px 8px
+      .slide_right
+        right: -27px
+        border-radius: 0 10px 10px 0
+        padding: 20px 8px 20px 5px
 .navbar-inner
   padding-left: 0
   padding-right: 0
@@ -81,6 +87,7 @@ h4.title
       margin-left: -1px
 #top-bar
   padding: 20px 0 15px 0
+  margin-bottom: 60px
   ul
     .pad
       margin: 0 10px
@@ -111,7 +118,12 @@ h4.title
         margin-right: -5px
   .nav-pills > li > a
     padding-top: 0
-
+#top_menu
+  position: absolute
+  top: 60px
+  left: 50%
+  margin-left: -489px
+  z-index: 100
 .basket
   color: #999
   width: 100%
@@ -128,7 +140,7 @@ h4.title
 .row.services
   margin-top: 20px
   margin-bottom: 0px
-  position: absolute
+
 .services
   h4
     margin: 0
@@ -235,6 +247,8 @@ h4.title
 div.products_list
   .carousel, .thumbnails > li
     margin-bottom: 0
+.colored
+  box-shadow: 0px 0px 30px yellow !important
 
 .listing-products
   padding: 0
@@ -255,7 +269,11 @@ div.products_list
       overflow: hidden
       img
         width: 100%
-
+    .btn
+      width: 100%
+      text-align: center
+      padding-left: 0
+      padding-right: 0
 span.sale
   height: 54px
   margin: -1px 0px 0px -1px
@@ -311,7 +329,6 @@ p.obj_info_mini
   position: relative
   -moz-border-radius: 4px
   -webkit-border-radius: 4px
-  overflow: hidden
   background-color: #ffffff
 
 .breadcrumb
@@ -335,7 +352,7 @@ p.obj_info_mini
   overflow: hidden
   position: relative
   a
-    width: 100%
+    width: 940px
     height: 250px
     display: block
     text-align: center
@@ -495,20 +512,13 @@ ul.social
           .span3
             .block_content
               .products_list.text_block
-                h4.title
-                  span.pull-left
-                    i.icon-book
-                    strong
+
                 a
-                  p.obj_img
-                    span.sale
-                      img
-                    img
+
                   p.obj_info_mini
                     font-size: 12px
                     span:first-child
                       width: 60px
-                    span:last-child
 
 
       .shopping_box_tottal
@@ -529,3 +539,25 @@ ul.social
         right: 0
         bottom: 5px
         text-align: center
+
+.overview
+  .slide_el
+    float: left
+
+p.price span.red
+  color: red !important
+  text-shadow: 0px 0px 15px red !important
+.dop_info_footer
+  p
+    margin-top: 10px
+    font-size: 10px
+    line-height: 12px
+
+.btn-group
+  width: 100%
+  padding: 0 15px 15px 15px
+  display: table
+  .btn
+    padding-left: 0
+    padding-right: 0
+    width: 49.9%

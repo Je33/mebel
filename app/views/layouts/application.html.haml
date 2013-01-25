@@ -63,8 +63,8 @@
         .span4.logo
           %a{:href => "/"}
             %span
-              WOOD
-            STOK.ru
+              К
+            УМ
 
         .span8.options
           %ul.nav.nav-pills.pull-right
@@ -83,7 +83,7 @@
                   Корзина
                   %span
                     (12)
-      .row
+      #top_menu.row
         .span12
           #main-menu.navbar.navbar-inverse
             .navbar-inner
@@ -109,6 +109,12 @@
                       %a.dropdown-toggle{:href => "/special/index"}
                         Акции и спецпредложения
                     %li.dropdown
+                      %a.dropdown-toggle{:href => "/special/index"}
+                        Как заказать
+                    %li.dropdown
+                      %a.dropdown-toggle{:href => "/special/index"}
+                        О нас
+                    %li.dropdown
                       %a.dropdown-toggle{:href => "/contact/index"}
                         Контакты
                     %li.search_form.pull-right
@@ -116,6 +122,12 @@
                         %input.icon-search{:type => 'submit', :value => ""}
                         %input.input-medium.search-query{:placeholder => "Поиск...", :type => "text"}
       = yield
+      .block_content.container.dop_info_footer
+        .products_list.text_block
+          .row
+            .span12
+              %p
+                Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации "Здесь ваш текст.. Здесь ваш текст.. Здесь ваш текст.." Многие программы электронной вёрстки и редакторы HTML используют Lorem Ipsum в качестве текста по умолчанию, так что поиск по ключевым словам "lorem ipsum" сразу показывает, как много веб-страниц всё ещё дожидаются своего настоящего рождения. За прошедшие годы текст Lorem Ipsum получил много версий. Некоторые версии появились по ошибке, некоторые - намеренно (например, юмористические варианты).
 
     .footer
       .container
@@ -126,7 +138,7 @@
               %li
                 %a{:href => "about.html"} О нас
               %li
-                %a{:href => "#"} Информация о доставке
+                %a{:href => "#"} Как заказать
               %li
                 %a{:href => "#"} Условия и соглашения
           .span3
