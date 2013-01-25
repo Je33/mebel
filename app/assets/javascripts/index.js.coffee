@@ -75,7 +75,38 @@ M.slider = () ->
         l.hide()
         r.hide()
 
+$.fn.cardfly = (o) ->
+  o = $.extend(
+    basket: "none"
+    animspeed: 1000
+    sdv: -10
+  , o)
+  @each ->
+    btn = $(this).parents(".block_content")
+    clone = btn.clone().addClass("clone-block")
+    posX = btn.offset().left
+    posY = btn.offset().top
+    posXb = o.basket.offset().left
+    posYb = o.basket.offset().top
+    clone.css("position", "absolute").css("top", posY).css("left", posX).css("z-index", "2000").css "border", "1px solid #999999"
+    $("body").append clone
+    $(".clone-block").animate
+      left: posXb + parseInt(o.sdv)
+      top: posYb + parseInt(o.sdv)
+      width: "50px"
+      height: "50px"
+      opacity: 0.2
+    , o.animspeed, ->
+      $(this).remove()
+
+
 $ ->
+  $('.add_to_shopping_cart').bind 'click', ->
+
+    $(this).cardfly {
+      basket: if $('.shopping_cart_link:visible') then $('.shopping_cart_link') else $('.buscket')
+    }
+
   M.menu_slide()
   M.slider()
 
