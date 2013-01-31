@@ -1,5 +1,7 @@
 Mebel::Application.routes.draw do
 
+  get "shopping_box/index"
+
   get "admin/index"
 
   match "admin" => "admin#index"

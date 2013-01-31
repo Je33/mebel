@@ -1,0 +1,2 @@
+module ShoppingBoxHelper
+end

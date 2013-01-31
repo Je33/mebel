@@ -74,6 +74,16 @@ M.slider = () ->
       else
         l.hide()
         r.hide()
+M.filter_slide = () ->
+  $("#slider_cell").slider(
+    {
+      from: 5000,
+      to: 150000,
+      heterogeneity: ['50/50000'],
+      step: 1000,
+      dimension: '&nbsp;p'
+    }
+  )
 
 $.fn.cardfly = (o) ->
   o = $.extend(
@@ -132,5 +142,5 @@ $ ->
 
   M.menu_slide()
   M.slider()
-
+  M.filter_slide()
 

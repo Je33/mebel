@@ -1,3 +1,29 @@
+.row.filter_top
+  .span12
+    #main-menu.navbar
+      .navbar-inner
+        .container
+          .nav-collapse
+            %ul.nav.pull-left
+              %li.dropdown
+                %a.dropdown-toggle{:href => "/catalog/index"}
+                  Показать
+                  %span
+                    все
+                  %b.caret
+                %ul.dropdown-menu
+                  %li
+                    %a{:href => "products.html"} корпусную
+                  %li
+                    %a{:href => "products.html"} из камня
+                  %li
+                    %a{:href => "products.html"} живые
+              %li.divider-vertical
+              %li.width_300.pull-left
+                %span.nna
+                  Сортировать по цене:
+                .layout-slider
+                  %input#slider_cell{:name => "price", :type => "slider", :value => "1000;150000"}/
 .row
   .span12
     %ul.breadcrumb
