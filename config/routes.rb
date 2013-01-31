@@ -1,10 +1,17 @@
 Mebel::Application.routes.draw do
 
-  get "admin/index"
-
-  match "admin" => "admin#index"
-
   devise_for :users
+
+  namespace :admin do
+    root :to => "admin#index"
+    resources :companies do
+      resources :categories do
+        resources :products
+      end
+    end
+  end
+
+
 
   get "catalog/list"
 

@@ -1,6 +1,36 @@
-.block_content.container
-  .products_list
-    .row
-      .span12
-        %h1 Admin#index
-        %p Find me in app/views/admin/index.html.haml
+.row
+  .span12
+    .block_content.container
+      .products_list{:style => "margin:0 20px;"}
+        %h2 Заказы
+        = paginate @orders
+        %table.table.table-hover
+          %thead
+            %th #
+            %th Name
+            %th Phone
+            %th Address
+            %th Status
+            %th Actions
+          %tbody
+            - if @orders
+              - @orders.each do |order|
+                %tr{:class => get_order_class(order.status)}
+                  %td= order.id
+                  %td= order.name
+                  %td= order.phone
+                  %td= get_order_address(order)
+                  %td= t("status_#{order.status}")
+                  %td
+                    - if order.status.to_i == 0
+                      %a.btn.btn-small.btn-success Подтвердить
+                      %a.btn.btn-small.btn-danger Отменить
+                    - if order.status.to_i == 10
+                      %a.btn.btn-small.btn-success Доставлен
+                      %a.btn.btn-small.btn-danger Отменить
+                    - if order.status.to_i == 20
+                      %a.btn.btn-small.btn-success Восстановить
+                      %a.btn.btn-small.btn-danger Удалить
+                    - if order.status.to_i == 30
+                      %a.btn.btn-small.btn-success.disabled Доставлен
+        = paginate @orders

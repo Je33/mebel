@@ -1,0 +1,24 @@
+.block_content.container
+  .products_list
+    .row
+      .span12
+        %h2
+          Компании
+          %a.btn.btn-small{:href => "/admin/companies/new"}
+            %i.icon-plus
+            Добавить
+        %table.table.table-hover
+          %thead
+            %th #
+            %th Name
+            %th Description
+            %th Actions
+          %tbody
+            - if @companies
+              - @companies.each do |company|
+                %tr
+                  %td= company.id
+                  %td= company.name
+                  %td= company.text
+                  %td
+                    %a.btn.btn-small.btn-success Категории
