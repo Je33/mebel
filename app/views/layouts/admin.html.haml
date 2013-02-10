@@ -31,6 +31,13 @@
                   Корзина
                   %span
                     (12)
+            - if user_signed_in?
+              %li.pad
+                |
+              %li
+                %span= current_user.email
+                %span= link_to "выход", destroy_user_session_path, :method => "delete"
+
       #top_menu.row
         .span12
 

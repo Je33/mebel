@@ -2,8 +2,8 @@ Mebel::Application.routes.draw do
 
   devise_for :users
 
+  match "admin" => "admin#index"
   namespace :admin do
-    root :to => "admin#index"
     resources :companies do
       resources :categories do
         resources :products

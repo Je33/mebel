@@ -6,4 +6,7 @@
     - @breads.each do |b|
       %li
         %span.divider /
-        %a{:href => b[1]}= b[0]
+        - if b[1]
+          %a{:href => b[1]}= b[0]
+        - else
+          %span= b[0]

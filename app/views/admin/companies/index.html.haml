@@ -1,18 +1,20 @@
-.block_content.container
-  .products_list
-    .row
-      .span12
-        %h2
+.row
+  .span12
+    .block_content.container
+      .products_list{:style => "margin:0 20px;"}
+        %h3
           Компании
           %a.btn.btn-small{:href => "/admin/companies/new"}
             %i.icon-plus
             Добавить
+        = paginate @companies
         %table.table.table-hover
           %thead
             %th #
-            %th Name
-            %th Description
-            %th Actions
+            %th Название
+            %th Описание
+            %th
+            %th Действия
           %tbody
             - if @companies
               - @companies.each do |company|
@@ -21,4 +23,11 @@
                   %td= company.name
                   %td= company.text
                   %td
-                    %a.btn.btn-small.btn-success Категории
+                    %a.btn.btn-small{:href => admin_company_categories_path(company)} Категории
+                  %td
+                    %a{:href => edit_admin_company_path(company)}
+                      %i.icon-edit
+                    %a{:href => admin_company_path(company), :data => {:method => "delete", :confirm => "Действительно удалить компанию #{company.name}?"}}
+                      %i.icon-remove
+
+        = paginate @companies

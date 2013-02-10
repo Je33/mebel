@@ -2,16 +2,16 @@
   .span12
     .block_content.container
       .products_list{:style => "margin:0 20px;"}
-        %h2 Заказы
+        %h3 Заказы
         = paginate @orders
         %table.table.table-hover
           %thead
             %th #
-            %th Name
-            %th Phone
-            %th Address
-            %th Status
-            %th Actions
+            %th Имя
+            %th Телефон
+            %th Адрес
+            %th Статус
+            %th Действия
           %tbody
             - if @orders
               - @orders.each do |order|

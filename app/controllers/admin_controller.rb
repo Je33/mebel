@@ -5,7 +5,7 @@ class AdminController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @breads = [['Администрирование', '/admin'], ['Заказы', '/admin']]
+    @breads = [['Администрирование', '/admin'], ['Заказы']]
     @orders = Order.order(:status).page params[:page]
   end
 
