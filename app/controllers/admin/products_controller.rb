@@ -35,14 +35,39 @@ class Admin::ProductsController < AdminController
     @product.company_id = @company.id
     @product.category_id = @category.id
     if @product.save
-      redirect_to admin_company_category_products_path(@company, @category), :notice => "Товар успешно создан"
+      if params[:product_photo]
+        params[:product_photo].each do |f|
+          file = Photo.create({:product_id => @product.id, :file => f})
+        end
+      end
+      flash.now[:notice] = "Товар успешно создан"
+      if params[:apply]
+        redirect_to edit_admin_company_category_product_path(@company, @category, @product)
+      else
+        redirect_to admin_company_category_products_path(@company, @category)
+      end
     end
   end
 
   def update
     @product = Product.find params[:id]
-    if @product.update_attributes params[:company]
-      redirect_to admin_companiy_category_products_path(@company, @category), :notice => "Товар успешно обновлен"
+    if @product.update_attributes params[:product]
+      if params[:product_photo]
+        params[:product_photo].each do |f|
+          file = Photo.create({:product_id => @product.id, :file => f})
+        end
+      end
+      if params[:product_photo_del]
+        params[:product_photo_del].each do |d|
+          Photo.find(d).destroy
+        end
+      end
+      flash.now[:notice] = "Товар успешно обновлен"
+      if params[:apply]
+        redirect_to edit_admin_company_category_product_path(@company, @category, @product)
+      else
+        redirect_to admin_company_category_products_path(@company, @category)
+      end
     end
   end
 

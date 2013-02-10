@@ -13,6 +13,8 @@
             %th #
             %th Название
             %th Описание
+            %th Цена
+            %th Старая цена
             %th Действия
           %tbody
             - if @products
@@ -21,6 +23,8 @@
                   %td= product.id
                   %td= product.name
                   %td= product.text
+                  %td= product.price
+                  %td= product.old_price
                   %td
                     %a{:href => edit_admin_company_category_product_path(@company, @category, product)}
                       %i.icon-edit

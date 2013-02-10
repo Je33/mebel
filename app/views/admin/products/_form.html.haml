@@ -1,12 +1,44 @@
-= form_tag params[:id].to_i > 0 ? admin_company_category_product_path(@company, @category, @product) : admin_company_category_products_path(@company, @category), :method => params[:id].to_i > 0 ? "PUT" : "POST", :class => "form-horizontal" do
+= form_tag params[:id].to_i > 0 ? admin_company_category_product_path(@company, @category, @product) : admin_company_category_products_path(@company, @category), :method => params[:id].to_i > 0 ? "PUT" : "POST", :class => "form-horizontal", :multipart => true do
+  - if flash[:notice]
+    .alert.alert-success
+      = flash[:notice]
+  - if flash[:alert]
+    .alert.alert-error
+      = flash[:alert]
   .control-group
     %label.control-label{:for => "product_name"} Название
     .controls
       = text_field_tag "product[name]", @product.name
   .control-group
+    %label.control-label{:for => "product_price"} Цена
+    .controls
+      = text_field_tag "product[price]", @product.price
+  .control-group
+    %label.control-label{:for => "product_old_price"} Старая цена
+    .controls
+      = text_field_tag "product[old_price]", @product.old_price
+  .control-group
     %label.control-label{:for => "product_text"} Описание
     .controls
       = text_area_tag "product[text]", @product.text, :rows => 5
+  .control-group
+    %label.control-label Фотографии
+    .controls
+      = file_field_tag "product_photo[]", :multiple => true
+      = hidden_field_tag "product_id", @product.id
+  %ul.thumbnails
+    - if @product.photos
+      - @product.photos.each do |p|
+        %li.span2
+          %a.thumbnail{:href => p.file.url, :target => "_blank"}
+            = image_tag p.file(:s)
+          %center
+            %label.btn.btn-mini{:style => "margin: 5px 0 10px 0"}
+              %input{:type => "checkbox", :name => "product_photo_del[]", :value => p.id, :style => "margin:0;padding:0;"}
+              удалить
+            -#%a.btn.btn-mini{:href => "javascript:del_photo(#{p.id});"}
+              удалить
   .form-actions
-    = submit_tag "Сохранить", :class => "btn btn-small btn-primary"
+    = submit_tag "Сохранить", :name => "save", :class => "btn btn-small btn-primary"
+    = submit_tag "Применить", :name => "apply", :class => "btn btn-small btn-info"
     %a.btn.btn-small{:href => admin_company_category_products_path(@company, @category)} Отменить
