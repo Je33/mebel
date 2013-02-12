@@ -1,0 +1,35 @@
+= form_tag params[:id].to_i > 0 ? admin_texture_path(@texture) : admin_textures_path, :method => params[:id].to_i > 0 ? "PUT" : "POST", :multipart => true, :class => "form-horizontal" do
+  .control-group
+    %label.control-label{:for => "texture_name"} Название
+    .controls
+      = text_field_tag "texture[name]", @texture.name
+  .control-group
+    %label.control-label{:for => "texture_price"} Цена
+    .controls
+      = text_field_tag "texture[price]", @texture.price
+  .control-group
+    %label.control-label{:for => "texture_text"} Описание
+    .controls
+      = text_area_tag "texture[text]", @texture.text, :rows => 5
+  .control-group
+    %label.control-label{:for => "texture_type_id"} Категория ткани
+    .controls
+      %select#texture_type_id{:name => "texture[type_id]"}
+        %option{:value => 0} Выберите категорию
+        - 9.times do |i|
+          %option{:value => i, :selected => @texture.type_id == i ? true : false} #{i} категория
+  .control-group
+    %label.control-label{:for => "texture_photo"} Фото
+    .controls
+      = file_field_tag "texture[photo]"
+  -#.control-group
+    %label.control-label{:for => "texture_delete_photo"} Удалить фото
+    .controls
+      = check_box_tag "texture[photo]", 0
+  .control-group
+    .controls
+      %a{:href => @texture.photo.url, :target => "_blank"}
+        = image_tag @texture.photo.url(:m)
+  .form-actions
+    = submit_tag "Сохранить", :class => "btn btn-small btn-primary"
+    %a.btn.btn-small{:href => admin_textures_path} Отменить

@@ -1,0 +1,31 @@
+.row
+  .span12
+    .block_content.container
+      .products_list{:style => "margin:0 20px;"}
+        %h3
+          Материалы
+          %a.btn.btn-small{:href => new_admin_texture_path}
+            %i.icon-plus
+            Добавить
+        = paginate @textures
+        %table.table.table-hover
+          %thead
+            %th #
+            %th Название
+            %th Описание
+            %th
+            %th Действия
+          %tbody
+            - if @textures
+              - @textures.each do |texture|
+                %tr
+                  %td= texture.id
+                  %td= texture.name
+                  %td= texture.text
+                  %td
+                    %a{:href => edit_admin_texture_path(texture)}
+                      %i.icon-edit
+                    %a{:href => admin_texture_path(texture), :data => {:method => "delete", :confirm => "Действительно удалить категорию #{texture.name}?"}}
+                      %i.icon-remove
+
+        = paginate @textures

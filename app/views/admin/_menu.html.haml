@@ -19,6 +19,10 @@
       %li
         %a{:href => "products.html"} Кресла
 
+  %li.dropdown{:class => params[:controller] == "textures" ? "active" : ""}
+    %a.dropdown-toggle{:href => "/admin/textures"}
+      Материалы
+
   %li.dropdown
     %a.dropdown-toggle{:href => "/special/index"}
       Акции и спецпредложения
