@@ -464,13 +464,45 @@ ul.social
 .shopping_cart_content
   div
     .one_cart
+      &::before, &::after
+        z-index: -1
+        position: absolute
+        content: ""
+        bottom: 15px
+        left: 10px
+        width: 50%
+        top: 80%
+        max-width: 300px
+        background: rgba(0, 0, 0, 0.7)
+        -webkit-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7)
+        -moz-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7)
+        box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7)
+        -webkit-transform: rotate(-3deg)
+        -moz-transform: rotate(-3deg)
+        -o-transform: rotate(-3deg)
+        -ms-transform: rotate(-3deg)
+        transform: rotate(-3deg)
+
+    .one_cart::after
+      -webkit-transform: rotate(3deg)
+      -moz-transform: rotate(3deg)
+      -o-transform: rotate(3deg)
+      -ms-transform: rotate(3deg)
+      transform: rotate(3deg)
+      right: 10px
+      left: auto
+
+    .one_cart
       border-bottom: 1px solid rgb(204, 204, 204)
       margin-bottom: 20px
+      position: relative
+      background: rgb(242, 242, 242)
       .row
         h3
           border-bottom: 1px solid rgb(204, 204, 204)
           margin-bottom: 25px
           line-height: 0
+          font-size: 21px
           position: relative
           span
             background: rgb(242, 242, 242)
@@ -539,6 +571,7 @@ p.price span.red
       width: 49.9%
 .shopping_cart_link.pull-right
   float: right !important
+
 
 
 #scrollbar2
@@ -728,4 +761,75 @@ p.price span.red
 .jslider-limitless .jslider-label
   display: none
 
+.tottal_text,
+.tottal
+  text-align: right
+  font-size: 24px
+  font-weight: bold
+  margin-bottom: 25px
+  padding-bottom: 20px
+  border-bottom: 1px dashed #333333
+.forms_block_le
+  min-height: 320px
+.text_underline
+  text-decoration: underline
+.tottal
+  text-align: left
+  span
+    color: #333333
+.green
+  color: rgb(145, 193, 19) !important
+.red
+  color: rgb(218, 79, 73) !important
+.yellow
+  color: rgb(250, 167, 50) !important
 
+.list_shadow
+  &::before,
+  &::after
+    z-index: -1
+    position: absolute
+    content: ""
+    bottom: 15px
+    left: 10px
+    width: 50%
+    top: 80%
+    max-width: 300px
+    background: rgba(0, 0, 0, 0.7)
+    -webkit-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7)
+    -moz-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7)
+    box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7)
+    -webkit-transform: rotate(-3deg)
+    -moz-transform: rotate(-3deg)
+    -o-transform: rotate(-3deg)
+    -ms-transform: rotate(-3deg)
+    transform: rotate(-3deg)
+
+.list_shadow::after
+  -webkit-transform: rotate(3deg)
+  -moz-transform: rotate(3deg)
+  -o-transform: rotate(3deg)
+  -ms-transform: rotate(3deg)
+  transform: rotate(3deg)
+  right: 10px
+  left: auto
+.row
+  margin-bottom: 25px
+.clear-margin-top
+  margin-top: 0
+.clear-color-line
+  margin-top: 50px
+  margin-bottom: 35px
+  .line
+    position: relative
+    border-bottom: 1px solid #dedede
+    span
+      position: absolute
+      left:  0
+      top: -10px
+      font-size: 24px
+      background: rgb(242, 242, 242)
+      padding-right: 10px
+
+  p
+    margin-top: 15px

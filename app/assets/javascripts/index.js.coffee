@@ -1,5 +1,4 @@
 M = {}
-
 M.menu_slide = ->
   el = $('#top_menu')
   tpm = el.position().top
@@ -105,6 +104,7 @@ $.fn.cardfly = (o) ->
       top: posYb + parseInt(o.sdv)
       width: "50px"
       height: "50px"
+      background: 'rgba(255,255,255,0.7)'
       opacity: 0.2
     , o.animspeed, ->
       $(this).remove()
@@ -116,21 +116,6 @@ $ ->
       basket: if $('.shopping_cart_link:visible').get(0) then $('.shopping_cart_link') else $('.basket')
     }
 
-  $('.scl').bind 'click', ->
-    if $('.shopping_cart').hasClass('open') == false
-      $('.shopping_cart')
-        .addClass('open')
-        .show()
-      $('.shopping_box').tinyscrollbar({ axis: 'x'})
-    else
-      $('.shopping_cart')
-        .removeClass('open')
-        .hide()
-    return false
-  $('.shop_cart_close').bind 'click', ->
-    $('.shopping_cart')
-      .removeClass('open')
-      .hide()
 
   $('.coll_change').find('i').bind 'click', ->
     coll = parseInt( $(this).parent().find('.coll').text() )
@@ -139,8 +124,64 @@ $ ->
     if $(this).hasClass('icon-plus') == true && coll < 99
       $(this).parent().find('.coll').text( coll + 1 )
 
+  $('.order_issue_btn').bind 'click', ->
+    #blocks
+    $('.order_list').hide()
+    $('.order_form').show()
+    $('.order_confirm').hide()
+    $('.order_none').hide()
+    #btn
+    $('.order_issue_btn').hide()
+    $('.order_btn').show()
+    $('.back_btn').show()
+    $('.remove_all').hide()
+
+  $('.order_btn').bind 'click', ->
+    #blocks
+    $('.order_list').hide()
+    $('.order_form').hide()
+    $('.order_confirm').show()
+    $('.order_none').hide()
+    $('.tottal_text').hide()
+    $('.forms_block_ri').hide()
+    $('.forms_block_le').removeClass('span10').addClass('span12')
+
+    #btn
+    $('.order_issue_btn').hide()
+    $('.order_btn').hide()
+    $('.back_btn').hide()
+    $('.remove_all').hide()
+
+  $('.back_btn').bind 'click', ->
+    #blocks
+    $('.order_list').show()
+    $('.order_form').hide()
+    $('.order_confirm').show()
+    $('.order_none').hide()
+    #btn
+    $('.order_issue_btn').show()
+    $('.order_btn').hide()
+    $('.back_btn').hide()
+    $('.remove_all').show()
+
+  $('.remove_all').bind 'click', ->
+    if confirm("Вы, действительно хотите удалть все покупки?")
+      #blocks
+      $('.order_list').hide()
+      $('.order_form').hide()
+      $('.order_confirm').hide()
+      $('.tottal_text').hide()
+      $('.order_none').show()
+      $('.forms_block_ri').remove()
+      $('.forms_block_le').removeClass('span10').addClass('span12')
+  $('#myTab a').click (e) ->
+    e.preventDefault()
+    $(this).tab 'show'
 
   M.menu_slide()
   M.slider()
   M.filter_slide()
+
+
+
 

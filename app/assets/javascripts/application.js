@@ -17,6 +17,8 @@
 //= require jshashtable-2.1_src
 //= require jquery.numberformatter-1.2.3
 
+//= require tab
+
 //= require scrollbar
 //= require tmpl
 //= require jquery.slider

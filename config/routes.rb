@@ -1,5 +1,7 @@
 Mebel::Application.routes.draw do
 
+  get "catalog/detail"
+
   devise_for :users
   get "shopping_box/index"
 
