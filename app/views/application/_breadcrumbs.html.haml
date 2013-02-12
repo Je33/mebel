@@ -1,0 +1,12 @@
+%ul.breadcrumb
+  %li
+    %a{:href => "/"}
+      %i.icon-home
+  - if @breads
+    - @breads.each do |b|
+      %li
+        %span.divider /
+        - if b[1]
+          %a{:href => b[1]}= b[0]
+        - else
+          %span= b[0]

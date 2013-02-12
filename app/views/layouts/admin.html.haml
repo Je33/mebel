@@ -7,58 +7,6 @@
     = csrf_meta_tags
   %body
     .container
-      .shopping_cart
-        .container
-          .shopping_box
-            %h4.title
-              %span
-                Корзина
-            .shopping_box_inner
-              .row.overview
-
-                .span3
-                  .block_content
-                    .products_list.text_block
-                      %h4.title
-                        %span.pull-left
-                          %i.icon-book
-                          %strong Название шкафа
-                      %a{:href => "/catalog/detail", :title => ""}
-                        %p.obj_img
-                          %span.sale
-                            %img{:alt => "", :src => "/assets/sale.png"}
-                          %img{:alt => "", :src => "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT2SVoUu9_ohsYS4DQh8GuXl2f0AyGoEu7gMSTp1MRumZWzJjkkfQ", :width => "100%"}
-                        %p.obj_info_mini
-                          %span
-                            Цена:
-                          %span
-                            12 000
-                        %p.obj_info_mini
-                          %span
-                            Размеры:
-                          %span
-                            220 x 220 x 220
-                        %p.obj_info_mini
-                          %span
-                            Декор:
-                          %span
-                            Красивая ткань
-                        %p.obj_info_mini
-                          %span
-                            Колл:
-                          %span
-                            +  1  -
-            .shopping_box_tottal
-              %p
-                ИТОГО: 15 500 р
-            .shopping_box_footer
-              %a.btn.btn-success{:href => "javascript:;"}
-                Оформить заказ
-              %a{:href => "javascript:;"}
-                Заказать звонок
-              .clear
-              %a{:href => "javascript:;"}
-                Закрыть
       #top-bar.row
         .span4.logo
           %a{:href => "/"}
@@ -83,38 +31,25 @@
                   Корзина
                   %span
                     (12)
-      .row
+            - if user_signed_in?
+              %li.pad
+                |
+              %li
+                %span= current_user.email
+                %span= link_to "выход", destroy_user_session_path, :method => "delete"
+
+      #top_menu.row
         .span12
+
           #main-menu.navbar.navbar-inverse
             .navbar-inner
               .container
                 .nav-collapse
-                  %ul.nav
-                    %li.active
-                      %a{:href => "/"}
-                        %i.icon-home
+                  = render "menu"
+      .row
+        .span12
+          = render "breadcrumbs"
 
-                    %li.dropdown
-                      %a.dropdown-toggle{:href => "/catalog/index"}
-                        Каталог
-                        %b.caret
-                      %ul.dropdown-menu
-                        %li
-                          %a{:href => "products.html"} Шкафы
-                        %li
-                          %a{:href => "products.html"} Столы
-                        %li
-                          %a{:href => "products.html"} Кресла
-                    %li.dropdown
-                      %a.dropdown-toggle{:href => "/special/index"}
-                        Акции и спецпредложения
-                    %li.dropdown
-                      %a.dropdown-toggle{:href => "/contact/index"}
-                        Контакты
-                    %li.search_form.pull-right
-                      %form.navbar-search{:method => "POST"}
-                        %input.icon-search{:type => 'submit', :value => ""}
-                        %input.input-medium.search-query{:placeholder => "Поиск...", :type => "text"}
       = yield
 
     .footer

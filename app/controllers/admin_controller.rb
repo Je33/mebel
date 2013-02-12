@@ -1,11 +1,12 @@
+# encoding: utf-8
 class AdminController < ApplicationController
 
   layout "admin"
   before_filter :authenticate_user!
 
   def index
-    @breads = [['Admin', '/admin']]
-
+    @breads = [['Администрирование', '/admin'], ['Заказы']]
+    @orders = Order.order(:status).page params[:page]
   end
 
 end

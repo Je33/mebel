@@ -1,12 +1,21 @@
 Mebel::Application.routes.draw do
 
+  devise_for :users
   get "shopping_box/index"
 
   get "admin/index"
 
   match "admin" => "admin#index"
+  namespace :admin do
+    match "ajax/:action" => "ajax"
+    resources :companies do
+      resources :categories do
+        resources :products
+      end
+    end
+  end
 
-  devise_for :users
+
 
   get "catalog/list"
 

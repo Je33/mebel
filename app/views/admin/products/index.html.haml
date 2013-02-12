@@ -1,0 +1,34 @@
+.row
+  .span12
+    .block_content.container
+      .products_list{:style => "margin:0 20px;"}
+        %h3
+          Товары в категории #{@category.name} компании #{@company.name}
+          %a.btn.btn-small{:href => new_admin_company_category_product_path(@company, @category)}
+            %i.icon-plus
+            Добавить
+        = paginate @products
+        %table.table.table-hover
+          %thead
+            %th #
+            %th Название
+            %th Описание
+            %th Цена
+            %th Старая цена
+            %th Действия
+          %tbody
+            - if @products
+              - @products.each do |product|
+                %tr
+                  %td= product.id
+                  %td= product.name
+                  %td= product.text
+                  %td= product.price
+                  %td= product.old_price
+                  %td
+                    %a{:href => edit_admin_company_category_product_path(@company, @category, product)}
+                      %i.icon-edit
+                    %a{:href => admin_company_category_product_path(@company, @category, product), :data => {:method => "delete", :confirm => "Действительно удалить компанию #{product.name}?"}}
+                      %i.icon-remove
+
+        = paginate @products

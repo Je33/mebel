@@ -1,0 +1,29 @@
+%ul.nav
+  %li
+    %a{:href => "/"}
+      %i.icon-home
+
+  %li.dropdown{:class => params[:controller] == "admin" ? "active" : ""}
+    %a.dropdown-toggle{:href => "/admin"}
+      Заказы
+
+  %li.dropdown{:class => ["companies", "categories", "products"].include?(params[:controller].to_s) ? "active" : ""}
+    %a.dropdown-toggle{:href => "/admin/companies"}
+      Каталог
+      -#%b.caret
+    -#%ul.dropdown-menu
+      %li
+        %a{:href => "products.html"} Шкафы
+      %li
+        %a{:href => "products.html"} Столы
+      %li
+        %a{:href => "products.html"} Кресла
+
+  %li.dropdown
+    %a.dropdown-toggle{:href => "/special/index"}
+      Акции и спецпредложения
+
+  %li.search_form.pull-right
+    %form.navbar-search{:method => "POST"}
+      %input.icon-search{:type => 'submit', :value => ""}
+      %input.input-medium.search-query{:placeholder => "Поиск...", :type => "text"}

@@ -1,0 +1,12 @@
+= form_tag params[:id].to_i > 0 ? admin_company_category_path(@company, @category) : admin_company_categories_path(@company), :method => params[:id].to_i > 0 ? "PUT" : "POST", :class => "form-horizontal" do
+  .control-group
+    %label.control-label{:for => "category_name"} Название
+    .controls
+      = text_field_tag "category[name]", @category.name
+  .control-group
+    %label.control-label{:for => "category_text"} Описание
+    .controls
+      = text_area_tag "category[text]", @category.text, :rows => 5
+  .form-actions
+    = submit_tag "Сохранить", :class => "btn btn-small btn-primary"
+    %a.btn.btn-small{:href => admin_company_categories_path(@company)} Отменить
