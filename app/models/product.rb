@@ -7,9 +7,9 @@ class Product < ActiveRecord::Base
 
   belongs_to :company
   belongs_to :category
-  has_many :photos
+  has_many :photos, :dependent => :destroy
 
-  has_many :product_textures
+  has_many :product_textures, :dependent => :destroy
   has_many :textures, :through => :product_textures
 
 end

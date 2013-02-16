@@ -3,6 +3,6 @@ class Company < ActiveRecord::Base
 
   paginates_per 20
 
-  has_many :products
+  has_many :products, :dependent => :destroy
 
 end
