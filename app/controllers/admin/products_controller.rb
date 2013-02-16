@@ -5,35 +5,31 @@ class Admin::ProductsController < AdminController
 
   def breadcrumbs
     @company = Company.find params[:company_id]
-    @category = Category.find params[:category_id]
     @breads = [['Администрирование', '/admin'],
                ['Компании', '/admin/companies'],
-               [@company.name, edit_admin_company_path(@company)],
-               ['Категории', admin_company_categories_path(@company)],
-               [@category.name, edit_admin_company_category_path(@company, @category)]]
+               [@company.name, edit_admin_company_path(@company)]]
   end
 
   def index
     @breads << ['Товары']
-    @products = @category.products.order("id desc").page params[:page]
+    @products = @company.products.order("id desc").page params[:page]
   end
 
   def new
-    @breads << ['Товары', admin_company_category_products_path(@company, @category)]
+    @breads << ['Товары', admin_company_products_path(@company)]
     @breads << ['Новый товар']
     @product = Product.new
   end
 
   def edit
     @product = Product.find(params[:id])
-    @breads << ['Товары', admin_company_category_products_path(@company, @category)]
-    @breads << ["Редактирование товара - #{@category.name}"]
+    @breads << ['Товары', admin_company_products_path(@company)]
+    @breads << ["Редактирование товара - #{@product.name}"]
   end
 
   def create
     @product = Product.new params[:product]
     @product.company_id = @company.id
-    @product.category_id = @category.id
     if @product.save
       if params[:product_photo]
         params[:product_photo].each do |f|
@@ -42,9 +38,9 @@ class Admin::ProductsController < AdminController
       end
       flash.now[:notice] = "Товар успешно создан"
       if params[:apply]
-        redirect_to edit_admin_company_category_product_path(@company, @category, @product)
+        redirect_to edit_admin_company_product_path(@company, @product)
       else
-        redirect_to admin_company_category_products_path(@company, @category)
+        redirect_to admin_company_products_path(@company)
       end
     end
   end
@@ -54,7 +50,7 @@ class Admin::ProductsController < AdminController
     if @product.update_attributes params[:product]
       if params[:product_photo]
         params[:product_photo].each do |f|
-          file = Photo.create({:product_id => @product.id, :file => f})
+          Photo.create({:product_id => @product.id, :file => f})
         end
       end
       if params[:product_photo_del]
@@ -64,9 +60,9 @@ class Admin::ProductsController < AdminController
       end
       flash.now[:notice] = "Товар успешно обновлен"
       if params[:apply]
-        redirect_to edit_admin_company_category_product_path(@company, @category, @product)
+        redirect_to edit_admin_company_product_path(@company, @product)
       else
-        redirect_to admin_company_category_products_path(@company, @category)
+        redirect_to admin_company_products_path(@company)
       end
     end
   end
@@ -74,7 +70,7 @@ class Admin::ProductsController < AdminController
   def destroy
     @product = Product.find params[:id]
     if @product.destroy
-      redirect_to admin_company_category_products_path(@company, @category), :notice => "Товар успешно удален"
+      redirect_to admin_company_products_path(@company), :notice => "Товар успешно удален"
     end
   end
 

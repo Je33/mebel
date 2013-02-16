@@ -49,12 +49,9 @@
                         Каталог
                         %b.caret
                       %ul.dropdown-menu
-                        %li
-                          %a{:href => "products.html"} Шкафы
-                        %li
-                          %a{:href => "products.html"} Столы
-                        %li
-                          %a{:href => "products.html"} Кресла
+                        - Category.all.each do |c|
+                          %li
+                            %a{:href => "/catalog/#{c.id}"}= c.name
                     %li.dropdown
                       %a.dropdown-toggle{:href => "/special/index"}
                         Акции и спецпредложения

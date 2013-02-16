@@ -9,10 +9,10 @@ Mebel::Application.routes.draw do
   namespace :admin do
     match "ajax/:action" => "ajax"
     resources :textures
+    resources :categories
+    resources :specials
     resources :companies do
-      resources :categories do
-        resources :products
-      end
+      resources :products
     end
   end
 

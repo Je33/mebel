@@ -1,8 +1,8 @@
 class Category < ActiveRecord::Base
-  attr_accessible :cnt, :name, :text
-
-  belongs_to :company
+  attr_accessible :cnt, :name, :text, :photo
 
   has_many :products
+
+  has_attached_file :photo, :styles => {:s => '50x50#', :m => '188x150#'}
 
 end

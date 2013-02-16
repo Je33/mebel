@@ -1,4 +1,4 @@
-= form_tag params[:id].to_i > 0 ? admin_company_category_product_path(@company, @category, @product) : admin_company_category_products_path(@company, @category), :method => params[:id].to_i > 0 ? "PUT" : "POST", :class => "form-horizontal", :multipart => true do
+= form_tag params[:id].to_i > 0 ? admin_company_product_path(@company, @product) : admin_company_products_path(@company), :method => params[:id].to_i > 0 ? "PUT" : "POST", :class => "form-horizontal", :multipart => true do
   - if flash[:notice]
     .alert.alert-success
       = flash[:notice]
@@ -9,6 +9,11 @@
     %label.control-label{:for => "product_name"} Название
     .controls
       = text_field_tag "product[name]", @product.name
+  .control-group
+    %label.control-label{:for => "product_name"} Раздел
+    .controls
+      =# text_field_tag "product[name]", @product.category_id
+      = select_tag "product[category_id]", options_from_collection_for_select(Category.all, :id, :name, @product.category_id), :prompt => "Выберите категорию"
   .control-group
     %label.control-label{:for => "product_price"} Цена
     .controls
@@ -60,4 +65,4 @@
   .form-actions
     = submit_tag "Сохранить", :name => "save", :class => "btn btn-small btn-primary"
     = submit_tag "Применить", :name => "apply", :class => "btn btn-small btn-info"
-    %a.btn.btn-small{:href => admin_company_category_products_path(@company, @category)} Отменить
+    %a.btn.btn-small{:href => admin_company_products_path(@company)} Отменить

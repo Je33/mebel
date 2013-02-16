@@ -1,0 +1,30 @@
+.row
+  .span12
+    .block_content.container
+      .products_list{:style => "margin:0 20px;"}
+        %h3
+          Категории
+          %a.btn.btn-small{:href => new_admin_special_path}
+            %i.icon-plus
+            Добавить
+        = paginate @specials
+        %table.table.table-hover
+          %thead
+            %th #
+            %th Название
+            %th Описание
+            %th Действия
+          %tbody
+            - if @specials
+              - @specials.each do |special|
+                %tr
+                  %td= special.id
+                  %td= special.name
+                  %td= special.text
+                  %td
+                    %a{:href => edit_admin_special_path(special)}
+                      %i.icon-edit
+                    %a{:href => admin_special_path(special), :data => {:method => "delete", :confirm => "Действительно удалить акцию #{special.name}?"}}
+                      %i.icon-remove
+
+        = paginate @specials

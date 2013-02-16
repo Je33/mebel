@@ -3,6 +3,6 @@ class Company < ActiveRecord::Base
 
   paginates_per 20
 
-  has_many :categories
+  has_many :products
 
 end
