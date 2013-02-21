@@ -127,5 +127,27 @@
                   Красная площадь 1/21
                   %br
                     %i.icon-ok-circle
-                    %a{:href => "call:+78008888888", :title => ""} 8 (800) 888 88-88
-
+                    %a{:href => 'call:+78008888888', :title => ''} 8 (800) 888 88-88
+  .cloth_cont
+    .cloth_box.zero_b
+      %p Выберите основную ткань
+    .cloth_box.fr_b
+      %a{:href => "javascript:;"}
+        %img{:alt => "google plus", :src => "/assets/gplus.png"}/
+      %p Основная ткань (название)
+      %p Класс 1 (+1500р.)
+    .cloth_box.sec_b
+      %a{:href => "javascript:;"}
+        %img{:alt => "google plus", :src => "/assets/gplus.png"}/
+      %p Название
+      %p Класс 2 ( +1500р. )
+    %button.btn.btn-mini.btn-block.clear_cloth Очистить ткани
+    %form
+      %input{:type => "hidden", :value => "", :name => 'first_cloth'}
+      %input{:type => "hidden", :value => "", :name => 'second_cloth'}
+      %input.btn.btn-success.btn-block.disabled.add_shoping_box{:type =>'submit', :value=>'В корзину'}
+    .arr_left_box.open
+      %a.ll.hide{:href => "javascript:;"}
+        &lt;
+      %a.rr{:href => "javascript:;"}
+        &gt;
