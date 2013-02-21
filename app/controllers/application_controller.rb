@@ -12,13 +12,13 @@ class ApplicationController < ActionController::Base
       end
     else
       if cookies[:last_basket].to_i > 0
-        bsk = Order.find(cookies[:last_basket]).first
+        bsk = Order.find(cookies[:last_basket])
         if bsk
           @order = bsk
         end
       else
         if session[:session_id]
-          bsk = Order.find_by_session(session[:session_id]).first
+          bsk = Order.find_by_session(session[:session_id])
           if bsk
             @order = bsk
           end
