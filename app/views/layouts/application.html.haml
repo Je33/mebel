@@ -11,9 +11,7 @@
       #top-bar.row
         .span4.logo
           %a{:href => "/"}
-            %span
-              К
-            УМ
+            Mebel<b>S</b>mart
 
         .span8.options
           %ul.nav.nav-pills.pull-right
@@ -27,11 +25,11 @@
               |
             %li
               .basket
-                %a.scl{:href => "/shopping_box/index"}
+                %a.scl{:href => "/basket"}
                   %i.icon-shopping-cart
                   Корзина
                   %span
-                    (12)
+                    (#{@order.baskets.count})
       #top_menu.row
         .span12
 
@@ -45,7 +43,7 @@
                         %i.icon-home
 
                     %li.dropdown
-                      %a.dropdown-toggle{:href => "/catalog/index"}
+                      %a.dropdown-toggle{:href => "/catalog"}
                         Каталог
                         %b.caret
                       %ul.dropdown-menu
@@ -53,24 +51,24 @@
                           %li
                             %a{:href => "/catalog/#{c.id}"}= c.name
                     %li.dropdown
-                      %a.dropdown-toggle{:href => "/special/index"}
+                      %a.dropdown-toggle{:href => "/specials"}
                         Акции и спецпредложения
                     %li.dropdown
-                      %a.dropdown-toggle{:href => "/special/index"}
+                      %a.dropdown-toggle{:href => "/howto"}
                         Как заказать
-                    %li.dropdown
-                      %a.dropdown-toggle{:href => "/special/index"}
+                    -#%li.dropdown
+                      %a.dropdown-toggle{:href => "/about"}
                         О нас
                     %li.dropdown
-                      %a.dropdown-toggle{:href => "/contact/index"}
+                      %a.dropdown-toggle{:href => "/contacts"}
                         Контакты
 
-                    %li.shopping_cart_link.pull-right.hide
-                      %a.scl{:href => "/shopping_box/index"}
+                    -#%li.shopping_cart_link.pull-right.hide
+                      %a.scl{:href => "/basket"}
                         %i.icon-shopping-cart.icon-white
                         Корзина
                         %span
-                          (12)
+                          (#{!@basket.empty? ? @basket.baskets.count : 0})
                     %li.search_form.pull-right
                       %form.navbar-search{:method => "POST"}
                         %input.icon-search{:type => 'submit', :value => ""}
@@ -91,22 +89,22 @@
             %h4 Информация
             %ul
               %li
-                %a{:href => "about.html"} О нас
+                %a{:href => "/about"} О нас
               %li
-                %a{:href => "#"} Как заказать
+                %a{:href => "/howto"} Как заказать
               %li
-                %a{:href => "#"} Условия и соглашения
+                %a{:href => "/agreements"} Условия и соглашения
           .span3
             %h4 Наши разделы
             %ul
               %li
-                %a{:href => "#"} Каталог
+                %a{:href => "/catalog"} Каталог
               %li
-                %a{:href => "#"} Корзина
+                %a{:href => "/basket"} Корзина
               %li
-                %a{:href => "#"} Акции и спецпоедложения
+                %a{:href => "/specials"} Акции и спецпоедложения
               %li
-                %a{:href => "#"} Контакты
+                %a{:href => "/contacts"} Контакты
           .span3.socseti
             %h4.logo-title Присоеденяйтесь к нам
             %a{:href => "#"}
@@ -122,7 +120,7 @@
           .span3
             .company_info
               %h4.title
-                %strong WOODSTOK.ru
+                %strong MebelSmart.com
               %p
                 Россия. Москва.
                 %br

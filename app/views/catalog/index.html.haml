@@ -8,105 +8,17 @@
       %li.active Каталог мебели
 
 .row
-  .span4
-    .block_content
-      .products_list.text_block
+  - if @categories
+    - @categories.each do |cat|
+      .span4
+        .block_content
+          .products_list.text_block
 
-        %h4.title
-          %span.pull-left
-            %i.icon-book
-            %strong Шкафы
-        %a{:href => '/catalog/list', :title => ''}
-          %p.obj_img
-            %img{:src => "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT2SVoUu9_ohsYS4DQh8GuXl2f0AyGoEu7gMSTp1MRumZWzJjkkfQ", :alt => '', :width => '100%'}
-  .span4
-    .block_content
-      .products_list.text_block
-
-        %h4.title
-          %span.pull-left
-            %i.icon-book
-            %strong Столы
-        %a{:href => '/catalog/list', :title => ''}
-          %p.obj_img
-            %img{:src => "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT2SVoUu9_ohsYS4DQh8GuXl2f0AyGoEu7gMSTp1MRumZWzJjkkfQ", :alt => '', :width => '100%'}
-  .span4
-    .block_content
-      .products_list.text_block
-
-        %h4.title
-          %span.pull-left
-            %i.icon-book
-            %strong Диваны
-        %a{:href => '/catalog/list', :title => ''}
-          %p.obj_img
-            %img{:src => "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT2SVoUu9_ohsYS4DQh8GuXl2f0AyGoEu7gMSTp1MRumZWzJjkkfQ", :alt => '', :width => '100%'}
-
-  .span4
-    .block_content
-      .products_list.text_block
-
-        %h4.title
-          %span.pull-left
-            %i.icon-book
-            %strong Шкафы
-        %a{:href => '/catalog/list', :title => ''}
-          %p.obj_img
-            %img{:src => "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT2SVoUu9_ohsYS4DQh8GuXl2f0AyGoEu7gMSTp1MRumZWzJjkkfQ", :alt => '', :width => '100%'}
-  .span4
-    .block_content
-      .products_list.text_block
-
-        %h4.title
-          %span.pull-left
-            %i.icon-book
-            %strong Столы
-        %a{:href => '/catalog/list', :title => ''}
-          %p.obj_img
-            %img{:src => "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT2SVoUu9_ohsYS4DQh8GuXl2f0AyGoEu7gMSTp1MRumZWzJjkkfQ", :alt => '', :width => '100%'}
-  .span4
-    .block_content
-      .products_list.text_block
-
-        %h4.title
-          %span.pull-left
-            %i.icon-book
-            %strong Диваны
-        %a{:href => '/catalog/list', :title => ''}
-          %p.obj_img
-            %img{:src => "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT2SVoUu9_ohsYS4DQh8GuXl2f0AyGoEu7gMSTp1MRumZWzJjkkfQ", :alt => '', :width => '100%'}
-
-  .span4
-    .block_content
-      .products_list.text_block
-
-        %h4.title
-          %span.pull-left
-            %i.icon-book
-            %strong Шкафы
-        %a{:href => '/catalog/list', :title => ''}
-          %p.obj_img
-            %img{:src => "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT2SVoUu9_ohsYS4DQh8GuXl2f0AyGoEu7gMSTp1MRumZWzJjkkfQ", :alt => '', :width => '100%'}
-  .span4
-    .block_content
-      .products_list.text_block
-
-        %h4.title
-          %span.pull-left
-            %i.icon-book
-            %strong Столы
-        %a{:href => '/catalog/list', :title => ''}
-          %p.obj_img
-            %img{:src => "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT2SVoUu9_ohsYS4DQh8GuXl2f0AyGoEu7gMSTp1MRumZWzJjkkfQ", :alt => '', :width => '100%'}
-  .span4
-    .block_content
-      .products_list.text_block
-
-        %h4.title
-          %span.pull-left
-            %i.icon-book
-            %strong Диваны
-        %a{:href => '/catalog/list', :title => ''}
-          %p.obj_img
-            %img{:src => "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT2SVoUu9_ohsYS4DQh8GuXl2f0AyGoEu7gMSTp1MRumZWzJjkkfQ", :alt => '', :width => '100%'}
-
+            %h4.title
+              %span.pull-left
+                %i.icon-book
+                %strong= cat.name
+            %a{:href => "/catalog/#{cat.id}", :title => cat.name}
+              %p.obj_img
+                - if !cat.photo.blank?
+                  = image_tag cat.photo.url(:m)

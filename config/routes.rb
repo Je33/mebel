@@ -3,6 +3,13 @@ Mebel::Application.routes.draw do
   get "catalog/detail"
 
   devise_for :users
+
+  match "ajax/:action" => "ajax"
+
+  match "catalog" => "catalog#index"
+  match "catalog/:category_id" => "catalog#category"
+  match "catalog/:category_id/:product_id" => "category#product"
+
   get "shopping_box/index"
 
   get "admin/index"

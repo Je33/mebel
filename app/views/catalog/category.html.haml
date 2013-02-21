@@ -1,0 +1,70 @@
+.row.filter_top
+  .span12
+    #main-menu.navbar
+      .navbar-inner
+        .container
+          .nav-collapse
+            %ul.nav.pull-left
+              %li.dropdown
+                %a.dropdown-toggle{:href => "/catalog/index"}
+                  Показать
+                  %span
+                    все
+                  %b.caret
+                %ul.dropdown-menu
+                  %li
+                    %a{:href => "products.html"} корпусную
+                  %li
+                    %a{:href => "products.html"} из камня
+                  %li
+                    %a{:href => "products.html"} живые
+              %li.divider-vertical
+              %li.width_300.pull-left
+                %span.nna
+                  Сортировать по цене:
+                .layout-slider
+                  %input#slider_cell{:name => "price", :type => "slider", :value => "1000;150000"}/
+.row
+  .span12
+    %ul.breadcrumb
+      %li
+        %a{:href => "/"}
+          %i.icon-home
+        %span.divider /
+      %li
+        %a{:href => "/catalog"}
+          Каталог мебели
+        %span.divider /
+      %li.active Шкафы
+
+.row
+  - if @products
+    - @products.each do |p|
+      .span4
+        .block_content
+          .products_list.text_block
+
+            %h4.title
+              %span.pull-left
+                %i.icon-book
+                %strong= p.name
+            %a{:href => "/catalog/#{p.category_id}/#{p.id}", :title => p.name}
+              %p.obj_img
+                %span.sale
+                  %img{:alt => "", :src => "/assets/sale.png"}
+
+                = image_tag p.photos.first.file.url(:m)
+              %p.obj_info_mini
+                %span
+                  Цена:
+                %span
+                  = p.price
+              %p.obj_info_mini
+                %span
+                  Описание:
+                %span
+                  = p.text
+              .btn-group
+                %a.btn{:href => "/catalog/#{p.category_id}/#{p.id}", :title => p.name} Подробнее
+                .btn.btn-success.add_to_shopping_cart В корзину
+

@@ -1,4 +1,4 @@
 # encoding: utf-8
-class Admin::ProductsController < AdminController
+class Admin::AjaxController < AdminController
 
 end
