@@ -1,0 +1,24 @@
+= form_tag params[:id].to_i > 0 ? admin_special_path(@special) : admin_specials_path, :method => params[:id].to_i > 0 ? "PUT" : "POST", :multipart => true, :class => "form-horizontal" do
+  .control-group
+    %label.control-label{:for => "special_name"} Название
+    .controls
+      = text_field_tag "special[name]", @special.name
+  .control-group
+    %label.control-label{:for => "special_text"} Описание
+    .controls
+      = text_area_tag "special[text]", @special.text, :rows => 5
+  .control-group
+    %label.control-label{:for => "special_banner"} Баннер
+    .controls
+      = file_field_tag "special[banner]"
+  -#.control-group
+    %label.control-label{:for => "category_delete_photo"} Удалить фото
+    .controls
+      = check_box_tag "category[photo]", 0
+  .control-group
+    .controls
+      %a{:href => @special.banner.url, :target => "_blank"}
+        = image_tag @special.banner.url(:main)
+  .form-actions
+    = submit_tag "Сохранить", :class => "btn btn-small btn-primary"
+    %a.btn.btn-small{:href => admin_specials_path} Отменить

@@ -7,9 +7,13 @@
     %a.dropdown-toggle{:href => "/admin"}
       Заказы
 
-  %li.dropdown{:class => ["companies", "categories", "products"].include?(params[:controller].to_s) ? "active" : ""}
+  %li.dropdown{:class => params[:controller] == "categories" ? "active" : ""}
+    %a.dropdown-toggle{:href => "/admin/categories"}
+      Разделы
+
+  %li.dropdown{:class => ["companies", "products"].include?(params[:controller].to_s) ? "active" : ""}
     %a.dropdown-toggle{:href => "/admin/companies"}
-      Каталог
+      Компании
       -#%b.caret
     -#%ul.dropdown-menu
       %li
@@ -19,8 +23,12 @@
       %li
         %a{:href => "products.html"} Кресла
 
+  %li.dropdown{:class => params[:controller] == "textures" ? "active" : ""}
+    %a.dropdown-toggle{:href => "/admin/textures"}
+      Материалы
+
   %li.dropdown
-    %a.dropdown-toggle{:href => "/special/index"}
+    %a.dropdown-toggle{:href => "/admin/specials"}
       Акции и спецпредложения
 
   %li.search_form.pull-right

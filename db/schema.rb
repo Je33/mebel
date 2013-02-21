@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130201050642) do
+ActiveRecord::Schema.define(:version => 20130216215307) do
 
   create_table "baskets", :force => true do |t|
     t.integer  "product_id"
@@ -25,9 +25,12 @@ ActiveRecord::Schema.define(:version => 20130201050642) do
     t.string   "name"
     t.text     "text"
     t.integer  "cnt"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "company_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "companies", :force => true do |t|
@@ -62,6 +65,11 @@ ActiveRecord::Schema.define(:version => 20130201050642) do
     t.datetime "file_updated_at"
   end
 
+  create_table "product_textures", :id => false, :force => true do |t|
+    t.integer "product_id"
+    t.integer "texture_id"
+  end
+
   create_table "products", :force => true do |t|
     t.string   "name"
     t.text     "text"
@@ -82,6 +90,19 @@ ActiveRecord::Schema.define(:version => 20130201050642) do
     t.string   "banner_content_type"
     t.integer  "banner_file_size"
     t.datetime "banner_updated_at"
+  end
+
+  create_table "textures", :force => true do |t|
+    t.integer  "type_id"
+    t.string   "name"
+    t.text     "text"
+    t.float    "price"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "users", :force => true do |t|

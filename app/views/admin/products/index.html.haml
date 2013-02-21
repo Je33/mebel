@@ -3,8 +3,8 @@
     .block_content.container
       .products_list{:style => "margin:0 20px;"}
         %h3
-          Товары в категории #{@category.name} компании #{@company.name}
-          %a.btn.btn-small{:href => new_admin_company_category_product_path(@company, @category)}
+          Товары компании #{@company.name}
+          %a.btn.btn-small{:href => new_admin_company_product_path(@company)}
             %i.icon-plus
             Добавить
         = paginate @products
@@ -26,9 +26,9 @@
                   %td= product.price
                   %td= product.old_price
                   %td
-                    %a{:href => edit_admin_company_category_product_path(@company, @category, product)}
+                    %a{:href => edit_admin_company_product_path(@company, product)}
                       %i.icon-edit
-                    %a{:href => admin_company_category_product_path(@company, @category, product), :data => {:method => "delete", :confirm => "Действительно удалить компанию #{product.name}?"}}
+                    %a{:href => admin_company_product_path(@company, product), :data => {:method => "delete", :confirm => "Действительно удалить компанию #{product.name}?"}}
                       %i.icon-remove
 
         = paginate @products

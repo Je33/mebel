@@ -3,8 +3,8 @@
     .block_content.container
       .products_list{:style => "margin:0 20px;"}
         %h3
-          Категории компании #{@company.name}
-          %a.btn.btn-small{:href => new_admin_company_category_path(@company)}
+          Категории
+          %a.btn.btn-small{:href => new_admin_category_path}
             %i.icon-plus
             Добавить
         = paginate @categories
@@ -13,7 +13,6 @@
             %th #
             %th Название
             %th Описание
-            %th
             %th Действия
           %tbody
             - if @categories
@@ -23,11 +22,9 @@
                   %td= category.name
                   %td= category.text
                   %td
-                    %a.btn.btn-small{:href => admin_company_category_products_path(@company, category)} Товары
-                  %td
-                    %a{:href => edit_admin_company_category_path(@company, category)}
+                    %a{:href => edit_admin_category_path(category)}
                       %i.icon-edit
-                    %a{:href => admin_company_category_path(@company, category), :data => {:method => "delete", :confirm => "Действительно удалить категорию #{category.name}?"}}
+                    %a{:href => admin_category_path(category), :data => {:method => "delete", :confirm => "Действительно удалить категорию #{category.name}?"}}
                       %i.icon-remove
 
         = paginate @categories

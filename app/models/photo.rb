@@ -3,6 +3,6 @@ class Photo < ActiveRecord::Base
 
   belongs_to :product
 
-  has_attached_file :file, :styles => {:s => '100x100#', :m => '600x600'}
+  has_attached_file :file, :styles => {:s => '100x100#', :m => '188x150#'}
 
 end
