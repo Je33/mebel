@@ -1,0 +1,24 @@
+.row.shopping_cart_content
+  .span10.forms_block_le
+    .tottal_text
+      Общая сумма вашего заказа:
+    .order_form
+      %form.form-horizontal{:action => "", :method => "POST"}
+        %fieldset
+          .control-group
+            %label.control-label{:for => "username"} Ваше имя
+            .controls
+              %input#username.span6{:name => "username", :placeholder => "", :type => "text"}
+                %p.help-block Username can contain any letters or numbers, without spaces
+          .control-group
+            %label.control-label{:for => "phone"} Телефон
+            .controls
+              %input#phone.span6{:name => "phone", :placeholder => "", :type => "text"}
+  .span2.forms_block_ri
+    .tottal.green
+      = @order.summ
+      %span
+        р
+    %button.btn.btn-success.btn-block.btn-large.order_issue_btn Оформить
+    %a.btn.btn-block.back_btn{:href => "/basket"} Назад
+    .btn.btn-small.btn-link.btn-block.remove_all Очистить корзину

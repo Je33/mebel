@@ -11,7 +11,7 @@ class Basket < ActiveRecord::Base
     s = 0
     n = 0
     order = self.order
-    order.baskets.includes(:products).each do |b|
+    order.baskets.includes(:product).each do |b|
       c = b.cnt.to_i > 0 ? b.cnt.to_i : 1
       s += b.product.price.to_f * c
       n += c

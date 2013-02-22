@@ -124,6 +124,63 @@ $ ->
     if $(this).hasClass('icon-plus') == true && coll < 99
       $(this).parent().find('.coll').text( coll + 1 )
 
+  $('.add_to_shopping_cart').click ->
+    id = $(this).attr('data-id')
+    $.ajax
+      url: "/ajax/add_to_basket"
+      dataType: "json"
+      data:
+        product_id: id
+      type: "post"
+      success: (resp) ->
+        if resp.success
+          $('.basket a span').text('('+resp.cnt+')')
+
+  $('.item-minus').click ->
+    id = $(this).attr('data-id')
+    $.ajax
+      url: "/ajax/remove_from_basket"
+      dataType: "json"
+      data:
+        product_id: id
+      type: "post"
+      success: (resp) =>
+        if resp.success
+          $('.basket a span').text('('+resp.cnt+')')
+          $(this).parent().find('.item-count').val(resp.col)
+          $(this).parent().parent().find('.item-price').text(resp.price)
+          $('.tottal b').text(resp.summ)
+
+  $('.item-plus').click ->
+    id = $(this).attr('data-id')
+    $.ajax
+      url: "/ajax/add_to_basket"
+      dataType: "json"
+      data:
+        product_id: id
+      type: "post"
+      success: (resp) =>
+        if resp.success
+          $('.basket a span').text('('+resp.cnt+')')
+          $(this).parent().find('.item-count').val(resp.col)
+          $(this).parent().parent().find('.item-price').text(resp.price)
+          $('.tottal b').text(resp.summ)
+
+  $('.remove_cart').click ->
+    if confirm("Удалить позицию из заказа?")
+      id = $(this).attr('data-id')
+      $.ajax
+        url: "/ajax/destroy_basket"
+        dataType: "json"
+        data:
+          basket_id: id
+        type: "post"
+        success: (resp) =>
+          if resp.success
+            $(this).parents('.one_cart').remove()
+            $('.tottal b').text(resp.summ)
+
+  ###
   $('.order_issue_btn').bind 'click', ->
     #blocks
     $('.order_list').hide()
@@ -163,6 +220,8 @@ $ ->
     $('.order_btn').hide()
     $('.back_btn').hide()
     $('.remove_all').show()
+
+  ###
 
   $('.remove_all').bind 'click', ->
     if confirm("Вы, действительно хотите удалть все покупки?")

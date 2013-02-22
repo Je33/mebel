@@ -8,11 +8,12 @@ class AjaxController < ApplicationController
       if item.present?
         cnt = 1
         if params[:product_cnt].to_i > 0
-          cnt = params[:product_cnt]
+          cnt = params[:product_cnt].to_i
         end
-        l = Basket.first_or_create({:order_id => @order.id, :product_id => item.id})
-        l.update_attribute :cnt, cnt
-        res = {:success => true, :sum => s, :cnt => c}
+        l = Basket.where({:order_id => @order.id, :product_id => item.id}).first_or_create
+        out = l.cnt.to_i + cnt.to_i
+        l.update_attribute :cnt, l.cnt.to_i + cnt.to_i
+        res = {:success => true, :col => out, :cnt => @order.cnt, :price => (out * item.price.to_f).round(2), :summ => @order.sum.round(2)}
       end
     end
     render :json => res
@@ -27,9 +28,10 @@ class AjaxController < ApplicationController
         if params[:product_cnt].to_i > 0
           cnt = params[:product_cnt]
         end
-        l = Basket.where({:order_id => @order.id, :product_id => item.id})
-        l.update_attribute :cnt, cnt
-        res = {:success => true, :sum => s, :cnt => c}
+        l = Basket.where({:order_id => @order.id, :product_id => item.id}).first
+        out = l.cnt.to_i - cnt.to_i > 0 ? l.cnt.to_i - cnt.to_i : 1
+        l.update_attribute :cnt, out
+        res = {:success => true, :col => out, :cnt => @order.cnt, :price => (out.to_i * item.price.to_f).round(2), :summ => @order.sum.round(2)}
       end
     end
     render :json => res
@@ -41,9 +43,10 @@ class AjaxController < ApplicationController
       basket = Basket.find(params[:basket_id])
       if basket.present?
         basket.destroy
-        res = {:success => true}
+        res = {:success => true, :summ => @order.sum.round(2)}
       end
     end
+    render :json => res
   end
 
 end

@@ -10,6 +10,9 @@ Mebel::Application.routes.draw do
   match "catalog/:category_id" => "catalog#category"
   match "catalog/:category_id/:product_id" => "category#product"
 
+  match "basket" => "basket#index"
+  match "basket/:action" => "basket"
+
   get "shopping_box/index"
 
   get "admin/index"

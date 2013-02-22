@@ -1,4 +1,4 @@
-.row.filter_top
+-#.row.filter_top
   .span12
     #main-menu.navbar
       .navbar-inner
@@ -6,18 +6,18 @@
           .nav-collapse
             %ul.nav.pull-left
               %li.dropdown
-                %a.dropdown-toggle{:href => "/catalog/index"}
+                %a.dropdown-toggle{:href => "/catalog"}
                   Показать
                   %span
                     все
                   %b.caret
                 %ul.dropdown-menu
                   %li
-                    %a{:href => "products.html"} корпусную
+                    %a{:href => "javascript:;"} корпусную
                   %li
-                    %a{:href => "products.html"} из камня
+                    %a{:href => "javascript:;"} из камня
                   %li
-                    %a{:href => "products.html"} живые
+                    %a{:href => "javascript:;"} живые
               %li.divider-vertical
               %li.width_300.pull-left
                 %span.nna
@@ -66,5 +66,5 @@
                   = p.text
               .btn-group
                 %a.btn{:href => "/catalog/#{p.category_id}/#{p.id}", :title => p.name} Подробнее
-                .btn.btn-success.add_to_shopping_cart В корзину
+                .btn.btn-success.add_to_shopping_cart{:data => {:id => p.id}} В корзину
 
