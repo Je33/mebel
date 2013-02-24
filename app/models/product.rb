@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
 
-  attr_accessible :category_id, :name, :old_price, :price, :text, :texture_ids
+  attr_accessible :category_id, :name, :old_price, :price, :text, :texture_ids, :original
 
   scope :sales, where("old_price > 0")
   scope :news, order("created_at desc")
