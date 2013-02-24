@@ -23,7 +23,7 @@
                   %td= company.name
                   %td= company.text
                   %td
-                    %a.btn.btn-small{:href => admin_company_products_path(company)} Товары
+                    %a.btn.btn-small{:href => admin_company_products_path(company)} Товары (#{company.products.count})
                   %td
                     %a{:href => edit_admin_company_path(company)}
                       %i.icon-edit
