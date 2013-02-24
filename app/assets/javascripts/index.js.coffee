@@ -150,6 +150,7 @@ $ ->
           $(this).parent().find('.item-count').val(resp.col)
           $(this).parent().parent().find('.item-price').text(resp.price)
           $('.tottal b').text(resp.summ)
+          $('.basket a span').text('('+resp.cnt+')')
 
   $('.item-plus').click ->
     id = $(this).attr('data-id')
@@ -165,6 +166,7 @@ $ ->
           $(this).parent().find('.item-count').val(resp.col)
           $(this).parent().parent().find('.item-price').text(resp.price)
           $('.tottal b').text(resp.summ)
+          $('.basket a span').text('('+resp.cnt+')')
 
   $('.remove_cart').click ->
     if confirm("Удалить позицию из заказа?")
@@ -179,6 +181,7 @@ $ ->
           if resp.success
             $(this).parents('.one_cart').remove()
             $('.tottal b').text(resp.summ)
+            $('.basket a span').text('('+resp.cnt+')')
 
   ###
   $('.order_issue_btn').bind 'click', ->

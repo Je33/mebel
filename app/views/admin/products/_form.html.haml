@@ -10,6 +10,10 @@
     .controls
       = text_field_tag "product[name]", @product.name
   .control-group
+    %label.control-label{:for => "product_original"} Оригинальное название
+    .controls
+      = text_field_tag "product[original]", @product.original
+  .control-group
     %label.control-label{:for => "product_name"} Раздел
     .controls
       =# text_field_tag "product[name]", @product.category_id

@@ -1,5 +1,7 @@
 class Order < ActiveRecord::Base
-  attr_accessible :city, :floor, :house, :name, :phone, :room, :status, :street, :text, :session
+  attr_accessible :city, :floor, :house, :name,
+                  :phone, :room, :status, :street,
+                  :text, :session, :user_id
 
   has_many :baskets, :dependent => :destroy
 

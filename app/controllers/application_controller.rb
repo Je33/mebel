@@ -5,27 +5,26 @@ class ApplicationController < ActionController::Base
   def get_basket
     if user_signed_in?
       if current_user.last_basket.to_i > 0
-        bsk = Order.find(current_user.last_basket)
-        if bsk.status.to_i == 0
+        bsk = Order.where(:id => current_user.last_basket, :status => 0).first
+        if bsk and bsk.status.to_i == 0
           @order = bsk
-        end
-      end
-    else
-      if cookies[:last_basket].to_i > 0
-        bsk = Order.find(cookies[:last_basket])
-        if bsk
-          @order = bsk
-        end
-      else
-        if session[:session_id]
-          bsk = Order.find_by_session(session[:session_id])
-          if bsk
-            @order = bsk
-          end
         end
       end
     end
-    @order ||= Order.new({:session => session[:session_id], :status => 0})
+    if cookies[:last_basket].to_i > 0
+      bsk = Order.where(:id => cookies[:last_basket], :status => 0).first
+      if bsk
+        @order = bsk
+      end
+    else
+      if session[:session_id]
+        bsk = Order.where(:session => session[:session_id], :status => 0).first
+        if bsk
+          @order = bsk
+        end
+      end
+    end
+    @order ||= Order.new
   end
 
 end

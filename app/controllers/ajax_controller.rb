@@ -1,9 +1,14 @@
 # encoding: utf-8
 class AjaxController < ApplicationController
 
+  before_filter :get_basket
+
   def add_to_basket
     res = {:success => false}
     if params[:product_id].to_i > 0 and @order.present?
+      if @order.new_record?
+        @order = Order.create({:session => session[:session_id], :status => 0, :user_id => user_signed_in? ? current_user.id : 0})
+      end
       item = Product.find params[:product_id]
       if item.present?
         cnt = 1

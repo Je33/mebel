@@ -46,10 +46,10 @@
                         Название
                     %p 10 000 р
               %li.span1
-                %button.btn.btn-block.item-plus{:data => {:id => p.id}}
+                %button.btn.btn-block.item-plus{:data => {:id => product.id}}
                   \+
                 %input.span1.item-count{:type => "text", :value => p.cnt}
-                %button.btn.btn-block.item-minus{:data => {:id => p.id}}
+                %button.btn.btn-block.item-minus{:data => {:id => product.id}}
                   \-
 
 
@@ -138,7 +138,7 @@
           %a.yellow.text_underline{:href =>'/catalog'} Отправить данные еще раз.
   .span2.forms_block_ri
     .tottal.green
-      %b= @order.summ.round(2)
+      %b= @order.sum.round(2)
       %span
         р
     -#%a.btn.btn-success.btn-block.btn-large.order_issue_btn{:href => "/basket/order"} Оформить

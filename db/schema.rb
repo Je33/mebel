@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130221085348) do
+ActiveRecord::Schema.define(:version => 20130224085109) do
 
   create_table "baskets", :force => true do |t|
     t.integer  "product_id"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20130221085348) do
     t.integer  "company_id"
     t.string   "session"
     t.float    "summ"
+    t.integer  "user_id"
   end
 
   create_table "photos", :force => true do |t|
@@ -81,6 +82,7 @@ ActiveRecord::Schema.define(:version => 20130221085348) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "company_id"
+    t.string   "original"
   end
 
   create_table "specials", :force => true do |t|
