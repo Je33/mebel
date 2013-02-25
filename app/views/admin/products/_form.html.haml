@@ -52,15 +52,27 @@
     .controls
       = hidden_field_tag "product[texture_ids][]", ''
       %table.table.table-condensed.table-hover
-        - Texture.order("type_id asc").all.each do |t|
+        %th
+        %th Категория
+        %th Цена
+        %th Как на фото
+        - Texture.all.each do |t|
+          - if @product.textures.include?(t)
+            - pt = @product.product_textures.where(:texture_id => t.id).first
           %tr
             %td
               = check_box_tag "product[texture_ids][]", t.id, @product.textures.include?(t)
             %td
               = t.name
             %td
-              #{t.type_id} категория
+              - if pt
+                = hidden_field_tag "texture[#{pt.id}][id]", pt.id
+                = text_field_tag "texture[#{pt.id}][price]", pt.price
             %td
+              - if pt
+                = hidden_field_tag "texture[#{pt.id}][as_img]", 0
+                = check_box_tag "texture[#{pt.id}][as_img]", 1, pt.as_img.to_i == 1
+            -#%td
               %a{:href => t.photo.url}
                 = image_tag t.photo.url(:s)
 

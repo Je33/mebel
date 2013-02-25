@@ -1,19 +1,27 @@
 # encoding: utf-8
 class Admin::TexturesController < AdminController
 
+  before_filter :breadcrumbs
+
+  def breadcrumbs
+    @breads = [['Администрирование', '/admin']]
+  end
+
   def index
-    @breads = [['Администрирование', '/admin'],  ['Материалы']]
+    @breads << ['Материалы']
     @textures = Texture.order("id desc").page params[:page]
   end
 
   def new
-    @breads = [['Администрирование', '/admin'],  ['Создание материала']]
+    @breads << ['Материалы', '/admin/textures']
+    @breads << ['Создание материала']
     @texture = Texture.new
   end
 
   def edit
     @texture = Texture.find(params[:id])
-    @breads = [['Администрирование', '/admin'],  ["Редактирование материала - #{@texture.name}"]]
+    @breads << ['Материалы', '/admin/textures']
+    @breads << ["Редактирование материала - #{@texture.name}"]
   end
 
   def create

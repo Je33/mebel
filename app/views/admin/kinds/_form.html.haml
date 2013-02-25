@@ -1,0 +1,24 @@
+= form_tag params[:id].to_i > 0 ? admin_texture_kind_path(@texture, @kind) : admin_texture_kinds_path(@texture), :method => params[:id].to_i > 0 ? "PUT" : "POST", :multipart => true, :class => "form-horizontal" do
+  .control-group
+    %label.control-label{:for => "kind_name"} Название
+    .controls
+      = text_field_tag "kind[name]", @kind.name
+  -#.control-group
+    %label.control-label{:for => "kind_texture_id"} Категория ткани
+    .controls
+      = select_tag "kind[texture_id]", options_from_collection_for_select(Texture.all, :id, :name, @kind.texture_id), :prompt => "Выберите категорию"
+  .control-group
+    %label.control-label{:for => "kind_photo"} Фото
+    .controls
+      = file_field_tag "kind[photo]"
+  -#.control-group
+    %label.control-label{:for => "texture_delete_photo"} Удалить фото
+    .controls
+      = check_box_tag "kind[photo]", 0
+  .control-group
+    .controls
+      %a{:href => @kind.photo.url, :target => "_blank"}
+        = image_tag @kind.photo.url(:m)
+  .form-actions
+    = submit_tag "Сохранить", :class => "btn btn-small btn-primary"
+    %a.btn.btn-small{:href => admin_texture_kinds_path(@texture)} Отменить

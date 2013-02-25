@@ -36,6 +36,13 @@ class Admin::ProductsController < AdminController
           file = Photo.create({:product_id => @product.id, :file => f})
         end
       end
+      if params[:texture]
+        params[:texture].each do |t|
+          if ProductTexture.find(t[1][:id])
+            ProductTexture.find(t[1][:id]).update_attributes t[1]
+          end
+        end
+      end
       flash.now[:notice] = "Товар успешно создан"
       if params[:apply]
         redirect_to edit_admin_company_product_path(@company, @product)
@@ -56,6 +63,13 @@ class Admin::ProductsController < AdminController
       if params[:product_photo_del]
         params[:product_photo_del].each do |d|
           Photo.find(d).destroy
+        end
+      end
+      if params[:texture]
+        params[:texture].each do |t|
+          if ProductTexture.find(t[1][:id])
+            ProductTexture.find(t[1][:id]).update_attributes t[1]
+          end
         end
       end
       flash.now[:notice] = "Товар успешно обновлен"
