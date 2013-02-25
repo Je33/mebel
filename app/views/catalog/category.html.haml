@@ -49,9 +49,9 @@
                 %i.icon-book
                 %strong= p.name
             %a{:href => "/catalog/#{p.category_id}/#{p.id}", :title => p.name}
-              -#%p.obj_img
+              %p.obj_img
                 %span.sale
-                  %img{:alt => "", :src => "/assets/sale.png"}
+                %img{:src => "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT2SVoUu9_ohsYS4DQh8GuXl2f0AyGoEu7gMSTp1MRumZWzJjkkfQ", :alt => '', :width => '100%'}
 
                 = image_tag p.photos.first.file.url(:m)
               %p.obj_info_mini
@@ -68,7 +68,7 @@
                       %p.obj_info_mini
                         %span= kv[0].strip
                         %span= kv[1].strip
-              .btn-group
-                %a.btn{:href => "/catalog/#{p.category_id}/#{p.id}", :title => p.name} Подробнее
-                .btn.btn-success.add_to_shopping_cart{:data => {:id => p.id}} В корзину
+            .btn-group
+              %a.btn{:href => "/catalog/#{p.category_id}/#{p.id}", :title => p.name} Подробнее
+              .btn.btn-success.add_to_shopping_cart{:data => {:id => p.id}} В корзину
 

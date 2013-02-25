@@ -150,6 +150,7 @@ h4.title
   margin-bottom: 0px
 
 .services
+
   h4
     margin: 0
     font-weight: normal
@@ -314,25 +315,26 @@ p.price
     padding-right: 5px
     padding-left: 5px
 p.obj_info_mini
-  font-size: 16px
+  font-size: 12px
   span:first-child
     font-weight: bold
     margin-top: 0px
     color: rgb(51, 51, 51) !important
-    width: 90px
+    width: 50px
     display: block
     float: left
+    @mixin text-overflow()
   span:last-child
     color: #91c113 !important
     font-weight: normal
     padding-right: 5px
     padding-left: 5px
+    @mixin text-overflow()
 .block_content
   border: 1px solid #dddddd
   border-bottom: 3px solid #dddddd
   margin: 20px 0 0 0
   z-index: 1
-  box-shadow: 0px 0px 2px #bbbbbb
   border-radius: 4px
   position: relative
   -moz-border-radius: 4px
@@ -570,8 +572,8 @@ p.price span.red
 
 .products_list.text_block
   .btn-group
-    width: 100%
-    padding: 0 15px 15px 15px
+    width: 89%
+    padding: 0 0 15px 10px
     display: table
     .btn
       padding-left: 0

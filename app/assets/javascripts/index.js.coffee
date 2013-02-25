@@ -86,8 +86,6 @@ M.filter_slide = () ->
 
 
 $ ->
-  $('.add_to_shopping_cart').bind 'click', ->
-
   # call back
   $("a[href='#order_call']").bind 'click', ->
     if $(this).hasClass('open') == false
@@ -199,6 +197,7 @@ $ ->
       success: (resp) ->
         if resp.success
           $('.basket a span').text('('+resp.cnt+')')
+          $('.scl span').text('('+resp.cnt+')')
 
   $('.item-minus').click ->
     id = $(this).attr('data-id')
@@ -212,9 +211,10 @@ $ ->
         if resp.success
           $('.basket a span').text('('+resp.cnt+')')
           $(this).parent().find('.item-count').val(resp.col)
-          $(this).parent().parent().find('.item-price').text(resp.price)
+          $(this).parent().parent().find('.item-price').text(resp.price + ' p')
           $('.tottal b').text(resp.summ)
           $('.basket a span').text('('+resp.cnt+')')
+          $('.scl span').text('('+resp.cnt+')')
 
   $('.item-plus').click ->
     id = $(this).attr('data-id')
@@ -228,9 +228,10 @@ $ ->
         if resp.success
           $('.basket a span').text('('+resp.cnt+')')
           $(this).parent().find('.item-count').val(resp.col)
-          $(this).parent().parent().find('.item-price').text(resp.price)
+          $(this).parent().parent().find('.item-price').text(resp.price + ' p')
           $('.tottal b').text(resp.summ)
           $('.basket a span').text('('+resp.cnt+')')
+          $('.scl span').text('('+resp.cnt+')')
 
   $('.remove_cart').click ->
     if confirm("Удалить позицию из заказа?")
@@ -246,49 +247,8 @@ $ ->
             $(this).parents('.one_cart').remove()
             $('.tottal b').text(resp.summ)
             $('.basket a span').text('('+resp.cnt+')')
+            $('.scl span').text('('+resp.cnt+')')
 
-  ###
-  $('.order_issue_btn').bind 'click', ->
-    #blocks
-    $('.order_list').hide()
-    $('.order_form').show()
-    $('.order_confirm').hide()
-    $('.order_none').hide()
-    #btn
-    $('.order_issue_btn').hide()
-    $('.order_btn').show()
-    $('.back_btn').show()
-    $('.remove_all').hide()
-
-  $('.order_btn').bind 'click', ->
-    #blocks
-    $('.order_list').hide()
-    $('.order_form').hide()
-    $('.order_confirm').show()
-    $('.order_none').hide()
-    $('.tottal_text').hide()
-    $('.forms_block_ri').hide()
-    $('.forms_block_le').removeClass('span10').addClass('span12')
-
-    #btn
-    $('.order_issue_btn').hide()
-    $('.order_btn').hide()
-    $('.back_btn').hide()
-    $('.remove_all').hide()
-
-  $('.back_btn').bind 'click', ->
-    #blocks
-    $('.order_list').show()
-    $('.order_form').hide()
-    $('.order_confirm').show()
-    $('.order_none').hide()
-    #btn
-    $('.order_issue_btn').show()
-    $('.order_btn').hide()
-    $('.back_btn').hide()
-    $('.remove_all').show()
-
-  ###
 
   $('.remove_all').bind 'click', ->
     if confirm("Вы, действительно хотите удалть все покупки?")
