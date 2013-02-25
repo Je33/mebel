@@ -8,7 +8,7 @@ Mebel::Application.routes.draw do
 
   match "catalog" => "catalog#index"
   match "catalog/:category_id" => "catalog#category"
-  match "catalog/:category_id/:product_id" => "category#product"
+  match "catalog/:category_id/:product_id" => "catalog#product"
 
   match "basket" => "basket#index"
   match "basket/:action" => "basket"

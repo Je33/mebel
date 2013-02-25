@@ -49,7 +49,7 @@
                 %i.icon-book
                 %strong= p.name
             %a{:href => "/catalog/#{p.category_id}/#{p.id}", :title => p.name}
-              %p.obj_img
+              -#%p.obj_img
                 %span.sale
                   %img{:alt => "", :src => "/assets/sale.png"}
 
@@ -58,12 +58,16 @@
                 %span
                   Цена:
                 %span
-                  = p.price
-              %p.obj_info_mini
-                %span
-                  Описание:
-                %span
-                  = p.text
+                  = p.price.round
+              - if p.text
+                - prms = p.text.split "\r\n"
+                - prms.each_with_index do |prm, k|
+                  - if k < 2
+                    - kv = prm.split ":"
+                    - if !kv[0].blank? and !kv[1].blank?
+                      %p.obj_info_mini
+                        %span= kv[0].strip
+                        %span= kv[1].strip
               .btn-group
                 %a.btn{:href => "/catalog/#{p.category_id}/#{p.id}", :title => p.name} Подробнее
                 .btn.btn-success.add_to_shopping_cart{:data => {:id => p.id}} В корзину

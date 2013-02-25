@@ -118,10 +118,10 @@
                   - @news.each do |n|
                     %li.span3.slide_el
                       .product-box
-                        %a.img_box{:href => "/product/#{n.id}"}
+                        %a.img_box{:href => "/catalog/#{n.category_id}/#{n.id}"}
                           - if !n.photos.blank?
                             = image_tag n.photos.first.file.url(:m)
-                        %a{:href => "/product/#{n.id}"}
+                        %a{:href => "/catalog/#{n.category_id}/#{n.id}"}
                         %h4= n.name
                         %p.price
                           Цена:
