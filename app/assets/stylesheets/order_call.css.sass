@@ -1,0 +1,33 @@
+.black-bg
+  position: fixed
+  top:  0
+  right: 0
+  bottom: 0
+  left: 0
+  background: rgba(255,255,255,0.5)
+  z-index: 500
+.order_call
+  position: fixed
+  top: 0
+  right: -500px
+  bottom: 0
+  background: #ffffff
+  border-left: 3px solid #dedede
+  @include border-radius(5px 0 0 5px)
+  @include box-shadow(0px 0px 40px #000000)
+  z-index: 1000
+  width: 381px
+  padding: 0 15px
+  form
+    fieldset
+      legend
+      label
+      input.order_call_name
+      span.alert
+      .input-prepend
+        margin-bottom: 20px
+        span.add-on
+        input
+          width: 340px !important
+      button
+        margin-bottom: 20px

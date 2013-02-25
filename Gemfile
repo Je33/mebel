@@ -16,6 +16,8 @@ gem 'uglifier'
 
 gem 'jquery-rails'
 
+gem 'bootstrap-sass'
+
 gem 'devise'
 gem 'paperclip'
 gem 'kaminari'
