@@ -67,7 +67,7 @@
                 - if !cat.photo.blank?
                   = image_tag cat.photo.url(:m)
 
-.block_content.container.slider_init.colored
+-#.block_content.container.slider_init.colored
   .products_list
     .row
       .span12
@@ -125,5 +125,5 @@
                         %h4= n.name
                         %p.price
                           Цена:
-                          %span.red= n.price
+                          %span= n.price
                         .btn.btn-success.add_to_shopping_cart В корзину
