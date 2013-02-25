@@ -84,38 +84,102 @@ M.filter_slide = () ->
     }
   )
 
-$.fn.cardfly = (o) ->
-  o = $.extend(
-    basket: "none"
-    animspeed: 1000
-    sdv: -10
-  , o)
-  @each ->
-    btn = $(this).parent().parent()
-    clone = btn.clone().addClass("clone-block")
-    posX = btn.offset().left
-    posY = btn.offset().top
-    posXb = o.basket.offset().left
-    posYb = o.basket.offset().top
-    clone.css("position", "absolute").css("top", posY).css("left", posX).css("z-index", "2000").css "border", "1px solid #999999"
-    $("body").append clone
-    $(".clone-block").animate
-      left: posXb + parseInt(o.sdv)
-      top: posYb + parseInt(o.sdv)
-      width: "50px"
-      height: "50px"
-      background: 'rgba(255,255,255,0.7)'
-      opacity: 0.2
-    , o.animspeed, ->
-      $(this).remove()
-
 
 $ ->
   $('.add_to_shopping_cart').bind 'click', ->
-    $(this).cardfly {
-      basket: if $('.shopping_cart_link:visible').get(0) then $('.shopping_cart_link') else $('.basket')
-    }
 
+  # call back
+  $("a[href='#order_call']").bind 'click', ->
+    if $(this).hasClass('open') == false
+      $(this).addClass 'open'
+      $('.black-bg').fadeIn '300'
+      $('.order_call').animate {right: 0}, 300
+    else
+      $(this).removeClass 'open'
+      $('.black-bg').fadeOut '100'
+      $('.order_call').animate {right: -500}, 300
+    return false
+  $('.black-bg').bind 'click', ->
+    $("a[href='#order_call']").removeClass 'open'
+    $('.black-bg').fadeOut '100'
+    $('.order_call').animate {right: -500}, 300
+    return false
+  $('.order_call').find('button.close').bind 'click', ->
+    $("a[href='#order_call']").removeClass 'open'
+    $('.black-bg').fadeOut '100'
+    $('.order_call').animate {right: -500}, 300
+    return false
+
+  $(".validate").each ->
+    f = $(this)
+    n = $(f).find("input[name=name]")
+    e = $(f).find("input[name=email]")
+    p = $(f).find("input[name=phone]")
+    s = $(f).find("input[name=submit]")
+    v = ->
+      if $(e).get(0)
+        if $(e).val().indexOf("@") > -1
+          $(e).parents("label").removeClass "error"
+        else
+          $(e).parents("label").addClass "error"
+      if $(p).get(0)
+        unless isNaN(parseInt($(p).val()))
+          if $(p).val().length > 4
+            $(p).parents("label").removeClass "error"
+          else
+            $(p).parents("label").addClass "error"
+        else
+          $(p).parents("label").addClass "error"
+          $(p).val ""
+
+    $(s).bind "click", ->
+      v()
+      if $(f).find(".error").get(0)
+        false
+      else
+        $.ajax
+          type: "POST"
+          url: "/mail.php"
+          data:
+            name: $(n).val()
+            email: $(e).val()
+            phone: $(p).val()
+
+          success: (msg) ->
+            $(".order_call").hide()
+            $(".show_text").hide()
+            $ hm.ab.goal("('.show_text.success').fadeIn(300)")  if msg is "yes"
+            $(".show_text.error").fadeIn 300  if msg is "no"
+
+        $(n).val ""
+        $(e).val ""
+        $(p).val ""
+        false
+
+    $(".show_text span").bind "click", ->
+      $(".show_text").fadeOut 300
+
+    $(e).bind "change, keydown", ->
+      v()
+
+    $(p).bind "change, keyup", ->
+      $(p).val parseInt($(p).val())
+      v()
+
+
+
+
+
+
+
+
+
+  $('.order_call').find('input[type=text]').bind 'change', ->
+    valid( $(this) )
+  $('.order_call').find('input[type=text]').bind 'keyup', ->
+    valid( $(this) )
+  $('.order_call').find('button[type=submit]').bind 'click', ->
+    return false
 
   $('.coll_change').find('i').bind 'click', ->
     coll = parseInt( $(this).parent().find('.coll').text() )
