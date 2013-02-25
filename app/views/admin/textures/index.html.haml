@@ -13,6 +13,7 @@
             %th #
             %th Название
             %th Описание
+            %td
             %th Действия
           %tbody
             - if @textures
@@ -21,6 +22,8 @@
                   %td= texture.id
                   %td= texture.name
                   %td= texture.text
+                  %td
+                    %a.btn.btn-small{:href => admin_texture_kinds_path(texture)} Виды (#{texture.kinds.count})
                   %td
                     %a{:href => edit_admin_texture_path(texture)}
                       %i.icon-edit

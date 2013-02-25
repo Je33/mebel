@@ -3,7 +3,7 @@
     %label.control-label{:for => "texture_name"} Название
     .controls
       = text_field_tag "texture[name]", @texture.name
-  .control-group
+  -#.control-group
     %label.control-label{:for => "texture_price"} Цена
     .controls
       = text_field_tag "texture[price]", @texture.price
@@ -11,14 +11,14 @@
     %label.control-label{:for => "texture_text"} Описание
     .controls
       = text_area_tag "texture[text]", @texture.text, :rows => 5
-  .control-group
+  -#.control-group
     %label.control-label{:for => "texture_type_id"} Категория ткани
     .controls
       %select#texture_type_id{:name => "texture[type_id]"}
         %option{:value => 0} Выберите категорию
         - 9.times do |i|
           %option{:value => i, :selected => @texture.type_id == i ? true : false} #{i} категория
-  .control-group
+  -#.control-group
     %label.control-label{:for => "texture_photo"} Фото
     .controls
       = file_field_tag "texture[photo]"
@@ -26,7 +26,7 @@
     %label.control-label{:for => "texture_delete_photo"} Удалить фото
     .controls
       = check_box_tag "texture[photo]", 0
-  .control-group
+  -#.control-group
     .controls
       %a{:href => @texture.photo.url, :target => "_blank"}
         = image_tag @texture.photo.url(:m)

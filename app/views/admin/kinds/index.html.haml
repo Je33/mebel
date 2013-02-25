@@ -1,0 +1,30 @@
+.row
+  .span12
+    .block_content.container
+      .products_list{:style => "margin:0 20px;"}
+        %h3
+          Виды
+          %a.btn.btn-small{:href => new_admin_texture_kind_path(@texture)}
+            %i.icon-plus
+            Добавить
+        = paginate @kinds
+        %table.table.table-hover
+          %thead
+            %th #
+            %th Фото
+            %th Название
+            %th Действия
+          %tbody
+            - if @kinds
+              - @kinds.each do |kind|
+                %tr
+                  %td= kind.id
+                  %td= image_tag kind.photo.url(:s)
+                  %td= kind.name
+                  %td
+                    %a{:href => edit_admin_texture_kind_path(@texture, kind)}
+                      %i.icon-edit
+                    %a{:href => admin_texture_kind_path(@texture, kind), :data => {:method => "delete", :confirm => "Действительно удалить вид #{kind.name}?"}}
+                      %i.icon-remove
+
+        = paginate @kinds
