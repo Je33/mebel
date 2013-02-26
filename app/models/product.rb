@@ -12,4 +12,8 @@ class Product < ActiveRecord::Base
   has_many :product_textures, :dependent => :destroy
   has_many :textures, :through => :product_textures
 
+  def price
+    super().to_i
+  end
+
 end

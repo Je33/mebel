@@ -52,8 +52,8 @@
               %p.obj_img
                 %span.sale
                 -#%img{:src => "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT2SVoUu9_ohsYS4DQh8GuXl2f0AyGoEu7gMSTp1MRumZWzJjkkfQ", :alt => '', :width => '100%'}
-
-                = image_tag p.photos.first.file.url(:m)
+                - if p.photos.exists?
+                  = image_tag p.photos.first.file.url(:m)
               %p.obj_info_mini
                 %span
                   Цена:

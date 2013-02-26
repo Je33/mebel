@@ -8,16 +8,41 @@
           .control-group.section
             %label.control-label{:for => "name"} Ваше имя
             .controls
-              %input#username.span6{:name => "name", :placeholder => "", :type => "text"}
+              %input#username.span6{:name => "order[name]", :placeholder => "", :type => "text"}
               %span.alert.alert-error.hide.call-order-error-name не менее 2 букв
           .control-group.section
             %label.control-label{:for => "phone"} Телефон
             .controls
               .input-prepend
                 %span.add-on +7
-                %input#phone.span6{:name => "phone", :placeholder => "", :type => "text"}
+                %input#phone.span6{:name => "order[phone]", :placeholder => "", :type => "text"}
               %span.alert.alert-error.hide.call-order-error-name Пример: 555 444 33 22
           .control-group.section
+            %label.control-label{:for => "city"} Город
+            .controls
+              %input#username.span6{:name => "order[city]", :placeholder => "", :type => "text"}
+              %span.alert.alert-error.hide.call-order-error-name не менее 2 букв
+          .control-group.section
+            %label.control-label{:for => "street"} Улица
+            .controls
+              %input#username.span6{:name => "order[street]", :placeholder => "", :type => "text"}
+              %span.alert.alert-error.hide.call-order-error-name не менее 2 букв
+          .control-group.section
+            %label.control-label{:for => "house"} Дом
+            .controls
+              %input#username.span2{:name => "order[house]", :placeholder => "", :type => "text"}
+              %span.alert.alert-error.hide.call-order-error-name не менее 2 букв
+          .control-group.section
+            %label.control-label{:for => "floor"} Этаж
+            .controls
+              %input#username.span2{:name => "order[floor]", :placeholder => "", :type => "text"}
+              %span.alert.alert-error.hide.call-order-error-name не менее 2 букв
+          .control-group.section
+            %label.control-label{:for => "room"} Квартира/Офис
+            .controls
+              %input#username.span2{:name => "order[room]", :placeholder => "", :type => "text"}
+              %span.alert.alert-error.hide.call-order-error-name не менее 2 букв
+          -#.control-group.section
             %label.control-label{:for => "phone"} Полный адресс доставки
             .controls
               %textarea#address.span6{:name => "textarea"}

@@ -15,9 +15,10 @@
                   %i.remove_cart.icon-trash.pull-right{:data => {:id => p.id}}
             %ul.thumbnails.row
               %li.span2
-                - image = product.photos.first.file
-                %a.thumbnail{:href => image.url, :target => "_blank"}
-                  = image_tag image.url(:s)
+                - if product.photos.exists?
+                  - image = product.photos.first.file
+                  %a.thumbnail{:href => image.url, :target => "_blank"}
+                    = image_tag image.url(:s)
               %li.span4
                 %ul.thumbnails.row
                   %li.span1
@@ -55,7 +56,7 @@
 
               %li.span3
                 %h3.item-price
-                  %b= (product.price.to_f * p.cnt.to_i).round(2)
+                  %b= (product.price * p.cnt.to_i).round
                   р
       -#.one_cart
         .row
@@ -138,7 +139,7 @@
           %a.yellow.text_underline{:href =>'/catalog'} Отправить данные еще раз.
   .span2.forms_block_ri
     .tottal.green
-      %b= @order.sum.round(2)
+      %b= @order.sum.to_i
       %span
         р
     -#%a.btn.btn-success.btn-block.btn-large.order_issue_btn{:href => "/basket/order"} Оформить

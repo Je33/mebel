@@ -4,4 +4,8 @@ class ProductTexture < ActiveRecord::Base
   belongs_to :product
   belongs_to :texture
 
+  def price
+    super().to_i
+  end
+
 end

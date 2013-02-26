@@ -1,5 +1,6 @@
 class Texture < ActiveRecord::Base
   attr_accessible :name, :text
+  default_scope order("name ASC")
 
   has_many :kinds
 
