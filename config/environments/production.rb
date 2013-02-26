@@ -65,13 +65,13 @@ Mebel::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
-  # paperclip
+  # paperclip s3
   config.paperclip_defaults = {
       :storage => :s3,
       :s3_credentials => {
           :bucket => "mebel",
-          :access_key_id => "AKIAI5BL6C77T7JDVGTQ",
-          :secret_access_key => "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"
+          :access_key_id => "AKIAJVBGWMQ3KFZZQDVA",
+          :secret_access_key => "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"
       }
   }
 end
