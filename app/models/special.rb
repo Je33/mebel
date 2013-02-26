@@ -3,6 +3,7 @@ class Special < ActiveRecord::Base
 
   has_attached_file :banner,
                     :styles => {:main => '940x250#'},
-                    :path => "/:class/:attachment/:id_partition/:style/:filename"
+                    :path => "/:class/:attachment/:id_partition/:style/:filename",
+                    :url => "/:class/:attachment/:id_partition/:style/:filename"
 
 end
