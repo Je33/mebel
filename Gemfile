@@ -20,6 +20,7 @@ gem 'bootstrap-sass'
 
 gem 'devise'
 gem 'paperclip'
+gem 'aws-sdk'
 gem 'kaminari'
 
 # To use ActiveModel has_secure_password

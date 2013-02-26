@@ -67,7 +67,7 @@
             %td
               - if pt
                 = hidden_field_tag "texture[#{pt.id}][id]", pt.id
-                = text_field_tag "texture[#{pt.id}][price]", pt.price
+                = text_field_tag "texture[#{pt.id}][price]", pt.price.to_i
             %td
               - if pt
                 = hidden_field_tag "texture[#{pt.id}][as_img]", 0
