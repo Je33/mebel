@@ -9,11 +9,14 @@
             %label.control-label{:for => "username"} Ваше имя
             .controls
               %input#username.span6{:name => "username", :placeholder => "", :type => "text"}
-                %p.help-block Username can contain any letters or numbers, without spaces
           .control-group
             %label.control-label{:for => "phone"} Телефон
             .controls
               %input#phone.span6{:name => "phone", :placeholder => "", :type => "text"}
+          .control-group
+            %label.control-label{:for => "phone"} Полный адресс доставки
+            .controls
+              %textarea#address.span6{:name => "textarea", :placeholder => ""}
   .span2.forms_block_ri
     .tottal.green
       = @order.summ
