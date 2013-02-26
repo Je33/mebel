@@ -113,13 +113,19 @@ $ ->
     n = $(f).find("input[name=name]")
     e = $(f).find("input[name=email]")
     p = $(f).find("input[name=phone]")
-    s = $(f).find("button[name=submit]")
+    t = $(f).find("textarea")
+    s = (if $(f).find("button[name=submit]").get(0) then $(f).find("button[name=submit]") else $("button.subm"))
     v = ->
       if $(n).get(0)
         if $(n).val().length > 1
           $(n).parents(".section").removeClass "error"
         else
           $(n).parents(".section").addClass "error"
+      if $(t).get(0)
+        if $(t).text().length > 10
+          $(t).parents(".section").removeClass "error"
+        else
+          $(t).parents(".section").addClass "error"
       if $(p).get(0)
         unless isNaN(parseInt($(p).val()))
           if $(p).val().length > 4
