@@ -122,6 +122,7 @@ $ ->
         else
           $(n).parents(".section").addClass "error"
       if $(t).get(0)
+        console.log($(t).val())
         if $(t).val().length > 10
           $(t).parents(".section").removeClass "error"
         else
@@ -154,7 +155,8 @@ $ ->
     $(p).bind "change, keyup", ->
       $(p).val parseInt($(p).val())
       v()
-
+    $(t).bind "change, keyup", ->
+      v()
   $('.coll_change').find('i').bind 'click', ->
     coll = parseInt( $(this).parent().find('.coll').text() )
     if $(this).hasClass('icon-minus') == true && coll > 1
