@@ -241,9 +241,9 @@ $ ->
   $('#myTab a').click (e) ->
     e.preventDefault()
     $(this).tab 'show'
-
+  cloth_class = 0
   cloth = 0
-  cloth_class = ''
+  tab_class = 0
   z_b = $('.zero_b p')
   f_b = $('.fr_b')
   s_b = $('.sec_b')
@@ -252,10 +252,15 @@ $ ->
     if el != 'clear'
       _t = el
       tab_id = el.parent('.tab-pane').attr('id')
-      tab_class = el.parents('.tabbable').find('li.active').find('a[cloth_class]').attr('cloth_class')
+      tab_class = parseInt( el.parents('.tabbable').find('li.active').find('a[cloth_class]').attr('cloth_class') )
       cloth_name = el.attr('data-name')
       cloth_img =  el.find('img').attr('src')
       cloth_cost =  el.attr('data-cost')
+    else
+      cloth_class = 0
+      tab_class = 'clear'
+    console.log(el != 'clear' ,  cloth_class == 0 , cloth_class == tab_class)
+    if el != 'clear' &&  cloth_class == 0 || cloth_class == tab_class
       if cloth == 0
         _t.addClass('select')
         z_b.text 'Выберите ткань компаньон'
@@ -277,33 +282,33 @@ $ ->
         s_b.animate {marginLeft: 0, height: 61}, 300, ->
           $('.add_shoping_box').removeClass('disabled')
     else
-      if cloth_class != tab_class
-        if el != 'clear'
-          tt = 'Вы действительно хотите выбрать ткань из этой категории. (Выбранная ткань из другой категории будет удалена)'
-        else
-          tt =  'Вы действительно хотите очистить ткани'
-        if confirm(tt)
-          cloth.length = 0
-          cloth = 0
-          z_b.text 'Выберите основную ткань'
-          $('.add_shoping_box').addClass('disabled')
-          $('.tabbable').find('.select').removeClass('select')
-          $('input[name=first_cloth]').val('');
-          $('input[name=second_cloth]').val('');
 
-          f_b.find('img').attr('src', '')
-          f_b.find('p:first').text('Основная - ')
-          f_b.find('p:last').text('Компаньон - (р.)')
-          f_b.animate({marginLeft: 350, height: 0}, 300, ->
-            $(this).hide()
-          )
+      if el != 'clear'
+        tt = 'Вы действительно хотите выбрать ткань из этой категории. (Выбранная ткань из другой категории будет удалена)'
+      else
+        tt =  'Вы действительно хотите очистить ткани'
+      if confirm(tt)
+        cloth_class = 0
+        cloth = 0
+        z_b.text 'Выберите основную ткань'
+        $('.add_shoping_box').addClass('disabled')
+        $('.tabbable').find('.select').removeClass('select')
+        $('input[name=first_cloth]').val('');
+        $('input[name=second_cloth]').val('');
 
-          s_b.find('img').attr('src', '')
-          s_b.find('p:first').text('Основная - ')
-          s_b.find('p:last').text('Компаньон - (р.)')
-          s_b.animate({marginLeft: 350, height: 0}, 300, ->
-            $(this).hide()
-          )
+        f_b.find('img').attr('src', '')
+        f_b.find('p:first').text('Основная - ')
+        f_b.find('p:last').text('Компаньон - (р.)')
+        f_b.animate({marginLeft: 350, height: 0}, 300, ->
+          $(this).hide()
+        )
+
+        s_b.find('img').attr('src', '')
+        s_b.find('p:first').text('Основная - ')
+        s_b.find('p:last').text('Компаньон - (р.)')
+        s_b.animate({marginLeft: 350, height: 0}, 300, ->
+          $(this).hide()
+        )
   $('.cloth_select').find('a').bind 'click', ->
     cloth_work( $(this) )
   $('.clear_cloth').bind 'click', ->
