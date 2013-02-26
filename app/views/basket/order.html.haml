@@ -2,23 +2,30 @@
   .span10.forms_block_le
     .tottal_text
       Общая сумма вашего заказа:
-    .order_form
+    .order_form.validate
       %form.form-horizontal{:action => "", :method => "POST"}
         %fieldset
-          .control-group
-            %label.control-label{:for => "username"} Ваше имя
+          .control-group.section
+            %label.control-label{:for => "name"} Ваше имя
             .controls
-              %input#username.span6{:name => "username", :placeholder => "", :type => "text"}
-                %p.help-block Username can contain any letters or numbers, without spaces
-          .control-group
+              %input#username.span6{:name => "name", :placeholder => "", :type => "text"}
+              %span.alert.alert-error.hide.call-order-error-name не менее 2 букв
+          .control-group.section
             %label.control-label{:for => "phone"} Телефон
             .controls
-              %input#phone.span6{:name => "phone", :placeholder => "", :type => "text"}
+              .input-prepend
+                %span.add-on +7
+                %input#phone.span6{:name => "phone", :placeholder => "", :type => "text"}
+              %span.alert.alert-error.hide.call-order-error-name Пример: 555 444 33 22
+          .control-group.section
+            %label.control-label{:for => "phone"} Полный адресс доставки
+            .controls
+              %textarea#address.span6{:name => "textarea"}
+              %span.alert.alert-error.hide.call-order-error-name Ввведите адрес куда нужно доставить мебель (свободная форма)
   .span2.forms_block_ri
     .tottal.green
       = @order.summ
       %span
         р
-    %button.btn.btn-success.btn-block.btn-large.order_issue_btn Оформить
+    %button.btn.btn-success.btn-block.btn-large.order_issue_btn.disabled.subm Оформить
     %a.btn.btn-block.back_btn{:href => "/basket"} Назад
-    .btn.btn-small.btn-link.btn-block.remove_all Очистить корзину

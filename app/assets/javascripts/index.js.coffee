@@ -86,8 +86,6 @@ M.filter_slide = () ->
 
 
 $ ->
-  $('.add_to_shopping_cart').bind 'click', ->
-
   # call back
   $("a[href='#order_call']").bind 'click', ->
     if $(this).hasClass('open') == false
@@ -115,72 +113,50 @@ $ ->
     n = $(f).find("input[name=name]")
     e = $(f).find("input[name=email]")
     p = $(f).find("input[name=phone]")
-    s = $(f).find("input[name=submit]")
+    t = $(f).find("textarea")
+    s = (if $(f).find("button[name=submit]").get(0) then $(f).find("button[name=submit]") else $("button.subm"))
     v = ->
-      if $(e).get(0)
-        if $(e).val().indexOf("@") > -1
-          $(e).parents("label").removeClass "error"
+      if $(n).get(0)
+        if $(n).val().length > 1
+          $(n).parents(".section").removeClass "error"
         else
-          $(e).parents("label").addClass "error"
+          $(n).parents(".section").addClass "error"
+      if $(t).get(0)
+        console.log($(t).val())
+        if $(t).val().length > 10
+          $(t).parents(".section").removeClass "error"
+        else
+          $(t).parents(".section").addClass "error"
       if $(p).get(0)
         unless isNaN(parseInt($(p).val()))
           if $(p).val().length > 4
-            $(p).parents("label").removeClass "error"
+            $(p).parents(".section").removeClass "error"
           else
-            $(p).parents("label").addClass "error"
+            $(p).parents(".section").addClass "error"
         else
-          $(p).parents("label").addClass "error"
+          $(p).parents(".section").addClass "error"
           $(p).val ""
-
+      if $(f).find(".error").get(0)
+        $(s).addClass('disabled')
+      else
+        $(s).removeClass('disabled')
     $(s).bind "click", ->
       v()
       if $(f).find(".error").get(0)
-        false
+        $(s).addClass('disabled')
+        return false
       else
-        $.ajax
-          type: "POST"
-          url: "/mail.php"
-          data:
-            name: $(n).val()
-            email: $(e).val()
-            phone: $(p).val()
+        $(s).removeClass('disabled')
+        return true
 
-          success: (msg) ->
-            $(".order_call").hide()
-            $(".show_text").hide()
-            $ hm.ab.goal("('.show_text.success').fadeIn(300)")  if msg is "yes"
-            $(".show_text.error").fadeIn 300  if msg is "no"
-
-        $(n).val ""
-        $(e).val ""
-        $(p).val ""
-        false
-
-    $(".show_text span").bind "click", ->
-      $(".show_text").fadeOut 300
-
-    $(e).bind "change, keydown", ->
+    $(n).bind "change, keydown", ->
       v()
 
     $(p).bind "change, keyup", ->
       $(p).val parseInt($(p).val())
       v()
-
-
-
-
-
-
-
-
-
-  $('.order_call').find('input[type=text]').bind 'change', ->
-    valid( $(this) )
-  $('.order_call').find('input[type=text]').bind 'keyup', ->
-    valid( $(this) )
-  $('.order_call').find('button[type=submit]').bind 'click', ->
-    return false
-
+    $(t).bind "change, keyup", ->
+      v()
   $('.coll_change').find('i').bind 'click', ->
     coll = parseInt( $(this).parent().find('.coll').text() )
     if $(this).hasClass('icon-minus') == true && coll > 1
@@ -199,6 +175,7 @@ $ ->
       success: (resp) ->
         if resp.success
           $('.basket a span').text('('+resp.cnt+')')
+          $('.scl span').text('('+resp.cnt+')')
 
   $('.item-minus').click ->
     id = $(this).attr('data-id')
@@ -212,9 +189,10 @@ $ ->
         if resp.success
           $('.basket a span').text('('+resp.cnt+')')
           $(this).parent().find('.item-count').val(resp.col)
-          $(this).parent().parent().find('.item-price').text(resp.price)
+          $(this).parent().parent().find('.item-price').text(resp.price + ' p')
           $('.tottal b').text(resp.summ)
           $('.basket a span').text('('+resp.cnt+')')
+          $('.scl span').text('('+resp.cnt+')')
 
   $('.item-plus').click ->
     id = $(this).attr('data-id')
@@ -228,9 +206,10 @@ $ ->
         if resp.success
           $('.basket a span').text('('+resp.cnt+')')
           $(this).parent().find('.item-count').val(resp.col)
-          $(this).parent().parent().find('.item-price').text(resp.price)
+          $(this).parent().parent().find('.item-price').text(resp.price + ' p')
           $('.tottal b').text(resp.summ)
           $('.basket a span').text('('+resp.cnt+')')
+          $('.scl span').text('('+resp.cnt+')')
 
   $('.remove_cart').click ->
     if confirm("Удалить позицию из заказа?")
@@ -246,49 +225,8 @@ $ ->
             $(this).parents('.one_cart').remove()
             $('.tottal b').text(resp.summ)
             $('.basket a span').text('('+resp.cnt+')')
+            $('.scl span').text('('+resp.cnt+')')
 
-  ###
-  $('.order_issue_btn').bind 'click', ->
-    #blocks
-    $('.order_list').hide()
-    $('.order_form').show()
-    $('.order_confirm').hide()
-    $('.order_none').hide()
-    #btn
-    $('.order_issue_btn').hide()
-    $('.order_btn').show()
-    $('.back_btn').show()
-    $('.remove_all').hide()
-
-  $('.order_btn').bind 'click', ->
-    #blocks
-    $('.order_list').hide()
-    $('.order_form').hide()
-    $('.order_confirm').show()
-    $('.order_none').hide()
-    $('.tottal_text').hide()
-    $('.forms_block_ri').hide()
-    $('.forms_block_le').removeClass('span10').addClass('span12')
-
-    #btn
-    $('.order_issue_btn').hide()
-    $('.order_btn').hide()
-    $('.back_btn').hide()
-    $('.remove_all').hide()
-
-  $('.back_btn').bind 'click', ->
-    #blocks
-    $('.order_list').show()
-    $('.order_form').hide()
-    $('.order_confirm').show()
-    $('.order_none').hide()
-    #btn
-    $('.order_issue_btn').show()
-    $('.order_btn').hide()
-    $('.back_btn').hide()
-    $('.remove_all').show()
-
-  ###
 
   $('.remove_all').bind 'click', ->
     if confirm("Вы, действительно хотите удалть все покупки?")
@@ -303,9 +241,9 @@ $ ->
   $('#myTab a').click (e) ->
     e.preventDefault()
     $(this).tab 'show'
-
+  cloth_class = 0
   cloth = 0
-  cloth_class = ''
+  tab_class = 0
   z_b = $('.zero_b p')
   f_b = $('.fr_b')
   s_b = $('.sec_b')
@@ -314,10 +252,15 @@ $ ->
     if el != 'clear'
       _t = el
       tab_id = el.parent('.tab-pane').attr('id')
-      tab_class = el.parents('.tabbable').find('li.active').find('a[cloth_class]').attr('cloth_class')
+      tab_class = parseInt( el.parents('.tabbable').find('li.active').find('a[cloth_class]').attr('cloth_class') )
       cloth_name = el.attr('data-name')
       cloth_img =  el.find('img').attr('src')
       cloth_cost =  el.attr('data-cost')
+    else
+      cloth_class = 0
+      tab_class = 'clear'
+    console.log(el != 'clear' ,  cloth_class == 0 , cloth_class == tab_class)
+    if el != 'clear' &&  cloth_class == 0 || cloth_class == tab_class
       if cloth == 0
         _t.addClass('select')
         z_b.text 'Выберите ткань компаньон'
@@ -339,33 +282,33 @@ $ ->
         s_b.animate {marginLeft: 0, height: 61}, 300, ->
           $('.add_shoping_box').removeClass('disabled')
     else
-      if cloth_class != tab_class
-        if el != 'clear'
-          tt = 'Вы действительно хотите выбрать ткань из этой категории. (Выбранная ткань из другой категории будет удалена)'
-        else
-          tt =  'Вы действительно хотите очистить ткани'
-        if confirm(tt)
-          cloth.length = 0
-          cloth = 0
-          z_b.text 'Выберите основную ткань'
-          $('.add_shoping_box').addClass('disabled')
-          $('.tabbable').find('.select').removeClass('select')
-          $('input[name=first_cloth]').val('');
-          $('input[name=second_cloth]').val('');
 
-          f_b.find('img').attr('src', '')
-          f_b.find('p:first').text('Основная - ')
-          f_b.find('p:last').text('Компаньон - (р.)')
-          f_b.animate({marginLeft: 350, height: 0}, 300, ->
-            $(this).hide()
-          )
+      if el != 'clear'
+        tt = 'Вы действительно хотите выбрать ткань из этой категории. (Выбранная ткань из другой категории будет удалена)'
+      else
+        tt =  'Вы действительно хотите очистить ткани'
+      if confirm(tt)
+        cloth_class = 0
+        cloth = 0
+        z_b.text 'Выберите основную ткань'
+        $('.add_shoping_box').addClass('disabled')
+        $('.tabbable').find('.select').removeClass('select')
+        $('input[name=first_cloth]').val('');
+        $('input[name=second_cloth]').val('');
 
-          s_b.find('img').attr('src', '')
-          s_b.find('p:first').text('Основная - ')
-          s_b.find('p:last').text('Компаньон - (р.)')
-          s_b.animate({marginLeft: 350, height: 0}, 300, ->
-            $(this).hide()
-          )
+        f_b.find('img').attr('src', '')
+        f_b.find('p:first').text('Основная - ')
+        f_b.find('p:last').text('Компаньон - (р.)')
+        f_b.animate({marginLeft: 350, height: 0}, 300, ->
+          $(this).hide()
+        )
+
+        s_b.find('img').attr('src', '')
+        s_b.find('p:first').text('Основная - ')
+        s_b.find('p:last').text('Компаньон - (р.)')
+        s_b.animate({marginLeft: 350, height: 0}, 300, ->
+          $(this).hide()
+        )
   $('.cloth_select').find('a').bind 'click', ->
     cloth_work( $(this) )
   $('.clear_cloth').bind 'click', ->

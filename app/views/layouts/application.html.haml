@@ -129,17 +129,19 @@
                     %i.icon-ok-circle
                     %a{:href => 'call:+78008888888', :title => ''} 8 (800) 888 88-88
     .black-bg.hide
-    .order_call
+    .order_call.validate
       %form
         %fieldset
           %legend Форма заказа обратного звонка
           %label Как к вам обратиться?
-          %input.span5.order_call_name{:placeholder => "", :type => "text"}/
-          %span.alert.alert-error.hide Не меньше 2 букв
-          %label Номер телефона для связи с вами
-          .input-prepend
-            %span.add-on +7
-            %input.span5.order_call_phone{:placeholder => "", :type => "text"}/
-          %span.alert.alert-error.hide Пример: 7774443322
-          %button.btn.btn-success.btn-block.disabled{:type => "submit"} Отправить заявку
+          .section
+            %input.span5.order_call_name{:placeholder => "", :type => "text", :name => 'name'}/
+            %span.alert.alert-error.hide.call-order-error-name Не меньше 2 букв
+            %label Номер телефона для связи с вами
+          .section
+            .input-prepend
+              %span.add-on +7
+              %input.span5.order_call_phone{:placeholder => "", :type => "text", :name => 'phone'}/
+            %span.alert.alert-error.hide Пример: 555 444 33 22
+          %button.btn.btn-success.btn-block.disabled{:type => "submit", :name => 'submit'} Отправить заявку
           %button.close.btn.btn-block Закрыть
