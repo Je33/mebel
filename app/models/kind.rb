@@ -3,5 +3,7 @@ class Kind < ActiveRecord::Base
 
   belongs_to :texture
 
-  has_attached_file :photo, :styles => {:s => '50x50#', :m => '300x300'}
+  has_attached_file :photo,
+                    :styles => {:s => '50x50#', :m => '300x300'},
+                    :path => "/:class/:attachment/:id_partition/:style/:filename"
 end
