@@ -35,4 +35,14 @@ Mebel::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
+  config.paperclip_defaults = {
+      :storage => :s3,
+      :s3_credentials => {
+          :bucket => "mebel",
+          :access_key_id => "AKIAJVBGWMQ3KFZZQDVA",
+          :secret_access_key => "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"
+      }
+  }
 end
+
+Paperclip::Attachment.default_options[:url] = ":s3_domain_url"
