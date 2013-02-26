@@ -122,7 +122,7 @@ $ ->
         else
           $(n).parents(".section").addClass "error"
       if $(t).get(0)
-        if $(t).text().length > 10
+        if $(t).val().length > 10
           $(t).parents(".section").removeClass "error"
         else
           $(t).parents(".section").addClass "error"
