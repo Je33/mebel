@@ -113,71 +113,41 @@ $ ->
     n = $(f).find("input[name=name]")
     e = $(f).find("input[name=email]")
     p = $(f).find("input[name=phone]")
-    s = $(f).find("input[name=submit]")
+    s = $(f).find("button[name=submit]")
     v = ->
-      if $(e).get(0)
-        if $(e).val().indexOf("@") > -1
-          $(e).parents("label").removeClass "error"
+      if $(n).get(0)
+        if $(n).val().length > 1
+          $(n).parents(".section").removeClass "error"
         else
-          $(e).parents("label").addClass "error"
+          $(n).parents(".section").addClass "error"
       if $(p).get(0)
         unless isNaN(parseInt($(p).val()))
           if $(p).val().length > 4
-            $(p).parents("label").removeClass "error"
+            $(p).parents(".section").removeClass "error"
           else
-            $(p).parents("label").addClass "error"
+            $(p).parents(".section").addClass "error"
         else
-          $(p).parents("label").addClass "error"
+          $(p).parents(".section").addClass "error"
           $(p).val ""
-
+      if $(f).find(".error").get(0)
+        $(s).addClass('disabled')
+      else
+        $(s).removeClass('disabled')
     $(s).bind "click", ->
       v()
       if $(f).find(".error").get(0)
-        false
+        $(s).addClass('disabled')
+        return false
       else
-        $.ajax
-          type: "POST"
-          url: "/mail.php"
-          data:
-            name: $(n).val()
-            email: $(e).val()
-            phone: $(p).val()
+        $(s).removeClass('disabled')
+        return true
 
-          success: (msg) ->
-            $(".order_call").hide()
-            $(".show_text").hide()
-            $ hm.ab.goal("('.show_text.success').fadeIn(300)")  if msg is "yes"
-            $(".show_text.error").fadeIn 300  if msg is "no"
-
-        $(n).val ""
-        $(e).val ""
-        $(p).val ""
-        false
-
-    $(".show_text span").bind "click", ->
-      $(".show_text").fadeOut 300
-
-    $(e).bind "change, keydown", ->
+    $(n).bind "change, keydown", ->
       v()
 
     $(p).bind "change, keyup", ->
       $(p).val parseInt($(p).val())
       v()
-
-
-
-
-
-
-
-
-
-  $('.order_call').find('input[type=text]').bind 'change', ->
-    valid( $(this) )
-  $('.order_call').find('input[type=text]').bind 'keyup', ->
-    valid( $(this) )
-  $('.order_call').find('button[type=submit]').bind 'click', ->
-    return false
 
   $('.coll_change').find('i').bind 'click', ->
     coll = parseInt( $(this).parent().find('.coll').text() )
