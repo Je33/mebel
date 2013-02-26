@@ -1,5 +1,5 @@
 class Texture < ActiveRecord::Base
-  # attr_accessible :title, :body
+  attr_accessible :name, :text
 
   has_many :kinds
 
