@@ -14,12 +14,16 @@
   .span5
     %h2.clear-margin-top
       = @product.name
+    .tag.tag-big
+      12 500p.
+
       -#%span.label.label-important
         По акции
       -#%span.label.label-warning
         Распродажа
       -#%span.label.label-info
         Новый
+    %button.btn.btn-success.btn-block.buy_img Заказать как на картинке
 
     - if @product.text
       - prms = @product.text.split "\r\n"
@@ -57,7 +61,7 @@
 
 
   .span7
-    %button.btn.btn-success.span7.buy_img Заказать как на картинке
+
 
     %ul.thumbnails
       - if @product.photos.exists?
@@ -70,7 +74,7 @@
             %li.span2
               %a.thumbnail{:href => "javascript:;"}
                 %img{:alt => "", :src => f.file.url(:m), :width => '100%'}/
-    %span Ткань 4 категории. Основная - вот такая ткань. Компаньон - вот такая ткань
+    %span.alert.alert-info.btn-block Ткань 4 категории. Основная - вот такая ткань. Компаньон - вот такая ткань
 //.row
 //  %button.btn.btn-success.btn-large.span12{:href => 'javascript:;'} В корзину
 

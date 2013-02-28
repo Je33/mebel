@@ -935,3 +935,49 @@ p.price span.red
         p.obj_img
           img
             width: 100%
+
+.tag
+  font-family: Helvetica, Arial, sans-serif
+  background: #588fe5
+  display: inline-block
+  color: #fff
+  position: relative
+  padding: 10px
+  border-top-left-radius: 4px
+  border-bottom-left-radius: 4px
+  margin: 0 70px 0 0
+  text-decoration: none
+  &:hover
+
+  &:before
+    background: #fff
+    width: 10px
+    height: 10px
+    content: ""
+    display: inline-block
+    border-radius: 20px
+    margin: 0 5px 0 0
+  &:after
+    display: inline-block
+    border: 19px solid
+    border-color: transparent transparent transparent #588fe5
+    height: 0
+    width: 0
+    position: absolute
+    right: -38px
+    top: 0
+    content: ""
+    display: inline-block
+  &:hover:after
+
+.tag.tag-big
+  font-size: 28px
+  margin-bottom: 15px
+  &:before
+    margin: 0
+    top:  -4px
+    position: relative
+  &:after
+    border: 20px solid
+    right: -40px
+    border-color: transparent transparent transparent #588fe5

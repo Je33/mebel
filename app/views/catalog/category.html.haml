@@ -55,9 +55,8 @@
                 - if p.photos.exists?
                   = image_tag p.photos.first.file.url(:m)
               %p.obj_info_mini
-                %span
+                .tag
                   Цена:
-                %span
                   = p.price.round
               - if p.text
                 - prms = p.text.split "\r\n"
