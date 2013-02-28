@@ -274,7 +274,7 @@ div.products_list
     a.img_box
       display: block
       width: 200px
-      height: 150px
+      height: 135px
       overflow: hidden
       img
         width: 100%
@@ -942,11 +942,15 @@ p.price span.red
   display: inline-block
   color: #fff
   position: relative
-  padding: 10px
+  padding: 5px
   border-top-left-radius: 4px
   border-bottom-left-radius: 4px
-  margin: 0 70px 0 0
+  margin: 0 0 0 0
   text-decoration: none
+  width: 87%
+  margin-bottom: 10px
+  font-size: 21px
+
   &:hover
 
   &:before
@@ -956,18 +960,22 @@ p.price span.red
     content: ""
     display: inline-block
     border-radius: 20px
-    margin: 0 5px 0 0
+    margin: 0 0 0 0
+    position: relative
+    top:  -1px
+    @include box-shadow(inset 0px 2px 5px rgba(0, 0, 0, 0.2))
   &:after
     display: inline-block
-    border: 19px solid
+    border: 15px solid
     border-color: transparent transparent transparent #588fe5
     height: 0
     width: 0
     position: absolute
-    right: -38px
+    right: -30px
     top: 0
     content: ""
     display: inline-block
+
   &:hover:after
 
 .tag.tag-big
@@ -981,3 +989,7 @@ p.price span.red
     border: 20px solid
     right: -40px
     border-color: transparent transparent transparent #588fe5
+.tag-red
+  background-color: rgb(228, 92, 33) !important
+  &:after
+    border-color: transparent transparent transparent rgb(228, 92, 33) !important

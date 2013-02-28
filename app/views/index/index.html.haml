@@ -123,7 +123,7 @@
                             = image_tag n.photos.first.file.url(:m)
                         %a{:href => "/catalog/#{n.category_id}/#{n.id}"}
                         %h4= n.name
-                        .tag
+                        .tag.tag-red
                           Цена:
                           %span= n.price
                           p.
