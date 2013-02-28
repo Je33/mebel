@@ -11,7 +11,7 @@
         %span.divider /
       %li.active Шкафы
 .row
-  .span6
+  .span5
     %h2.clear-margin-top
       = @product.name
       -#%span.label.label-important
@@ -56,8 +56,8 @@
             .btn.btn-link + добавить
 
 
-  .span6
-    %button.btn.btn-success.span6.buy_img Заказать как на картинке
+  .span7
+    %button.btn.btn-success.span7.buy_img Заказать как на картинке
 
     %ul.thumbnails
       - if @product.photos.exists?
@@ -65,12 +65,12 @@
           - if k == 0
             %li.span6
               %a.thumbnail{:href => "javascript:;"}
-                %img{:alt => "", :src => f.file.url(:x)}/
+                %img{:alt => "", :src => f.file.url(:x), :width => '100%'}/
           - else
             %li.span2
               %a.thumbnail{:href => "javascript:;"}
-                %img{:alt => "", :src => f.file.url(:m)}/
-
+                %img{:alt => "", :src => f.file.url(:m), :width => '100%'}/
+    %span Ткань 4 категории. Основная - вот такая ткань. Компаньон - вот такая ткань
 //.row
 //  %button.btn.btn-success.btn-large.span12{:href => 'javascript:;'} В корзину
 
@@ -78,10 +78,6 @@
   .span12.line
     %span
       Категории тканей
-  %p.span12.label.label-info
-    Вы можете выбрать две ткани. Первая будет основная, вторая дополнительная (компаньон). Обе ткани выбираются только из одной категории.
-  %p.span12.label.label-warning
-    Нельзя добавить в корзину пока не выбрана ткань
 .row
 
   .tabbable.span12
