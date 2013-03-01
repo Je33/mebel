@@ -13,6 +13,10 @@ Mebel::Application.routes.draw do
   match "basket" => "basket#index"
   match "basket/:action" => "basket"
 
+  match "specials" => "special#index"
+  match "howto" => "contact#index"
+  match "contacts" => "contact#index"
+
   get "shopping_box/index"
 
   get "admin/index"

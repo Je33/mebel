@@ -106,7 +106,7 @@
             .control-group.section
               %label.control-label{:for => "text"} Комментарии
               .controls
-                %textarea#address.span6{:name => "order[text]", :value => @ord.text}
+                %textarea#address.span6{:name => "order[text]"}= @ord.text
 
   .span2.forms_block_ri
     .tottal.green

@@ -9,7 +9,7 @@
         %a{:href => "/catalog/index"}
           Каталог мебели
         %span.divider /
-      %li.active Шкафы
+      %li.active= @product.category ? @product.category.name : ""
 .row
   .span5
     %h2.clear-margin-top
