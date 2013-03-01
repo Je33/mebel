@@ -18,6 +18,8 @@ Mebel::Application.routes.draw do
   get "admin/index"
 
   match "admin" => "admin#index"
+  match "admin/orders" => "admin#index"
+  match "admin/orders/:id" => "admin#order"
   namespace :admin do
     match "ajax/:action" => "ajax"
     resources :textures do

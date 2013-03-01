@@ -10,27 +10,53 @@
             %th Имя
             %th Телефон
             %th Адрес
+            %th Сумма
             %th Статус
             %th Действия
           %tbody
             - if @orders
               - @orders.each do |order|
                 %tr{:class => get_order_class(order.status)}
-                  %td= order.id
+                  %td
+                    %a.btn.btn-small{:href => "/admin/orders/#{order.id}"}= order.id
                   %td= order.name
                   %td= order.phone
                   %td= get_order_address(order)
-                  %td= t("status_#{order.status}")
-                  %td
-                    - if order.status.to_i == 0
-                      %a.btn.btn-small.btn-success Подтвердить
-                      %a.btn.btn-small.btn-danger Отменить
-                    - if order.status.to_i == 10
-                      %a.btn.btn-small.btn-success Доставлен
-                      %a.btn.btn-small.btn-danger Отменить
-                    - if order.status.to_i == 20
-                      %a.btn.btn-small.btn-success Восстановить
-                      %a.btn.btn-small.btn-danger Удалить
-                    - if order.status.to_i == 30
+                  %td= order.sum.to_i
+
+                  - if order.status.to_i == 10
+                    %td.lbls
+                      %span.label.label-success= t("status_#{order.status}")
+                    %td.ctrls
+                      %a.btn.btn-small.btn-info.order-status{:data => {:id => order.id, :status => 20}} Подтвердить
+                      %a.btn.btn-small.btn-danger.order-status{:data => {:id => order.id, :status => 60}} Отменить
+                  - if order.status.to_i == 20
+                    %td.lbls
+                      %span.label.label-info= t("status_#{order.status}")
+                    %td.ctrls
+                      %a.btn.btn-small.btn-warning.order-status{:data => {:id => order.id, :status => 30}} Передать
+                      %a.btn.btn-small.btn-danger.order-status{:data => {:id => order.id, :status => 60}} Отменить
+                  - if order.status.to_i == 30
+                    %td.lbls
+                      %span.label.label-warning= t("status_#{order.status}")
+                    %td.ctrls
+                      %a.btn.btn-small.btn-inverse.order-status{:data => {:id => order.id, :status => 40}} В доставку
+                      %a.btn.btn-small.btn-danger.order-status{:data => {:id => order.id, :status => 60}} Отменить
+                  - if order.status.to_i == 40
+                    %td.lbls
+                      %span.label.label-inverse= t("status_#{order.status}")
+                    %td.ctrls
+                      %a.btn.btn-small.btn-success.order-status{:data => {:id => order.id, :status => 50}} Доставлен
+                      %a.btn.btn-small.btn-danger.order-status{:data => {:id => order.id, :status => 60}} Отменить
+                  - if order.status.to_i == 50
+                    %td.lbls
+                      %span.label= t("status_#{order.status}")
+                    %td.ctrls
                       %a.btn.btn-small.btn-success.disabled Доставлен
+                  - if order.status.to_i == 60
+                    %td.lbls
+                      %span.label.label-danger= t("status_#{order.status}")
+                    %td.ctrls
+                      %a.btn.btn-small.btn-danger.disabled Отменен
+                      %a.btn.btn-small.btn-success.order-status{:data => {:id => order.id, :status => 10}} Восстановить
         = paginate @orders

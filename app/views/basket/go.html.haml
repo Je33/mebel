@@ -1,0 +1,14 @@
+.row.shopping_cart_content
+  .span10.forms_block_le
+    .order_confirm
+      %h1.empty_h1
+        %center
+          .green Поздравляем!
+        %br
+        %center
+          Вы оформили заказ № #{@ord.id.to_i}.
+          %br
+          Заказ уже поступил оператору, который в ближайшее время обработает его и перезвонит Вам для уточнения адреса доставки.
+        %br
+        %center
+          %a.green.text_underline{:href =>'/catalog'} Выбрать еще мебель!

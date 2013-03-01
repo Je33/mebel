@@ -10,4 +10,10 @@ en:
       next: "&rsaquo;"
       truncate: "..."
   remember_me: "Запомнить меня"
+  status_10: "Новый"
+  status_20: "Подтвержден"
+  status_30: "Передан"
+  status_40: "Доставка"
+  status_50: "Доставлен"
+  status_60: "Отменен"
 

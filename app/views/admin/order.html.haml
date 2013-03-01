@@ -1,0 +1,119 @@
+.row.shopping_cart_content
+  .span10.forms_block_le
+    .tottal_text
+      Общая сумма заказа:
+    .order_list
+      - if @ord.baskets.any?
+        - @ord.baskets.includes(:product).each do |p|
+          - product = p.product
+          .one_cart
+            .row
+              %h3.span10
+                %span
+                  = product.name
+                -#.icon_box
+                  %i.remove_cart.icon-trash.pull-right{:data => {:id => p.id}}
+            %ul.thumbnails.row
+              %li.span2
+                - if product.photos.exists?
+                  - image = product.photos.first.file
+                  %a.thumbnail{:href => image.url, :target => "_blank"}
+                    = image_tag image.url(:s)
+              %li.span4
+                %ul.thumbnails.row
+                  %li.span1
+                    %a.thumbnail{:href => "#"}
+                      %img{:alt => "", :src => "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAAB4CAYAAAB1ovlvAAAGB0lEQVR4Xu2Y7UsXaxCGx8qsKAvD0oJCpdIPqZWVZOn/3otpYeLLBxUyCzGi0Kis0My4H1jxSFpzznQm9VqQ/LWzc6/XXsyzz69mcXFx3TggkESgBgGTyBNbCCAgIqQSQMBU/IQjIA6kEkDAVPyEIyAOpBJAwFT8hCMgDqQSQMBU/IQjIA6kEkDAVPyEIyAOpBJAwFT8hCMgDqQSQMBU/IQjIA6kEkDAVPyEIyAOpBJAwFT8hCMgDqQSQMBU/IQjIA6kEkDAVPyEIyAOpBJAwFT8hCMgDqQSQMBU/IQjIA6kEkDAVPyEIyAOpBJAwFT8hCMgDqQSQMBU/IQjIA6kEkDAVPyEIyAOpBJAwFT8hCMgDqQSQMBU/IQjIA6kEkDAVPyEIyAOpBJAwFT8hCMgDqQSQMBU/IQjIA6kEkDAVPyEIyAOpBJAwFT8hCMgDqQSQMBU/IQjIA6kEkDAVPyEIyAOpBLYNwK+ePHCXr58ab29vXbkyJEN6NPT0/b69WtbX1+35uZmu3LlitXU1JTPk5OT9u7du/K5tbXVLly48NsP62d5a2trNjExYUtLS3bo0KHS7+LFi6Xnf8377Rv7ywr3vIDv37+3xcVFm52dLej7+vrs6NGj5fepqSmbn58vMuj49u1bEeLSpUs2NjZmb9++tdra2vL/EuTq1at29uzZHR/hTnkjIyNFvgMHDtj3799Ln7a2NmtpafnXeX+ZT+7b2fMC3r9/31ZWVjbA3L17t0xATSOd03S7d++era6u2tzcnJ04caJIpnMSRecksIQ8deqUtbe32/j4uB08eNCuX79unz59KiLX1dVZd3e3PXz48Kd5uoeq58DAQLnu6dOndvjwYbtz5862eT09Pe6Hupsu2PMCanpJsqGhIfvy5YtVAkoIyaJJJOm+fv1aluDLly8XgXROk1ECVrLqc39/v1WTrKGhoVz3+fPnMjU1PbfLU87CwkKZqBJcUj979syOHz9eRN4pbzcJ5b3XPS9gBUQCaupUAlYC6LzEkjg6JGFTU5ONjo7a6dOn7dq1a+Wcppemla7fLK+uOXnypN28efMf7LfmbT6pbPXXsq53S12/U573oe6m+n0roKbh4OBgWTq1BGqKSRpJduvWLXv06FE5p3fGrRNQD1ibjOfPn5dnffv27TJFNx/bCTgzM2OvXr0qpefPn7eOjo4yRX+Vt5uk8tzrvhWwmmp6H5SAm6ecdsqaeJqMmnianE+ePLFjx46VWgn54MGDjanZ2NhoXV1dvxRQGyH96P1R9VrCdVTZ2+V5Huhuq903Aj5+/NiWl5c3lmAtf5qAmoTnzp0r/2qHeubMGevs7CznNBW1JH/8+LFIWO1Y9VXKmzdvyvubavR+t3WHvDWvkqza/dbX15elXDvyGzdu7Ji326Ty3O++EVAT7MOHDxsCCpKWPomiiaZDS67e5TQVJevw8PDG1yV6T5MoklG712r3LBH1XWK1YdF007E1T4IrqxKwekjK0pTdLk878b187BsBd3qImm46NNE2H5JFE+5n5/6EFP933p/4G7w9EdBLjPpQAggYipNmXgII6CVGfSgBBAzFSTMvAQT0EqM+lAAChuKkmZcAAnqJUR9KAAFDcdLMSwABvcSoDyWAgKE4aeYlgIBeYtSHEkDAUJw08xJAQC8x6kMJIGAoTpp5CSCglxj1oQQQMBQnzbwEENBLjPpQAggYipNmXgII6CVGfSgBBAzFSTMvAQT0EqM+lAAChuKkmZcAAnqJUR9KAAFDcdLMSwABvcSoDyWAgKE4aeYlgIBeYtSHEkDAUJw08xJAQC8x6kMJIGAoTpp5CSCglxj1oQQQMBQnzbwEENBLjPpQAggYipNmXgII6CVGfSgBBAzFSTMvAQT0EqM+lAAChuKkmZcAAnqJUR9KAAFDcdLMSwABvcSoDyWAgKE4aeYlgIBeYtSHEkDAUJw08xJAQC8x6kMJIGAoTpp5CSCglxj1oQQQMBQnzbwEENBLjPpQAggYipNmXgII6CVGfSgBBAzFSTMvAQT0EqM+lAAChuKkmZcAAnqJUR9K4Ae40gDtFyR/NwAAAABJRU5ErkJggg=="}
+                  %li
+                    %p
+                      Основной -
+                    %p
+                      %span
+                        2 Категория
+                    %p
+                      Название
+
+                %ul.thumbnails.row
+                  %li.span1
+                    %a.thumbnail{:href => "#"}
+                      %img{:alt => "", :src => "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAAB4CAYAAAB1ovlvAAAGB0lEQVR4Xu2Y7UsXaxCGx8qsKAvD0oJCpdIPqZWVZOn/3otpYeLLBxUyCzGi0Kis0My4H1jxSFpzznQm9VqQ/LWzc6/XXsyzz69mcXFx3TggkESgBgGTyBNbCCAgIqQSQMBU/IQjIA6kEkDAVPyEIyAOpBJAwFT8hCMgDqQSQMBU/IQjIA6kEkDAVPyEIyAOpBJAwFT8hCMgDqQSQMBU/IQjIA6kEkDAVPyEIyAOpBJAwFT8hCMgDqQSQMBU/IQjIA6kEkDAVPyEIyAOpBJAwFT8hCMgDqQSQMBU/IQjIA6kEkDAVPyEIyAOpBJAwFT8hCMgDqQSQMBU/IQjIA6kEkDAVPyEIyAOpBJAwFT8hCMgDqQSQMBU/IQjIA6kEkDAVPyEIyAOpBJAwFT8hCMgDqQSQMBU/IQjIA6kEkDAVPyEIyAOpBJAwFT8hCMgDqQSQMBU/IQjIA6kEkDAVPyEIyAOpBLYNwK+ePHCXr58ab29vXbkyJEN6NPT0/b69WtbX1+35uZmu3LlitXU1JTPk5OT9u7du/K5tbXVLly48NsP62d5a2trNjExYUtLS3bo0KHS7+LFi6Xnf8377Rv7ywr3vIDv37+3xcVFm52dLej7+vrs6NGj5fepqSmbn58vMuj49u1bEeLSpUs2NjZmb9++tdra2vL/EuTq1at29uzZHR/hTnkjIyNFvgMHDtj3799Ln7a2NmtpafnXeX+ZT+7b2fMC3r9/31ZWVjbA3L17t0xATSOd03S7d++era6u2tzcnJ04caJIpnMSRecksIQ8deqUtbe32/j4uB08eNCuX79unz59KiLX1dVZd3e3PXz48Kd5uoeq58DAQLnu6dOndvjwYbtz5862eT09Pe6Hupsu2PMCanpJsqGhIfvy5YtVAkoIyaJJJOm+fv1aluDLly8XgXROk1ECVrLqc39/v1WTrKGhoVz3+fPnMjU1PbfLU87CwkKZqBJcUj979syOHz9eRN4pbzcJ5b3XPS9gBUQCaupUAlYC6LzEkjg6JGFTU5ONjo7a6dOn7dq1a+Wcppemla7fLK+uOXnypN28efMf7LfmbT6pbPXXsq53S12/U573oe6m+n0roKbh4OBgWTq1BGqKSRpJduvWLXv06FE5p3fGrRNQD1ibjOfPn5dnffv27TJFNx/bCTgzM2OvXr0qpefPn7eOjo4yRX+Vt5uk8tzrvhWwmmp6H5SAm6ecdsqaeJqMmnianE+ePLFjx46VWgn54MGDjanZ2NhoXV1dvxRQGyH96P1R9VrCdVTZ2+V5Huhuq903Aj5+/NiWl5c3lmAtf5qAmoTnzp0r/2qHeubMGevs7CznNBW1JH/8+LFIWO1Y9VXKmzdvyvubavR+t3WHvDWvkqza/dbX15elXDvyGzdu7Ji326Ty3O++EVAT7MOHDxsCCpKWPomiiaZDS67e5TQVJevw8PDG1yV6T5MoklG712r3LBH1XWK1YdF007E1T4IrqxKwekjK0pTdLk878b187BsBd3qImm46NNE2H5JFE+5n5/6EFP933p/4G7w9EdBLjPpQAggYipNmXgII6CVGfSgBBAzFSTMvAQT0EqM+lAAChuKkmZcAAnqJUR9KAAFDcdLMSwABvcSoDyWAgKE4aeYlgIBeYtSHEkDAUJw08xJAQC8x6kMJIGAoTpp5CSCglxj1oQQQMBQnzbwEENBLjPpQAggYipNmXgII6CVGfSgBBAzFSTMvAQT0EqM+lAAChuKkmZcAAnqJUR9KAAFDcdLMSwABvcSoDyWAgKE4aeYlgIBeYtSHEkDAUJw08xJAQC8x6kMJIGAoTpp5CSCglxj1oQQQMBQnzbwEENBLjPpQAggYipNmXgII6CVGfSgBBAzFSTMvAQT0EqM+lAAChuKkmZcAAnqJUR9KAAFDcdLMSwABvcSoDyWAgKE4aeYlgIBeYtSHEkDAUJw08xJAQC8x6kMJIGAoTpp5CSCglxj1oQQQMBQnzbwEENBLjPpQAggYipNmXgII6CVGfSgBBAzFSTMvAQT0EqM+lAAChuKkmZcAAnqJUR9K4Ae40gDtFyR/NwAAAABJRU5ErkJggg=="}
+                  %li
+                    %p
+                      Компаньон -
+                    %p
+                      %span
+                        2 Категория
+                    %p
+                      Название
+
+              -#%li.span1
+                %button.btn.btn-block.item-plus{:data => {:id => product.id}}
+                  \+
+                %input.span1.item-count{:type => "text", :value => p.cnt}
+                %button.btn.btn-block.item-minus{:data => {:id => product.id}}
+                  \-
+              %li.span1
+                %h3
+                  %b= p.cnt
+
+
+              %li.span3
+                %h3.item-price
+                  %b= (product.price * p.cnt.to_i).round
+                  р
+
+      .order_form.validate
+        = form_tag "/admin/orders/#{@ord.id}", :method => "POST", :class => "form-horizontal", :id => "form-order-go" do
+          %input{:type => "hidden", :name => "order_id", :value => @ord.id}
+          %fieldset
+            .control-group.section
+              %label.control-label{:for => "name"} Ваше имя
+              .controls
+                %input#username.span6{:name => "order[name]", :placeholder => "", :type => "text", :value => @ord.name}
+                %span.alert.alert-error.hide.call-order-error-name не менее 2 букв
+            .control-group.section
+              %label.control-label{:for => "phone"} Телефон
+              .controls
+                .input-prepend
+                  %span.add-on +7
+                  %input#phone.span6{:name => "order[phone]", :placeholder => "", :type => "text", :value => @ord.phone}
+                %span.alert.alert-error.hide.call-order-error-name Пример: 555 444 33 22
+            .control-group.section
+              %label.control-label{:for => "city"} Город
+              .controls
+                %input#username.span6{:name => "order[city]", :placeholder => "", :type => "text", :value => @ord.city}
+                %span.alert.alert-error.hide.call-order-error-name не менее 2 букв
+            .control-group.section
+              %label.control-label{:for => "street"} Улица
+              .controls
+                %input#username.span6{:name => "order[street]", :placeholder => "", :type => "text", :value => @ord.street}
+                %span.alert.alert-error.hide.call-order-error-name не менее 2 букв
+            .control-group.section
+              %label.control-label{:for => "house"} Дом
+              .controls
+                %input#username.span2{:name => "order[house]", :placeholder => "", :type => "text", :value => @ord.house}
+                %span.alert.alert-error.hide.call-order-error-name не менее 2 букв
+            .control-group.section
+              %label.control-label{:for => "floor"} Этаж
+              .controls
+                %input#username.span2{:name => "order[floor]", :placeholder => "", :type => "text", :value => @ord.floor}
+                %span.alert.alert-error.hide.call-order-error-name не менее 2 букв
+            .control-group.section
+              %label.control-label{:for => "room"} Квартира/Офис
+              .controls
+                %input#username.span2{:name => "order[room]", :placeholder => "", :type => "text", :value => @ord.room}
+                %span.alert.alert-error.hide.call-order-error-name не менее 2 букв
+            .control-group.section
+              %label.control-label{:for => "text"} Комментарии
+              .controls
+                %textarea#address.span6{:name => "order[text]", :value => @ord.text}
+
+  .span2.forms_block_ri
+    .tottal.green
+      %b= @ord.sum.to_i
+      %span
+        р
+    -#%a.btn.btn-success.btn-block.btn-large.order_issue_btn{:href => "/basket/order"} Оформить
+    .btn.btn-success.btn-block.btn-large.order_btn{:onclick => "$('#form-order-go').submit()"} Сохранить
+    %a.btn.btn-block.back_btn{:href => "/admin"} Назад
+    -#.btn.btn-small.btn-link.btn-block.remove_all Очистить корзину
