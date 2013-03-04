@@ -11,4 +11,8 @@ class Admin::AjaxController < AdminController
     end
   end
 
+  def users
+    render :json => User.all
+  end
+
 end
