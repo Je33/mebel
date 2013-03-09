@@ -11,7 +11,7 @@
               %h3.span10
                 %span
                   = product.name
-                -#.icon_box
+                .icon_box
                   %i.remove_cart.icon-trash.pull-right{:data => {:id => p.id}}
             %ul.thumbnails.row
               %li.span2
@@ -46,13 +46,13 @@
                     %p
                       Название
 
-              -#%li.span1
+              %li.span1
                 %button.btn.btn-block.item-plus{:data => {:id => product.id}}
                   \+
                 %input.span1.item-count{:type => "text", :value => p.cnt}
                 %button.btn.btn-block.item-minus{:data => {:id => product.id}}
                   \-
-              %li.span1
+              -#%li.span1
                 %h3
                   %b= p.cnt
 
@@ -61,6 +61,17 @@
                 %h3.item-price
                   %b= (product.price * p.cnt.to_i).round
                   р
+
+      .one_cart
+        .row
+          %h3.span10
+            %span Добавить товар
+        %select
+          %option{:value => 0} Выберите товар
+          - Company.includes(:products).each do |c|
+            %optgroup{:label => c.name}
+              - c.products.each do |p|
+                %option{:value => p.id}= p.name
 
       .order_form.validate
         = form_tag "/admin/orders/#{@ord.id}", :method => "POST", :class => "form-horizontal", :id => "form-order-go" do

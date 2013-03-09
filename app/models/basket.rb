@@ -1,5 +1,5 @@
 class Basket < ActiveRecord::Base
-  attr_accessible :cnt, :order_id, :product_id
+  attr_accessible :cnt, :order_id, :product_id, :price, :kind_main, :kind_opt
   belongs_to :order
   belongs_to :product
 
