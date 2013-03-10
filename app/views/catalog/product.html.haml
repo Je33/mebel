@@ -86,12 +86,12 @@
       Категории тканей
 .row
 
-  .tabbable.span12
-    %ul.nav.nav-tabs
+  .tabbable.span8.tabs-left
+    %ul.nav.nav-tabs#myTab
       - if @product.textures.exists?
         - @product.textures.each_with_index do |t, i|
           %li{:class => i == 0 ? "active" : ""}
-            %a{"data-toggle" => "tab", :href => "#tab#{t.id}", 'cloth_class' => t.id}
+            %a{"data-toggle" => "tab", :href => "#tab#{t.id}"}
               = t.name
               %br/
               = t.product_textures.where(:product_id => @product.id).first.price
@@ -99,36 +99,32 @@
     .tab-content
       - if @product.textures.exists?
         - @product.textures.each_with_index do |t, i|
-          .tab-pane.active.cloth_select{:id => "#tab#{t.id}"}
+          .tab-pane.cloth_select{:class => i == 0 ? "active" : "", :id => "#tab#{t.id}"}
             %ul.thumbnails.row
               - if t.kinds.exists?
                 - t.kinds.each do |k|
                   %li.span2
-                    %a#d1.thumbnail{:href => 'javascript:;', 'data-name' => 'qwe', 'data-cost' => '12500'}
+                    %a.thumbnail{:href => 'javascript:;', 'data-id' => t.id, 'data-action' => 'cloth_action', 'data-name' => 'name1', 'data-category' => '7', 'data-cost' => '12500'}
                       - if k.photo
                         = image_tag k.photo.url(:m)
-
-
-.cloth_cont
-  .cloth_box.zero_b
-    %p Выберите основную ткань
-  .cloth_box.fr_b
-    %a{:href => "javascript:;"}
-      %img{:alt => "google plus", :src => "/assets/gplus.png", :width => '50', :height => '50'}/
-    %p Основная ткань (название)
-    %p Класс 1 (+1500р.)
-  .cloth_box.sec_b
-    %a{:href => "javascript:;"}
-      %img{:alt => "google plus", :src => "/assets/gplus.png", :width => '50', :height => '50'}/
-    %p Название
-    %p Класс 2 ( +1500р. )
-  %button.btn.btn-mini.btn-block.clear_cloth Очистить ткани
-  %form
-    %input{:type => "hidden", :value => "", :name => 'first_cloth'}
-    %input{:type => "hidden", :value => "", :name => 'second_cloth'}
-    %input.btn.btn-success.btn-block.disabled.add_shoping_box{:type =>'submit', :value=>'В корзину'}
-  .arr_left_box
-    %a.ll.hide{:href => "javascript:;"}
-      &lt;
-    %a.rr{:href => "javascript:;"}
-      &gt;
+                    %span
+                      Название ткани
+  .span4.cloth_cont_box
+    .cloth_cont
+      .cloth_box.zero_b
+        %p Выберите основную ткань
+      .cloth_box.fr_b
+        %a{:href => "javascript:;"}
+          %img{:alt => "google plus", :src => "/assets/gplus.png", :width => '50', :height => '50'}/
+        %p Основная ткань (название)
+        %p Класс 1 (+1500р.)
+      .cloth_box.sec_b
+        %a{:href => "javascript:;"}
+          %img{:alt => "google plus", :src => "/assets/gplus.png", :width => '50', :height => '50'}/
+        %p Название
+        %p Класс 2 ( +1500р. )
+      %button.btn.btn-mini.btn-block.clear_cloth Очистить ткани
+      %form
+        %input{:type => "hidden", :value => "", :name => 'first_cloth'}
+        %input{:type => "hidden", :value => "", :name => 'second_cloth'}
+        %input.btn.btn-success.btn-block.disabled.add_shoping_box{:type =>'submit', :value=>'В корзину'}

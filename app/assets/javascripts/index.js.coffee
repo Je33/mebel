@@ -241,72 +241,72 @@ $ ->
   $('#myTab a').click (e) ->
     e.preventDefault()
     $(this).tab 'show'
-  cloth_class = 0
+
+
+  txt = $('.zero_b p')
+  fir = $('.fr_b')
+  sec = $('.sec_b')
+  in_sh_bx = $('.add_shoping_box')
   cloth = 0
-  tab_class = 0
-  z_b = $('.zero_b p')
-  f_b = $('.fr_b')
-  s_b = $('.sec_b')
-  b_b = $('.add_shoping_box')
   cloth_work = (el) ->
+    data_category = ''
+    data_name = ''
+    data_cost = ''
+    data_id = ''
+
     if el != 'clear'
       _t = el
-      tab_id = el.parent('.tab-pane').attr('id')
-      tab_class = parseInt( el.parents('.tabbable').find('li.active').find('a[cloth_class]').attr('cloth_class') )
-      cloth_name = el.attr('data-name')
-      cloth_img =  el.find('img').attr('src')
-      cloth_cost =  el.attr('data-cost')
-    else
-      cloth_class = 0
-      tab_class = 'clear'
-    console.log(el != 'clear' ,  cloth_class == 0 , cloth_class == tab_class)
-    if el != 'clear' &&  cloth_class == 0 || cloth_class == tab_class
+      data_category = el.attr('data-category')
+      data_name = el.attr('data-name')
+      data_img =  el.find('img').attr('src')
+      data_cost =  el.attr('data-cost')
+      data_id = el.attr('data-id')
+    if el != 'clear'
       if cloth == 0
         _t.addClass('select')
-        z_b.text 'Выберите ткань компаньон'
+        txt.text 'Выберите ткань компаньон'
         cloth = 1
-        cloth_class = tab_class
-        f_b.find('img').attr('src', cloth_img)
-        f_b.find('p:first').text 'Основная - ' + cloth_name
-        f_b.find('p:last').text 'Класс '+tab_class+' - ('+cloth_cost+'р.)'
-        f_b.show()
-        f_b.animate {marginLeft: 0, height: 61}, 300, ->
-      else if cloth == 1 && cloth_class == tab_class && el != 'clear'
+        $('input[name=first_cloth]').val(data_id);
+        fir.find('img').attr('src', data_img)
+        fir.find('p:first').text 'Основная - ' + data_name
+        fir.find('p:last').text 'Класс '+data_category+' - ('+data_cost+'р.)'
+        fir.show()
+        fir.animate {marginLeft: 0, height: 61}, 300, ->
+          in_sh_bx.removeClass('disabled')
+      else if cloth == 1 && el != 'clear'
         _t.addClass('select')
-        z_b.text 'Нажмите кнопку "в корзину"'
+        txt.text 'Нажмите кнопку "в корзину"'
         cloth = 2
-        s_b.find('img').attr('src', cloth_img)
-        s_b.find('p:first').text 'Компаньон - ' + cloth_name
-        s_b.find('p:last').text 'Класс '+tab_class+' - ('+cloth_cost+'р.)'
-        s_b.show()
-        s_b.animate {marginLeft: 0, height: 61}, 300, ->
-          $('.add_shoping_box').removeClass('disabled')
+        $('input[name=second_cloth]').val(data_id)
+        sec.find('img').attr('src', data_img)
+        sec.find('p:first').text 'Компаньон - ' + data_name
+        sec.find('p:last').text 'Класс '+data_category+' - ('+data_cost+'р.)'
+        sec.show()
+        sec.animate {marginLeft: 0, height: 61}, 300, ->
+          in_sh_bx.removeClass('disabled')
     else
 
       if el != 'clear'
-        tt = 'Вы действительно хотите выбрать ткань из этой категории. (Выбранная ткань из другой категории будет удалена)'
+
       else
         tt =  'Вы действительно хотите очистить ткани'
       if confirm(tt)
-        cloth_class = 0
         cloth = 0
-        z_b.text 'Выберите основную ткань'
-        $('.add_shoping_box').addClass('disabled')
+        txt.text 'Выберите основную ткань'
+        in_sh_bx.addClass('disabled')
         $('.tabbable').find('.select').removeClass('select')
-        $('input[name=first_cloth]').val('');
-        $('input[name=second_cloth]').val('');
-
-        f_b.find('img').attr('src', '')
-        f_b.find('p:first').text('Основная - ')
-        f_b.find('p:last').text('Компаньон - (р.)')
-        f_b.animate({marginLeft: 350, height: 0}, 300, ->
+        $('input[name=first_cloth]').val('')
+        $('input[name=second_cloth]').val('')
+        fir.find('img').attr('src', '')
+        fir.find('p:first').text('Основная - ')
+        fir.find('p:last').text('Компаньон - (р.)')
+        fir.animate({marginLeft: 350, height: 0}, 300, ->
           $(this).hide()
         )
-
-        s_b.find('img').attr('src', '')
-        s_b.find('p:first').text('Основная - ')
-        s_b.find('p:last').text('Компаньон - (р.)')
-        s_b.animate({marginLeft: 350, height: 0}, 300, ->
+        sec.find('img').attr('src', '')
+        sec.find('p:first').text('Основная - ')
+        sec.find('p:last').text('Компаньон - (р.)')
+        sec.animate({marginLeft: 350, height: 0}, 300, ->
           $(this).hide()
         )
   $('.cloth_select').find('a').bind 'click', ->
