@@ -105,6 +105,9 @@ h4.title
   .span8.options ul
     margin: 0
     padding: 0
+    li
+      .phone_number
+        font-size: 24px
   .logo
     position: relative
     top: 0px
@@ -464,12 +467,19 @@ ul.social
 
       width: 30px
 .text_block
+  a
+    .tag
+      margin: 0 15px
+      width: 75%
   p
     padding: 0 15px
     overflow: hidden
     img
       float: left
       margin: 0 25px 10px 10px
+.catalog_list_nth
+  .span3:nth-child(4n+1)
+    clear: left !important
 
 
 .shopping_cart_content
@@ -949,7 +959,7 @@ p.price span.red
   text-decoration: none
   width: 87%
   margin-bottom: 10px
-  font-size: 21px
+  font-size: 20px
 
   &:hover
 
@@ -981,6 +991,8 @@ p.price span.red
 .tag.tag-big
   font-size: 28px
   margin-bottom: 15px
+  padding: 8px 5px 12px 5px
+  width: 92%
   &:before
     margin: 0
     top:  -4px
@@ -993,3 +1005,5 @@ p.price span.red
   background-color: rgb(228, 92, 33) !important
   &:after
     border-color: transparent transparent transparent rgb(228, 92, 33) !important
+.viewport
+  overflow: hidden

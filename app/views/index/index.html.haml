@@ -112,8 +112,8 @@
           %span.button.icon-chevron-right.icon-white
         .carousel.slide
           .carousel-inner
-            .active.item
-              %ul.thumbnails.listing-products
+            .active.item.viewport
+              %ul.thumbnails.listing-products.overview
                 - if @news
                   - @news.each do |n|
                     %li.span3.slide_el
