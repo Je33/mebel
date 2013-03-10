@@ -4,9 +4,30 @@
     .controls
       = text_field_tag "company[name]", @company.name
   .control-group
+    %label.control-label{:for => "company_email"} Электронная почта
+    .controls
+      = text_field_tag "company[email]", @company.email
+  .control-group
+    %label.control-label{:for => "company_production"} Срок изготовления
+    .controls
+      = text_field_tag "company[production]", @company.production
+  .control-group
     %label.control-label{:for => "company_text"} Описание
     .controls
       = text_area_tag "company[text]", @company.text, :rows => 5
+  .control-group
+    %label.control-label{:for => "company_delivery"} Доставка
+    .controls
+      = text_area_tag "company[delivery]", @company.delivery, :rows => 5
+  .control-group
+    %label.control-label{:for => "company_elevation"} Подъём
+    .controls
+      = text_area_tag "company[elevation]", @company.elevation, :rows => 5
+  .control-group
+    %label.control-label{:for => "company_installation"} Сборка
+    .controls
+      = text_area_tag "company[installation]", @company.installation, :rows => 5
+
   .form-actions
     = submit_tag "Сохранить", :class => "btn btn-small btn-primary"
     %a.btn.btn-small{:href => admin_companies_path} Отменить

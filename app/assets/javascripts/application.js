@@ -22,6 +22,4 @@
 //= require scrollbar
 //= require tmpl
 //= require jquery.slider
-//= require index
-//= require admin
 
