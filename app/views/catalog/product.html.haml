@@ -15,7 +15,7 @@
     %h2.clear-margin-top
       = @product.name
     .tag.tag-big
-      от (цена 1 категории) p.
+      от #{@product.price.to_i} p.
 
       -#%span.label.label-important
         По акции
@@ -62,9 +62,12 @@
 
   .span7
 
-
-    %button.btn.btn-success.btn-block.buy_img Цена изделия на картинке (цена категории которая выставлена картинке). Заказать как на картинке
-    %span.label.label-info.btn-block Ткань 4 категории. Основная - вот такая ткань. Компаньон - вот такая ткань
+    - link = @product.product_textures.where(:as_img => 1).first
+    - if link.present?
+      %button.btn.btn-success.btn-block.buy_img
+        #{link.price.to_i} р.
+        Заказать как на картинке
+      %span.label.label-info.btn-block Ткань #{link.texture.name}
     %ul.thumbnails
       - if @product.photos.exists?
         - @product.photos.each_with_index do |f, k|

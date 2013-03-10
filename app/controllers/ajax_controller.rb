@@ -55,7 +55,7 @@ class AjaxController < ApplicationController
         l = Basket.where({:order_id => @order.id, :product_id => item.id}).first
         out = l.cnt.to_i - cnt.to_i > 0 ? l.cnt.to_i - cnt.to_i : 1
         l.update_attribute :cnt, out
-        res = {:success => true, :col => out, :cnt => @order.cnt, :price => (out.to_i * item.price.to_f).round(2), :summ => @order.sum.round(2)}
+        res = {:success => true, :col => out, :cnt => @order.cnt, :price => (out.to_i * l.price.to_f).round(2), :summ => @order.sum.round(2)}
       end
     end
     render :json => res

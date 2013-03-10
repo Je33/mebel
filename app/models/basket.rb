@@ -13,7 +13,7 @@ class Basket < ActiveRecord::Base
     order = self.order
     order.baskets.includes(:product).each do |b|
       c = b.cnt.to_i > 0 ? b.cnt.to_i : 1
-      s += b.product.price.to_f * c
+      s += b.price.to_f * c
       n += c
     end
     order.update_attribute :summ, s
