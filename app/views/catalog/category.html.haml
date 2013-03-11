@@ -38,37 +38,59 @@
       %li.active Шкафы
 
 .row.catalog_list_nth
-  - if @products
-    - @products.each do |p|
-      .span3
-        .block_content
-          .products_list.text_block
+  .span9
+    .row
+      - if @products
+        - @products.each do |p|
+          .span3
+            .block_content
+              .products_list.text_block
 
-            %h4.title
-              %span.pull-left
-                %i.icon-book
-                %strong= p.name
-            %a{:href => "/catalog/#{p.category_id}/#{p.id}", :title => p.name}
-              %p.obj_img
-                %span.sale
-                -#%img{:src => "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT2SVoUu9_ohsYS4DQh8GuXl2f0AyGoEu7gMSTp1MRumZWzJjkkfQ", :alt => '', :width => '100%'}
-                - if p.photos.exists?
-                  = image_tag p.photos.first.file.url(:m)
-              %p.obj_info_mini
-                .tag.tag-red
-                  от
-                  = p.price.round
-                  р.
-              - if p.text
-                - prms = p.text.split "\r\n"
-                - prms.each_with_index do |prm, k|
-                  - if k < 2
-                    - kv = prm.split ":"
-                    - if !kv[0].blank? and !kv[1].blank?
-                      %p.obj_info_mini
-                        %span= kv[0].strip
-                        %span= kv[1].strip
-            .btn-group
-              %a.btn{:href => "/catalog/#{p.category_id}/#{p.id}", :title => p.name} Подробнее
-              .btn.btn-success.add_to_shopping_cart{:data => {:id => p.id}} В корзину
+                %h4.title
+                  %span.pull-left
+                    %i.icon-book
+                    %strong= p.name
+                %a{:href => "/catalog/#{p.category_id}/#{p.id}", :title => p.name}
+                  %p.obj_img
+                    %span.sale
+                    -#%img{:src => "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT2SVoUu9_ohsYS4DQh8GuXl2f0AyGoEu7gMSTp1MRumZWzJjkkfQ", :alt => '', :width => '100%'}
+                    - if p.photos.exists?
+                      = image_tag p.photos.first.file.url(:m)
+                  %p.obj_info_mini
+                    .tag.tag-red
+                      от
+                      = p.price.round
+                      р.
+                  - if p.text
+                    - prms = p.text.split "\r\n"
+                    - prms.each_with_index do |prm, k|
+                      - if k < 2
+                        - kv = prm.split ":"
+                        - if !kv[0].blank? and !kv[1].blank?
+                          %p.obj_info_mini
+                            %span= kv[0].strip
+                            %span= kv[1].strip
+                .btn-group
+                  %a.btn{:href => "/catalog/#{p.category_id}/#{p.id}", :title => p.name} Подробнее
+                  .btn.btn-success.add_to_shopping_cart{:data => {:id => p.id}} В корзину
 
+  .span3
+    .block_content
+      %ul.nav.nav-list.margin_clear
+        %li.nav-header
+          Фильтр категорий:
+        %li
+          %a{:href => 'javascript:;', :title => ''}
+            %label.checkbox
+              %input{:type => "checkbox"}/
+              Еврокнижки
+        %li
+          %a{:href => 'javascript:;', :title => ''}
+            %label.checkbox
+              %input{:type => "checkbox"}/
+              Десткие
+        %li
+          %a{:href => 'javascript:;', :title => ''}
+            %label.checkbox
+              %input{:type => "checkbox"}/
+              Офисные
