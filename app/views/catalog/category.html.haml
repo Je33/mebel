@@ -38,6 +38,26 @@
       %li.active Шкафы
 
 .row.catalog_list_nth
+  .span3
+    .block_content
+      %ul.nav.nav-list.margin_clear
+        %li.nav-header
+          Фильтр категорий:
+        %li
+          %a{:href => 'javascript:;', :title => ''}
+            %label.checkbox
+              %input{:type => "checkbox"}/
+              Еврокнижки
+        %li
+          %a{:href => 'javascript:;', :title => ''}
+            %label.checkbox
+              %input{:type => "checkbox"}/
+              Десткие
+        %li
+          %a{:href => 'javascript:;', :title => ''}
+            %label.checkbox
+              %input{:type => "checkbox"}/
+              Офисные
   .span9
     .row
       - if @products
@@ -74,23 +94,3 @@
                   %a.btn{:href => "/catalog/#{p.category_id}/#{p.id}", :title => p.name} Подробнее
                   .btn.btn-success.add_to_shopping_cart{:data => {:id => p.id}} В корзину
 
-  .span3
-    .block_content
-      %ul.nav.nav-list.margin_clear
-        %li.nav-header
-          Фильтр категорий:
-        %li
-          %a{:href => 'javascript:;', :title => ''}
-            %label.checkbox
-              %input{:type => "checkbox"}/
-              Еврокнижки
-        %li
-          %a{:href => 'javascript:;', :title => ''}
-            %label.checkbox
-              %input{:type => "checkbox"}/
-              Десткие
-        %li
-          %a{:href => 'javascript:;', :title => ''}
-            %label.checkbox
-              %input{:type => "checkbox"}/
-              Офисные
