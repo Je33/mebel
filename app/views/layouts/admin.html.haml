@@ -96,3 +96,100 @@
                     %i.icon-ok-circle
                     %a{:href => "call:+78008888888", :title => ""} 8 (800) 888 88-88
 
+    #popup.cloth_select
+      .popup_name
+        Замена ткани
+      .content
+        %ul#myTab.nav.nav-tabs
+          %li.active
+            %a{:href => "#k1"} 1 - 12500 - k
+          %li
+            %a{:href => "#k2"} 2 - 12500 - k
+          %li
+            %a{:href => "#k3"} 3 - 12500 - k
+          %li
+            %a{:href => "#k4"} 4 - 12500 - k
+          %li.active
+            %a{:href => "#k5"} 5 - 12500 - k
+          %li
+            %a{:href => "#k6"} 6 - 12500 - k
+          %li
+            %a{:href => "#k7"} 7 - 12500 - k
+          %li
+            %a{:href => "#k8"} 8 - 12500 - k
+          %li
+            %a{:href => "#k9"} 9 - 12500 - k
+        .tab-content
+          #k1.tab-pane.active
+            %ul.thumbnails
+              %li.span2
+                %a.thumbnail{:href => "javascript:;", :onclick => "select_cloth(this);"}
+                  %img{:alt => ":(", :src => "", :style => "width: 100%"}/
+                  %span Название ткани
+              %li.span2
+                %a.thumbnail{:href => "javascript:;", :onclick => "select_cloth(this);"}
+                  %img{:alt => ":(", :src => "", :style => "width: 100%"}/
+                  %span Название ткани
+              %li.span2
+                %a.thumbnail{:href => "javascript:;", :onclick => "select_cloth(this);"}
+                  %img{:alt => ":(", :src => "", :style => "width: 100%"}/
+                  %span Название ткани
+              %li.span2
+                %a.thumbnail{:href => "javascript:;", :onclick => "select_cloth(this);"}
+                  %img{:alt => ":(", :src => "", :style => "width: 100%"}/
+                  %span Название ткани
+              %li.span2
+                %a.thumbnail{:href => "javascript:;", :onclick => "select_cloth(this);"}
+                  %img{:alt => ":(", :src => "", :style => "width: 100%"}/
+                  %span Название ткани
+              %li.span2
+                %a.thumbnail{:href => "javascript:;", :onclick => "select_cloth(this);"}
+                  %img{:alt => ":(", :src => "", :style => "width: 100%"}/
+                  %span Название ткани
+              %li.span2
+                %a.thumbnail{:href => "javascript:;", :onclick => "select_cloth(this);"}
+                  %img{:alt => ":(", :src => "", :style => "width: 100%"}/
+                  %span Название ткани
+              %li.span2
+                %a.thumbnail{:href => "javascript:;", :onclick => "select_cloth(this);"}
+                  %img{:alt => ":(", :src => "", :style => "width: 100%;"}/
+                  %span Название ткани
+          #k2.tab-pane 2k
+          #k3.tab-pane 3k
+          #k4.tab-pane ...
+      .popup_footer
+        %button.btn{:onclick => "close_pop(this);"}
+          Закрыть
+        %button.btn.btn-info
+          Применить
+        %button.btn.btn-warning
+          Очистить
+
+
+      :javascript
+        function select_cloth (t){
+          var _t = $(t);
+          if(_t.hasClass('active') == true){
+            _t.removeClass('active');
+          }else{
+            _t.addClass('active');
+          }
+        };
+        function close_pop (t){
+          var _t = $(t);
+          _t.parents('#popup').fadeOut(200);
+        };
+
+        $(function () {
+          $('#myTab a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+            return false;
+          })
+        })
+      .close_pop{:onclick => 'close_pop(this);'}
+        x
+    :javascript
+      var open_popup = function(){
+        $('#popup').fadeIn(200);
+      }

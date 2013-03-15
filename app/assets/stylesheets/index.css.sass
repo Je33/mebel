@@ -992,3 +992,58 @@ p.price span.red
   //border-right: 1px solid #dedede
 .margin_clear
   margin: 0 !important
+
+#popup
+  position: fixed
+  top: 2%
+  left:  2%
+  right: 2%
+  bottom: 2%
+  padding: 10px
+  background: #ffffff
+  border: 5px solid #dedede
+  z-index: 1000
+  @include border-radius(10px)
+  @include box-shadow(0 0 50px #000000)
+  .popup_name
+    padding-bottom: 7px
+    text-align: left
+    font-size: 16px
+    border-bottom: 1px solid #000000
+  .close_pop
+    position: absolute
+    top:  -15px
+    right: -15px
+    font-size: 24px
+    color: #000000
+    cursor: pointer
+    font-weight: bold
+    @include border-radius(20px)
+    padding: 4px 8px 5px 8px
+    background: #ffffff
+    border: 5px solid #dedede
+    &:hover
+      color: green
+  .content
+    position: absolute
+    left:  10px
+    top: 45px
+    right: 10px
+    bottom:  50px
+    overflow: hidden
+    overflow-y: auto
+    padding-bottom: 10px
+    border-bottom:  1px solid #dedede
+  .popup_footer
+    position: absolute
+    bottom: 10px
+    right: 10px
+    left: 10px
+    button
+      margin-left: 10px
+      float: right
+.cloth_select
+  .content
+    .thumbnail.active
+      color: red
+      border-color: red
