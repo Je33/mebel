@@ -1,9 +1,13 @@
 M = {}
 M.menu_slide = ->
   el = $('#top_menu')
+  el2 = $('.cloth_cont_box')
+  el22 = $('.cloth_cont_box').find('.cloth_cont')
   tpm = el.position().top
+  tpm_det = el2.offset().top
   $(window).scroll ()->
-    if  $(this).scrollTop() > parseInt( tpm )
+    _s = $(this).scrollTop()
+    if  _s > parseInt( tpm )
       el.css {
         position: 'fixed'
         top: 0
@@ -17,6 +21,15 @@ M.menu_slide = ->
         opacity: 1
       }
       $('.shopping_cart_link').hide()
+    if  _s + 50 > tpm_det
+      el22.css {
+        top: _s - tpm_det + 50
+      }
+      $('.shopping_cart_link').show()
+    else
+      el22.css {
+        top: 0
+      }
   el.mouseenter ->
     if parseInt( $(this).css('opacity') ) < 1
       $(this).css('opacity', 1)
@@ -238,10 +251,10 @@ $ ->
       $('.order_none').show()
       $('.forms_block_ri').remove()
       $('.forms_block_le').removeClass('span10').addClass('span12')
-  $('#myTab a').click (e) ->
+  $('#myTabCloth a').click (e) ->
     e.preventDefault()
     $(this).tab 'show'
-
+    return false
 
   txt = $('.zero_b p')
   fir = $('.fr_b')
@@ -309,11 +322,14 @@ $ ->
         sec.animate({marginLeft: 350, height: 0}, 300, ->
           $(this).hide()
         )
-  $('.cloth_select').find('a').bind 'click', ->
+  $('.cloth_select_cont').find('a').bind 'click', ->
     cloth_work( $(this) )
+    _id = $(this).parents('.tab-pane').attr('id')
+    el = $('a[href=#'+_id+']')
+    el.addClass('bg_select')
   $('.clear_cloth').bind 'click', ->
     cloth_work( 'clear' )
-
+    $('.bg_select').removeClass('bg_select')
   $('.add_shoping_box').bind('click', ->
     if $(this).hasClass('disabled')
       return false;
@@ -332,7 +348,12 @@ $ ->
         _t.addClass('open')
         _t.find('.ll').hide()
         _t.find('.rr').show()
-
+  $('#img_changer').find('.sml_img').bind('click', ->
+    _tsrc = $(this).attr('src')
+    _bsrc = $('.big_img').attr('src')
+    $('.big_img').attr('src', _tsrc)
+    $(this).attr('src', _bsrc)
+  )
   M.menu_slide()
   M.slider()
   M.filter_slide()

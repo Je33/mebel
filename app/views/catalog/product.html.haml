@@ -11,7 +11,7 @@
         %span.divider /
       %li.active= @product.category ? @product.category.name : ""
 .row
-  .span5
+  .span4
     %h2.clear-margin-top
       = @product.name
     .tag.tag-big
@@ -60,7 +60,7 @@
             .btn.btn-link + добавить
 
 
-  .span7
+  .span8
 
     - link = @product.product_textures.where(:as_img => 1).first
     - if link.present?
@@ -68,17 +68,17 @@
         #{link.price.to_i} р.
         Заказать как на картинке
       %span.label.label-info.btn-block Ткань #{link.texture.name}
-    %ul.thumbnails
+    %ul.thumbnails#img_changer
       - if @product.photos.exists?
         - @product.photos.each_with_index do |f, k|
           - if k == 0
-            %li.span7
+            %li.span8{}
               %a.thumbnail{:href => "javascript:;"}
-                %img{:alt => "", :src => f.file.url(:x), :width => '100%'}/
+                %img.big_img{:alt => "", :src => f.file.url(:x), :style => 'width: auto !important;  height: 300px; max-height: 300px !important;'}/
           - else
             %li.span2
               %a.thumbnail{:href => "javascript:;"}
-                %img{:alt => "", :src => f.file.url(:m), :width => '100%'}/
+                %img.sml_img{:alt => "", :src => f.file.url(:m), :width => '100%'}/
 
 //.row
 //  %button.btn.btn-success.btn-large.span12{:href => 'javascript:;'} В корзину
@@ -87,10 +87,10 @@
   .span12.line
     %span
       Категории тканей
-.row
+.row.cloth_select
 
   .tabbable.span8.tabs-left
-    %ul.nav.nav-tabs#myTab
+    %ul.nav.nav-tabs#myTabCloth
       - if @product.textures.exists?
         - @product.textures.each_with_index do |t, i|
           %li{:class => i == 0 ? "active" : ""}
@@ -102,7 +102,7 @@
     .tab-content
       - if @product.textures.exists?
         - @product.textures.each_with_index do |t, i|
-          .tab-pane.cloth_select{:class => i == 0 ? "active" : "", :id => "#tab#{t.id}"}
+          .tab-pane.cloth_select_cont{:class => i == 0 ? "active" : "", :id => "tab#{t.id}"}
             %ul.thumbnails.row
               - if t.kinds.exists?
                 - t.kinds.each do |k|
