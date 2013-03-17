@@ -6,7 +6,7 @@
           %i.icon-home
         %span.divider /
       %li
-        %a{:href => "/catalog/index"}
+        %a{:href => "/catalog"}
           Каталог мебели
         %span.divider /
       %li.active= @product.category ? @product.category.name : ""
@@ -64,7 +64,7 @@
 
     - link = @product.product_textures.where(:as_img => 1).first
     - if link.present?
-      %button.btn.btn-success.btn-block.buy_img
+      %button.btn.btn-success.btn-block.buy_img.add_shoping_box{:data => {:kind_main => link.texture_id, :kind_opt => link.texture_id}}
         #{link.price.to_i} р.
         Заказать как на картинке
       %span.label.label-info.btn-block Ткань #{link.texture.name}
@@ -83,15 +83,15 @@
 //.row
 //  %button.btn.btn-success.btn-large.span12{:href => 'javascript:;'} В корзину
 
-.row.clear-color-line
-  .span12.line
-    %span
-      Категории тканей
-.row.cloth_select
+- if @product.textures.exists?
+  .row.clear-color-line
+    .span12.line
+      %span
+        Категории тканей
+  .row.cloth_select
 
-  .tabbable.span8.tabs-left
-    %ul.nav.nav-tabs#myTabCloth
-      - if @product.textures.exists?
+    .tabbable.span8.tabs-left
+      %ul.nav.nav-tabs#myTabCloth
         - @product.textures.each_with_index do |t, i|
           %li{:class => i == 0 ? "active" : ""}
             %a{"data-toggle" => "tab", :href => "#tab#{t.id}"}
@@ -99,8 +99,7 @@
               %br/
               = t.product_textures.where(:product_id => @product.id).first.price
               p
-    .tab-content
-      - if @product.textures.exists?
+      .tab-content
         - @product.textures.each_with_index do |t, i|
           .tab-pane.cloth_select_cont{:class => i == 0 ? "active" : "", :id => "tab#{t.id}"}
             %ul.thumbnails.row
@@ -112,22 +111,22 @@
                         = image_tag k.photo.url(:m)
                     %span
                       Название ткани
-  .span4.cloth_cont_box
-    .cloth_cont
-      .cloth_box.zero_b
-        %p Выберите основную ткань
-      .cloth_box.fr_b
-        %a{:href => "javascript:;"}
-          %img{:alt => "google plus", :src => "/assets/gplus.png", :width => '50', :height => '50'}/
-        %p Основная ткань (название)
-        %p Класс 1 (+1500р.)
-      .cloth_box.sec_b
-        %a{:href => "javascript:;"}
-          %img{:alt => "google plus", :src => "/assets/gplus.png", :width => '50', :height => '50'}/
-        %p Название
-        %p Класс 2 ( +1500р. )
-      %button.btn.btn-mini.btn-block.clear_cloth Очистить ткани
-      %form
-        %input{:type => "hidden", :value => "", :name => 'first_cloth'}
-        %input{:type => "hidden", :value => "", :name => 'second_cloth'}
-        %input.btn.btn-success.btn-block.disabled.add_shoping_box{:type =>'submit', :value=>'В корзину'}
+    .span4.cloth_cont_box
+      .cloth_cont
+        .cloth_box.zero_b
+          %p Выберите основную ткань
+        .cloth_box.fr_b
+          %a{:href => "javascript:;"}
+            %img{:alt => "google plus", :src => "/assets/gplus.png", :width => '50', :height => '50'}/
+          %p Основная ткань (название)
+          %p Класс 1 (+1500р.)
+        .cloth_box.sec_b
+          %a{:href => "javascript:;"}
+            %img{:alt => "google plus", :src => "/assets/gplus.png", :width => '50', :height => '50'}/
+          %p Название
+          %p Класс 2 ( +1500р. )
+        %button.btn.btn-mini.btn-block.clear_cloth Очистить ткани
+        %form
+          %input{:type => "hidden", :value => "", :name => 'first_cloth'}
+          %input{:type => "hidden", :value => "", :name => 'second_cloth'}
+          %input.btn.btn-success.btn-block.disabled.add_shoping_box{:type =>'submit', :value=>'В корзину'}

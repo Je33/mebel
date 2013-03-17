@@ -16,4 +16,8 @@ class Admin::AjaxController < AdminController
     render :json => User.all
   end
 
+  def textures
+
+  end
+
 end

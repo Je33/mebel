@@ -36,6 +36,10 @@
                           = kind_main.texture.name
                       %p
                         = kind_main.name
+                - else
+                  %ul.thumbnails.row
+                    %li.span1{:style => "width: 70px"}
+                      %a.thumbnail{:href => "javascript:open_popup();"} Выбрать основную ткань
 
                 - if p.kind_opt.to_i > 0
                   %ul.thumbnails.row
@@ -51,6 +55,10 @@
                           = kind_opt.texture.name
                       %p
                         = kind_opt.name
+                - else
+                  %ul.thumbnails.row
+                    %li.span1{:style => "width: 70px"}
+                      %a.thumbnail{:href => "javascript:open_popup();"} Выбрать ткань компаньон
 
               %li.span1
                 = form_tag "", :method => "post", :style => "margin:0 0 10px;" do
