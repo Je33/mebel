@@ -35,30 +35,34 @@
         %a{:href => "/catalog"}
           Каталог мебели
         %span.divider /
-      %li.active Шкафы
+      - if @category
+        %li.active= @category.name
 
 .row.catalog_list_nth
-  .span3
-    .block_content
-      %ul.nav.nav-list.margin_clear
-        %li.nav-header
-          Фильтр категорий:
-        %li
-          %a{:href => 'javascript:;', :title => ''}
-            %label.checkbox
-              %input{:type => "checkbox"}/
-              Еврокнижки
-        %li
-          %a{:href => 'javascript:;', :title => ''}
-            %label.checkbox
-              %input{:type => "checkbox"}/
-              Десткие
-        %li
-          %a{:href => 'javascript:;', :title => ''}
-            %label.checkbox
-              %input{:type => "checkbox"}/
-              Офисные
-  .span9
+  - props = {}
+  - @products.map {|p| p.text.split(/\r\n/).map {|r| r.split(/:/) } }.each do |prop|
+    - prop.each do |s|
+      - props[s[0]] ||= []
+      - props[s[0]] << s[1]
+
+  =# debug props
+
+  - if !props.blank?
+    .span3
+      - props.each do |k, p|
+        .block_content
+          %ul.nav.nav-list.margin_clear
+            %li.nav-header
+              #{k}:
+            - p.each do |v|
+              %li
+                %a.filter{:href => "javascript:;", :title => v}
+                  %label.checkbox
+                    %input.filter{:type => "checkbox", :title => v}/
+                    = v
+
+
+  .span9#products{:data => {:category => @category.id}}
     .row
       - if @products
         - @products.each do |p|

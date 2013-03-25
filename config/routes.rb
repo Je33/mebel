@@ -6,6 +6,7 @@ Mebel::Application.routes.draw do
 
   match "ajax/:action" => "ajax"
 
+  match "catalog/ajax_category" => "catalog#ajax_category"
   match "catalog" => "catalog#index"
   match "catalog/:category_id" => "catalog#category"
   match "catalog/:category_id/:product_id" => "catalog#product"

@@ -4,7 +4,7 @@ M.menu_slide = ->
   el2 = $('.cloth_cont_box')
   el22 = $('.cloth_cont_box').find('.cloth_cont')
   tpm = el.position().top
-  tpm_det = el2.offset().top
+  tpm_det = el2.offset().top if el2.offset()
   $(window).scroll ()->
     _s = $(this).scrollTop()
     if  _s > parseInt( tpm )
@@ -357,6 +357,8 @@ $ ->
   M.menu_slide()
   M.slider()
   M.filter_slide()
+
+
 
 
 
