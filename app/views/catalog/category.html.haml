@@ -43,23 +43,27 @@
   - @products.map {|p| p.text.split(/\r\n/).map {|r| r.split(/:/) } }.each do |prop|
     - prop.each do |s|
       - props[s[0]] ||= []
-      - props[s[0]] << s[1]
+      - props[s[0]] << s[1].strip
 
   =# debug props
 
   - if !props.blank?
+    - shown = {}
     .span3
       - props.each do |k, p|
+        - shown[k] ||= []
         .block_content
           %ul.nav.nav-list.margin_clear
             %li.nav-header
               #{k}:
             - p.each do |v|
-              %li
-                %a.filter{:href => "javascript:;", :title => v}
-                  %label.checkbox
-                    %input.filter{:type => "checkbox", :title => v}/
-                    = v
+              - if !shown[k].include?(v)
+                - shown[k] << v
+                %li
+                  %a.filter{:href => "javascript:;", :title => v}
+                    %label.checkbox
+                      %input.filter{:type => "checkbox", :title => v}/
+                      = v
 
 
   .span9#products{:data => {:category => @category.id}}
