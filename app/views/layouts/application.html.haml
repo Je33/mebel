@@ -58,7 +58,7 @@
                       %a.dropdown-toggle{:href => "/specials"}
                         Акции и спецпредложения
                     %li.dropdown{:class => params[:controller] == "help" ? "active" : ""}
-                      %a.dropdown-toggle{:href => "/help"}
+                      %a.dropdown-toggle{:href => "/howto"}
                         Как заказать
                     -#%li.dropdown
                       %a.dropdown-toggle{:href => "/about"}
@@ -86,7 +86,7 @@
           .row
             .span12
               %p
-                = Setting.find_by_name(:footer_text).value
+                = @params[:footer_text]
 
     .footer
       .container
