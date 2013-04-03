@@ -1,5 +1,5 @@
 class Special < ActiveRecord::Base
-  attr_accessible :name, :text, :banner
+  attr_accessible :name, :text, :banner, :photo
 
   paginates_per 20
 

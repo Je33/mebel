@@ -1,4 +1,4 @@
-- content_for :title, Setting.find_by_name(:site_name).value + " " + Setting.find_by_name(:divider).value +  " " + @product.page_title
+- content_for :title, @settings[:site_name].to_s + " " + @settings[:divider].to_s +  " " + @product.page_title || @product.name
 - content_for :description, @product.page_description
 - content_for :keywords, @product.page_keywords
 

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :get_basket
+  before_filter :get_basket, :get_settings
 
   def get_basket
     if user_signed_in?
@@ -25,6 +25,16 @@ class ApplicationController < ActionController::Base
       end
     end
     @order ||= Order.new
+  end
+
+  def get_settings
+    settings = Setting.all
+    @settings = {}
+    if settings
+      settings.each do |s|
+        @settings[s.name] = s.value
+      end
+    end
   end
 
 end

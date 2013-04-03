@@ -8,6 +8,18 @@
     .controls
       = text_area_tag "specials[text]", @special.text, :rows => 5
   .control-group
+    %label.control-label{:for => "special_photo"} Фото
+    .controls
+      = file_field_tag "specials[photo]"
+  -#.control-group
+    %label.control-label{:for => "category_delete_photo"} Удалить фото
+    .controls
+      = check_box_tag "category[photo]", 0
+  .control-group
+    .controls
+      %a{:href => @special.photo.url, :target => "_blank"}
+        = image_tag @special.photo.url(:main)
+  .control-group
     %label.control-label{:for => "special_banner"} Баннер
     .controls
       = file_field_tag "specials[banner]"

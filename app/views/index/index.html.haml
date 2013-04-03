@@ -1,6 +1,9 @@
-- content_for :title, Setting.find_by_name(:site_name).value + " " + Setting.find_by_name(:divider).value +  " " + Setting.find_by_name(:index_title).value
-- content_for :description, Setting.find_by_name(:index_description).value
-- content_for :keywords, Setting.find_by_name(:index_keywords).value
+- title = @settings["site_name"].to_s
+- if @settings["index_title"].to_s != ""
+  - title += " #{@settings["divider"].to_s} #{@settings["index_title"].to_s}"
+- content_for :title, title
+- content_for :description, @settings[:index_description]
+- content_for :keywords, @settings[:index_keywords]
 
 .row
   .span12
