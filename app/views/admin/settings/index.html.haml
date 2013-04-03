@@ -1,0 +1,29 @@
+.row
+  .span12
+    .block_content.container
+      .products_list{:style => "margin:0 20px;"}
+        %h3
+          Настройки
+          %a.btn.btn-small{:href => new_admin_setting_path}
+            %i.icon-plus
+            Добавить
+        = paginate @settings
+        %table.table.table-hover
+          %thead
+            %th #
+            %th Название
+            %th Значение
+          %tbody
+            - if @settings
+              - @settings.each do |setting|
+                %tr
+                  %td= setting.id
+                  %td= setting.name
+                  %td= setting.value
+                  %td
+                    %a{:href => edit_admin_setting_path(setting)}
+                      %i.icon-edit
+                    %a{:href => admin_setting_path(setting), :data => {:method => "delete", :confirm => "Действительно удалить акцию #{setting.name}?"}}
+                      %i.icon-remove
+
+        = paginate @settings

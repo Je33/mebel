@@ -31,6 +31,18 @@
     .controls
       = text_area_tag "product[text]", @product.text, :rows => 5
   .control-group
+    %label.control-label{:for => "product_page_title"} Заголовок страницы
+    .controls
+      = text_field_tag "product[page_title]", @product.page_title
+  .control-group
+    %label.control-label{:for => "product_page_description"} Описание страницы
+    .controls
+      = text_area_tag "product[page_description]", @product.page_description, :rows => 5
+  .control-group
+    %label.control-label{:for => "product_page_keywords"} Ключевые слова
+    .controls
+      = text_area_tag "product[page_keywords]", @product.text, :rows => 5
+  .control-group
     %label.control-label Фотографии
     .controls
       = file_field_tag "product_photo[]", :multiple => true

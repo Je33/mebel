@@ -1,5 +1,6 @@
 class Category < ActiveRecord::Base
-  attr_accessible :cnt, :name, :text, :photo
+  attr_accessible :cnt, :name, :text, :photo,
+                  :page_title, :page_description, :page_keywords
 
   has_many :products
 

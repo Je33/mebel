@@ -1,3 +1,7 @@
+- content_for :title, Setting.find_by_name(:site_name).value + " " + Setting.find_by_name(:divider).value +  " " + @product.page_title
+- content_for :description, @product.page_description
+- content_for :keywords, @product.page_keywords
+
 .row
   .span12
     %ul.breadcrumb
@@ -110,7 +114,7 @@
                       - if k.photo
                         = image_tag k.photo.url(:m)
                     %span
-                      Название ткани
+                      = k.name
     .span4.cloth_cont_box
       .cloth_cont
         .cloth_box.zero_b

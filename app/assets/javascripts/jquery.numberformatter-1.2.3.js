@@ -220,7 +220,7 @@
 		
 		// strip all the invalid characters at the beginning and the end
 		// of the format, and we'll stick them back on at the end
-		// make a special case for the negative sign "-" though, so 
+		// make a specials case for the negative sign "-" though, so
 		// we can have formats like -$23.32
 		var prefix = "";
 		var negativeInFront = false;
@@ -278,7 +278,7 @@
 				return null;
 		}
 
-		// special case for percentages
+		// specials case for percentages
         if (suffix == "%")
         	number = number * 100;
 
@@ -370,7 +370,7 @@
 
 		returnString = onePortion + returnString;
 
-		// handle special case where negative is in front of the invalid characters
+		// handle specials case where negative is in front of the invalid characters
 		if (number < 0 && negativeInFront && prefix.length > 0)
 			prefix = neg + prefix;
 		else if (number < 0)

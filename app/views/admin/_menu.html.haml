@@ -7,11 +7,11 @@
     %a.dropdown-toggle{:href => "/admin"}
       Заказы
 
-  %li.dropdown{:class => params[:controller] == "admin#categories" ? "active" : ""}
+  %li.dropdown{:class => params[:controller] == "admin/categories" ? "active" : ""}
     %a.dropdown-toggle{:href => "/admin/categories"}
       Разделы
 
-  %li.dropdown{:class => ["companies", "products"].include?(params[:controller].to_s) ? "active" : ""}
+  %li.dropdown{:class => ["admin/companies", "admin/products"].include?(params[:controller].to_s) ? "active" : ""}
     %a.dropdown-toggle{:href => "/admin/companies"}
       Компании
       -#%b.caret
@@ -23,13 +23,17 @@
       %li
         %a{:href => "products.html"} Кресла
 
-  %li.dropdown{:class => params[:controller] == "textures" ? "active" : ""}
+  %li.dropdown{:class => params[:controller] == "admin/textures" ? "active" : ""}
     %a.dropdown-toggle{:href => "/admin/textures"}
       Материалы
 
-  %li.dropdown
+  %li.dropdown{:class => params[:controller] == "admin/specials" ? "active" : ""}
     %a.dropdown-toggle{:href => "/admin/specials"}
-      Акции и спецпредложения
+      Акции
+
+  %li.dropdown{:class => params[:controller] == "admin/settings" ? "active" : ""}
+    %a.dropdown-toggle{:href => "/admin/settings"}
+      Настройки
 
   %li.search_form.pull-right
     %form.navbar-search{:method => "POST"}

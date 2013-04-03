@@ -1,6 +1,8 @@
 class Kind < ActiveRecord::Base
   attr_accessible :texture_id, :name, :photo
 
+  paginates_per 20
+
   belongs_to :texture
 
   has_attached_file :photo,

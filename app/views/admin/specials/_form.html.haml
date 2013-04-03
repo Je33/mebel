@@ -2,15 +2,15 @@
   .control-group
     %label.control-label{:for => "special_name"} Название
     .controls
-      = text_field_tag "special[name]", @special.name
+      = text_field_tag "specials[name]", @special.name
   .control-group
     %label.control-label{:for => "special_text"} Описание
     .controls
-      = text_area_tag "special[text]", @special.text, :rows => 5
+      = text_area_tag "specials[text]", @special.text, :rows => 5
   .control-group
     %label.control-label{:for => "special_banner"} Баннер
     .controls
-      = file_field_tag "special[banner]"
+      = file_field_tag "specials[banner]"
   -#.control-group
     %label.control-label{:for => "category_delete_photo"} Удалить фото
     .controls

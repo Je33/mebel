@@ -14,9 +14,9 @@ Mebel::Application.routes.draw do
   match "basket" => "basket#index"
   match "basket/:action" => "basket"
 
-  match "specials" => "special#index"
-  match "howto" => "contact#index"
-  match "contacts" => "contact#index"
+  match "specials" => "specials#index"
+  match "help" => "help#index"
+  match "contacts" => "contacts#index"
 
   get "shopping_box/index"
 
@@ -27,6 +27,7 @@ Mebel::Application.routes.draw do
   match "admin/orders/:id" => "admin#order"
   namespace :admin do
     match "ajax/:action" => "ajax"
+    resources :settings
     resources :textures do
       resources :kinds
     end
@@ -43,9 +44,9 @@ Mebel::Application.routes.draw do
 
   get "catalog/index"
 
-  get "special/index"
+  get "specials/index"
 
-  get "contact/index"
+  get "contacts/index"
 
   root :to => "index#index"
 

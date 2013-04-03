@@ -25,7 +25,7 @@ class Admin::SpecialsController < AdminController
   end
 
   def create
-    @special = Special.new params[:special]
+    @special = Special.new params[:specials]
     if @special.save
       redirect_to admin_specials_path, :notice => "Категория успешно создана"
     end
@@ -33,7 +33,7 @@ class Admin::SpecialsController < AdminController
 
   def update
     @special = Special.find params[:id]
-    if @special.update_attributes params[:special]
+    if @special.update_attributes params[:specials]
       redirect_to admin_specials_path, :notice => "Категория успешно обновлена"
     end
   end

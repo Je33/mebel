@@ -11,18 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130315180032) do
+ActiveRecord::Schema.define(:version => 20130403205305) do
 
   create_table "baskets", :force => true do |t|
     t.integer  "product_id"
     t.integer  "order_id"
     t.integer  "cnt"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
     t.integer  "kind_main"
     t.integer  "kind_opt"
     t.float    "price"
-    t.integer  "as_img",     :default => 0
+    t.integer  "as_img",       :default => 0
+    t.integer  "texture_main"
+    t.integer  "texture_opt"
   end
 
   create_table "categories", :force => true do |t|
@@ -35,6 +37,9 @@ ActiveRecord::Schema.define(:version => 20130315180032) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.string   "page_title"
+    t.text     "page_description"
+    t.text     "page_keywords"
   end
 
   create_table "companies", :force => true do |t|
@@ -105,10 +110,18 @@ ActiveRecord::Schema.define(:version => 20130315180032) do
     t.float    "price"
     t.float    "old_price"
     t.integer  "category_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.integer  "company_id"
     t.string   "original"
+    t.string   "page_title"
+    t.text     "page_description"
+    t.text     "page_keywords"
+  end
+
+  create_table "settings", :force => true do |t|
+    t.string "name"
+    t.text   "value"
   end
 
   create_table "specials", :force => true do |t|
@@ -120,6 +133,10 @@ ActiveRecord::Schema.define(:version => 20130315180032) do
     t.string   "banner_content_type"
     t.integer  "banner_file_size"
     t.datetime "banner_updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "textures", :force => true do |t|

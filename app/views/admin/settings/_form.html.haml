@@ -1,0 +1,13 @@
+= form_tag params[:id].to_i > 0 ? admin_setting_path(@setting) : admin_settings_path, :method => params[:id].to_i > 0 ? "PUT" : "POST", :multipart => true, :class => "form-horizontal" do
+  .control-group
+    %label.control-label{:for => "setting_name"} Название
+    .controls
+      = text_field_tag "setting[name]", @setting.name
+  .control-group
+    %label.control-label{:for => "setting_value"} Значение
+    .controls
+      = text_area_tag "setting[value]", @setting.value, :rows => 5
+
+  .form-actions
+    = submit_tag "Сохранить", :class => "btn btn-small btn-primary"
+    %a.btn.btn-small{:href => admin_settings_path} Отменить

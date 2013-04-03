@@ -1,7 +1,9 @@
 !!!
 %html
   %head
-    %title Mebelsmart
+    %title= yield(:title)
+    %meta{:name => "description", :content => yield(:description)}
+    %meta{:name => "keywords", :content => yield(:keywords)}
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
@@ -40,11 +42,11 @@
               .container
                 .nav-collapse
                   %ul.nav
-                    %li.active
+                    %li{:class => params[:controller] == "index" ? "active" : ""}
                       %a{:href => "/"}
                         %i.icon-home
 
-                    %li.dropdown
+                    %li.dropdown{:class => params[:controller] == "catalog" ? "active" : ""}
                       %a.dropdown-toggle{:href => "/catalog"}
                         Каталог
                         %b.caret
@@ -52,20 +54,20 @@
                         - Category.all.each do |c|
                           %li
                             %a{:href => "/catalog/#{c.id}"}= c.name
-                    %li.dropdown
+                    %li.dropdown{:class => params[:controller] == "specials" ? "active" : ""}
                       %a.dropdown-toggle{:href => "/specials"}
                         Акции и спецпредложения
-                    %li.dropdown
-                      %a.dropdown-toggle{:href => "/howto"}
+                    %li.dropdown{:class => params[:controller] == "help" ? "active" : ""}
+                      %a.dropdown-toggle{:href => "/help"}
                         Как заказать
                     -#%li.dropdown
                       %a.dropdown-toggle{:href => "/about"}
                         О нас
-                    %li.dropdown
+                    %li.dropdown{:class => params[:controller] == "contacts" ? "active" : ""}
                       %a.dropdown-toggle{:href => "/contacts"}
                         Контакты
 
-                    %li.shopping_cart_link.pull-right.hide
+                    %li.shopping_cart_link.pull-right.hide{:class => params[:controller] == "basket" ? "active" : ""}
                       %a.scl{:href => "/basket"}
                         %i.icon-shopping-cart.icon-white
                         Корзина
@@ -84,7 +86,7 @@
           .row
             .span12
               %p
-                Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации "Здесь ваш текст.. Здесь ваш текст.. Здесь ваш текст.." Многие программы электронной вёрстки и редакторы HTML используют Lorem Ipsum в качестве текста по умолчанию, так что поиск по ключевым словам "lorem ipsum" сразу показывает, как много веб-страниц всё ещё дожидаются своего настоящего рождения. За прошедшие годы текст Lorem Ipsum получил много версий. Некоторые версии появились по ошибке, некоторые - намеренно (например, юмористические варианты).
+                = Setting.find_by_name(:footer_text).value
 
     .footer
       .container

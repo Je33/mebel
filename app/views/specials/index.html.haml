@@ -1,0 +1,24 @@
+.row
+  .span12
+    %ul.breadcrumb
+      %li
+        %a{:href => "/"}
+          %i.icon-home
+        %span.divider /
+      %li.active Все акции и спецпредложения
+
+- if @specials
+  - @specials.each do |s|
+    .block_content.container
+      .products_list.text_block
+        .row
+          .span12
+            %h4.title
+              %span.pull-left
+                Акция
+                %strong= s.name
+            %p
+              - if s.photo?
+                = image_tag s.photo.path(:main)
+              -#%strong
+              = s.text

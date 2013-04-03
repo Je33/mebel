@@ -8,6 +8,18 @@
     .controls
       = text_area_tag "category[text]", @category.text, :rows => 5
   .control-group
+    %label.control-label{:for => "category_page_title"} Заголовок страницы
+    .controls
+      = text_field_tag "category[page_title]", @category.page_title
+  .control-group
+    %label.control-label{:for => "category_page_description"} Описание страницы
+    .controls
+      = text_area_tag "category[page_description]", @category.page_description, :rows => 5
+  .control-group
+    %label.control-label{:for => "category_page_keywords"} Ключевые слова
+    .controls
+      = text_area_tag "category[page_keywords]", @category.page_keywords, :rows => 5
+  .control-group
     %label.control-label{:for => "category_photo"} Фото
     .controls
       = file_field_tag "category[photo]"
