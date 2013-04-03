@@ -1,4 +1,13 @@
-- content_for :title, @settings[:site_name].to_s + " " + @settings[:divider].to_s +  " " + @category.page_title || @category.name
+- title = ""
+- if @settings[:site_name]
+  - title += @settings[:site_name]
+- if @settings[:divider]
+  - title += " #{@settings[:divider]} "
+- if @category.page_title != ""
+  - title += @category.page_title
+- else
+  - title += @category.name
+- content_for :title, title
 - content_for :description, @category.page_description
 - content_for :keywords, @category.page_keywords
 
