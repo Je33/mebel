@@ -3,10 +3,10 @@
   - title += @settings["site_name"]
 - if @settings["divider"]
   - title += " #{@settings["divider"]} "
-- if @category.page_title != ""
-  - title += @category.page_title
+- if !@category.page_title.blank?
+  - title += @category.page_title.to_s
 - else
-  - title += @category.name
+  - title += @category.name.to_s
 - content_for :title, title
 - content_for :description, @category.page_description
 - content_for :keywords, @category.page_keywords

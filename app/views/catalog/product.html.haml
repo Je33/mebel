@@ -8,7 +8,7 @@
 - if !@product.page_title.blank?
   - title += @product.page_title
 - else
-  - title += @product.name
+  - title += @product.name.to_s
 - content_for :title, title
 - content_for :description, @product.page_description
 - content_for :keywords, @product.page_keywords
