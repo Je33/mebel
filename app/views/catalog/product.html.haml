@@ -1,15 +1,17 @@
--# title = ""
--# if @settings[:site_name]
-  - title += @settings[:site_name]
--# if @settings[:divider]
-  - title += " #{@settings[:divider]} "
--# if @product.page_title != ""
+- title = ""
+- if !@settings["site_name"].blank?
+  - title += @settings["site_name"]
+- if !@settings["divider"].blank?
+  - title += " #{@settings["divider"]} "
+- else
+  - title += " "
+- if !@product.page_title.blank?
   - title += @product.page_title
--# else
+- else
   - title += @product.name
--# content_for :title, title
--# content_for :description, @product.page_description
--# content_for :keywords, @product.page_keywords
+- content_for :title, title
+- content_for :description, @product.page_description
+- content_for :keywords, @product.page_keywords
 
 .row
   .span12

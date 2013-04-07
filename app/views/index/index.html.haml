@@ -2,8 +2,8 @@
 - if @settings["index_title"].to_s != ""
   - title += " #{@settings["divider"].to_s} #{@settings["index_title"].to_s}"
 - content_for :title, title
-- content_for :description, @settings[:index_description]
-- content_for :keywords, @settings[:index_keywords]
+- content_for :description, @settings["index_description"]
+- content_for :keywords, @settings["index_keywords"]
 
 .row
   .span12

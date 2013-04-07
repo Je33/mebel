@@ -1,15 +1,15 @@
--# title = ""
--# if @settings[:site_name]
-  - title += @settings[:site_name]
--# if @settings[:divider]
-  - title += " #{@settings[:divider]} "
--# if @category.page_title != ""
+- title = ""
+- if @settings["site_name"]
+  - title += @settings["site_name"]
+- if @settings["divider"]
+  - title += " #{@settings["divider"]} "
+- if @category.page_title != ""
   - title += @category.page_title
--# else
+- else
   - title += @category.name
--# content_for :title, title
--# content_for :description, @category.page_description
--# content_for :keywords, @category.page_keywords
+- content_for :title, title
+- content_for :description, @category.page_description
+- content_for :keywords, @category.page_keywords
 
 -#.row.filter_top
   .span12
