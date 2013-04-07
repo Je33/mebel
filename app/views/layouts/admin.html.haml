@@ -49,7 +49,7 @@
           .row
             .span12
               %p
-                = Setting.find_by_name(:footer_text).value
+                = @settings[:footer_text]
 
     .footer
       .container
