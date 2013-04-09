@@ -1,12 +1,15 @@
 = form_tag params[:id].to_i > 0 ? admin_setting_path(@setting) : admin_settings_path, :method => params[:id].to_i > 0 ? "PUT" : "POST", :multipart => true, :class => "form-horizontal" do
+
   .control-group
     %label.control-label{:for => "setting_name"} Название
     .controls
       = text_field_tag "setting[name]", @setting.name
+
   .control-group
     %label.control-label{:for => "setting_description"} Описание
     .controls
       = text_field_tag "setting[description]", @setting.description
+
   .control-group
     %label.control-label{:for => "setting_value"} Значение
     .controls
