@@ -12,6 +12,7 @@
           %thead
             %th #
             %th Название
+            %th Описание
             %th Значение
           %tbody
             - if @settings
@@ -19,6 +20,7 @@
                 %tr
                   %td= setting.id
                   %td= setting.name
+                  %td= setting.description
                   %td= setting.value
                   %td
                     %a{:href => edit_admin_setting_path(setting)}

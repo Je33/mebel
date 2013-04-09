@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130408121304) do
+ActiveRecord::Schema.define(:version => 20130409073759) do
 
   create_table "baskets", :force => true do |t|
     t.integer  "product_id"
@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(:version => 20130408121304) do
   create_table "settings", :force => true do |t|
     t.string "name"
     t.text   "value"
+    t.string "description"
   end
 
   create_table "specials", :force => true do |t|
