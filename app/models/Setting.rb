@@ -1,5 +1,5 @@
 class Setting < ActiveRecord::Base
-  attr_accessible :name, :value
+  attr_accessible :name, :value, :description
   paginates_per 20
 
 end
