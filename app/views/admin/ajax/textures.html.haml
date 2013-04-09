@@ -1,68 +1,28 @@
 #popup.cloth_select.hide
   .popup_name
-    Замена ткани
+    Выбор ткани
   .content
     %ul#myTab.nav.nav-tabs
-      %li.active
-        %a{:href => "#k1"} 1 - 12500 - k
-      %li
-        %a{:href => "#k2"} 2 - 12500 - k
-      %li
-        %a{:href => "#k3"} 3 - 12500 - k
-      %li
-        %a{:href => "#k4"} 4 - 12500 - k
-      %li.active
-        %a{:href => "#k5"} 5 - 12500 - k
-      %li
-        %a{:href => "#k6"} 6 - 12500 - k
-      %li
-        %a{:href => "#k7"} 7 - 12500 - k
-      %li
-        %a{:href => "#k8"} 8 - 12500 - k
-      %li
-        %a{:href => "#k9"} 9 - 12500 - k
+      - if @textures.any?
+        - @textures.each_with_index do |t, i|
+          %li{:class => i == 0 ? "active" : ""}
+            %a{:href => "#k#{t.id}"}= t.name
     .tab-content
-      #k1.tab-pane.active
-        %ul.thumbnails
-          %li.span2
-            %a.thumbnail{:href => "javascript:;", :onclick => "select_cloth(this);"}
-              %img{:alt => ":(", :src => "", :style => "width: 100%"}/
-              %span Название ткани
-          %li.span2
-            %a.thumbnail{:href => "javascript:;", :onclick => "select_cloth(this);"}
-              %img{:alt => ":(", :src => "", :style => "width: 100%"}/
-              %span Название ткани
-          %li.span2
-            %a.thumbnail{:href => "javascript:;", :onclick => "select_cloth(this);"}
-              %img{:alt => ":(", :src => "", :style => "width: 100%"}/
-              %span Название ткани
-          %li.span2
-            %a.thumbnail{:href => "javascript:;", :onclick => "select_cloth(this);"}
-              %img{:alt => ":(", :src => "", :style => "width: 100%"}/
-              %span Название ткани
-          %li.span2
-            %a.thumbnail{:href => "javascript:;", :onclick => "select_cloth(this);"}
-              %img{:alt => ":(", :src => "", :style => "width: 100%"}/
-              %span Название ткани
-          %li.span2
-            %a.thumbnail{:href => "javascript:;", :onclick => "select_cloth(this);"}
-              %img{:alt => ":(", :src => "", :style => "width: 100%"}/
-              %span Название ткани
-          %li.span2
-            %a.thumbnail{:href => "javascript:;", :onclick => "select_cloth(this);"}
-              %img{:alt => ":(", :src => "", :style => "width: 100%"}/
-              %span Название ткани
-          %li.span2
-            %a.thumbnail{:href => "javascript:;", :onclick => "select_cloth(this);"}
-              %img{:alt => ":(", :src => "", :style => "width: 100%;"}/
-              %span Название ткани
-      #k2.tab-pane 2k
-      #k3.tab-pane 3k
-      #k4.tab-pane ...
+      - if @textures.any?
+        - @textures.each_with_index do |t, j|
+          .tab-pane{:id => "k#{t.id}", :class => j == 0 ? "active" : ""}
+            %ul.thumbnails
+              - if t.kinds.any?
+                - t.kinds.each do |k|
+                  %li.span2
+                    %a.thumbnail.choose_texture{:href => "javascript:;", :data => {:id => k.id}}
+                      = image_tag k.photo.url(:m)
+                      %span= k.name
   .popup_footer
-    %button.btn{:onclick => "close_pop(this);"}
+    %button.btn.close_textures
       Закрыть
-    %button.btn.btn-info
+    -#%button.btn.btn-info
       Применить
-    %button.btn.btn-warning
-      Очистить
+    %a.btn.btn-warning.choose_texture{:href => "javascript:;", :data => {:id => 0}}
+      %span= "Очистить"
+  .close_pop.close_textures

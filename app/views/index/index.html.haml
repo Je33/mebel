@@ -31,7 +31,7 @@
             Высокое
             %strong качество
 
-        %p Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне.
+        %p= @settings["index_quality"]
         %p.center
           %button.btn.btn-small Подробнее...
   .span4
@@ -41,9 +41,7 @@
           %img{:alt => "", :src => "/assets/green_triskele.png"}
             Бесплатная
             %strong доставка
-        %p
-          %strong $1000
-          Lorem Ipsum - это текст-"рыба", часто используемый
+        %p= @settings["index_delivery"]
         %p.center
           %button.btn.btn-small Подробнее...
   .span4.effect4
@@ -53,7 +51,7 @@
           %img{:alt => "", :src => "/assets/telephone_green.png"}
             Ответим на любые
             %strong вопросы
-        %p Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне.
+        %p= @settings["index_questions"]
         %p.center
           %button.btn.btn-small Подробнее...
 

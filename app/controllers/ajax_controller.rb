@@ -18,16 +18,16 @@ class AjaxController < ApplicationController
         if params[:product_cnt].to_i > 0
           cnt = params[:product_cnt].to_i
         end
-        if params[:product_kind_main].to_i > 0
-          kind_main_id = params[:product_kind_main].to_i
+        if params[:kind_main].to_i > 0
+          kind_main_id = params[:kind_main].to_i
           kind_main = Kind.find(kind_main_id)
           texture_link = item.product_textures.where(:texture_id => kind_main.texture_id)
           if texture_link.price.to_i > 0
             price = texture_link.price.to_i
           end
         end
-        if params[:product_kind_opt].to_i > 0
-          kind_opt_id = params[:product_kind_opt].to_i
+        if params[:kind_opt].to_i > 0
+          kind_opt_id = params[:kind_opt].to_i
           kind_opt = Kind.find(kind_opt_id)
           texture_opt_link = item.product_textures.where(:texture_id => kind_opt.texture_id)
           if texture_opt_link.price.to_i > 0 and texture_opt_link.price.to_i >= price

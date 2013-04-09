@@ -1,5 +1,5 @@
 class ProductTexture < ActiveRecord::Base
-  attr_accessible :name, :text, :price, :as_img
+  attr_accessible :name, :text, :price, :as_img, :kind_main, :kind_opt
 
   belongs_to :product
   belongs_to :texture

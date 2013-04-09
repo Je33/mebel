@@ -79,10 +79,15 @@
 
     - link = @product.product_textures.where(:as_img => 1).first
     - if link.present?
-      %button.btn.btn-success.btn-block.buy_img.add_shoping_box{:data => {:kind_main => link.texture_id, :kind_opt => link.texture_id}}
+      %button.btn.btn-success.btn-block.buy_img.add_shoping_box{:data => {:kind_main => link.kind_main, :kind_opt => link.kind_opt, :texture => link.texture_id}}
         #{link.price.to_i} р.
         Заказать как на картинке
-      %span.label.label-info.btn-block Ткань #{link.texture.name}
+      %span.label.label-info.btn-block
+        Ткань #{link.texture.name}
+        - if link.kind_main.to_i > 0
+          \- Основная: #{Kind.find(link.kind_main).name}
+        - if link.kind_opt.to_i > 0
+          , Компаньон: #{Kind.find(link.kind_opt).name}
     %ul.thumbnails#img_changer
       - if @product.photos.exists?
         - @product.photos.each_with_index do |f, k|
@@ -121,7 +126,7 @@
               - if t.kinds.exists?
                 - t.kinds.each do |k|
                   %li.span2
-                    %a.thumbnail{:href => 'javascript:;', 'data-id' => t.id, 'data-action' => 'cloth_action', 'data-name' => 'name1', 'data-category' => '7', 'data-cost' => '12500'}
+                    %a.thumbnail{:href => 'javascript:;', 'data-id' => k.id, 'data-action' => 'cloth_action', 'data-name' => k.name, 'data-category' => t.name, 'data-cost' => t.product_textures.where(:product_id => @product.id).first.price}
                       - if k.photo
                         = image_tag k.photo.url(:m)
                     %span
@@ -141,7 +146,7 @@
           %p Название
           %p Класс 2 ( +1500р. )
         %button.btn.btn-mini.btn-block.clear_cloth Очистить ткани
-        %form
+        %div
           %input{:type => "hidden", :value => "", :name => 'first_cloth'}
           %input{:type => "hidden", :value => "", :name => 'second_cloth'}
-          %input.btn.btn-success.btn-block.disabled.add_shoping_box{:type =>'submit', :value=>'В корзину'}
+          %input.btn.btn-success.btn-block.disabled.add_shoping_box.add_to_shopping_cart#constructor_btn{:type =>'button', :value=>'В корзину', :data => {:kind_main => 0, :kind_opt => 0, :id => @product.id}}

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130403205305) do
+ActiveRecord::Schema.define(:version => 20130408121304) do
 
   create_table "baskets", :force => true do |t|
     t.integer  "product_id"
@@ -102,6 +102,8 @@ ActiveRecord::Schema.define(:version => 20130403205305) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.integer  "kind_main"
+    t.integer  "kind_opt"
   end
 
   create_table "products", :force => true do |t|

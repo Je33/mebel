@@ -17,7 +17,11 @@ class Admin::AjaxController < AdminController
   end
 
   def textures
-
+    if params[:texture]
+      @textures = Texture.where(:id => params[:texture]).all
+    else
+      @textures = Texture.all
+    end
   end
 
 end

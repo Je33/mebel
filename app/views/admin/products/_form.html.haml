@@ -68,6 +68,8 @@
         %th Категория
         %th Цена
         %th Как на фото
+        %th Основная
+        %th Компаньон
         - Texture.all.each do |t|
           - if @product.textures.include?(t)
             - pt = @product.product_textures.where(:texture_id => t.id).first
@@ -84,6 +86,26 @@
               - if pt
                 = hidden_field_tag "texture[#{pt.id}][as_img]", 0
                 = check_box_tag "texture[#{pt.id}][as_img]", 1, pt.as_img.to_i == 1
+            %td
+              - if pt.as_img.to_i == 1
+                - if pt.kind_main.to_i > 0
+                  - km = Kind.find(pt.kind_main)
+                  = image_tag km.photo.url(:s)
+                  = hidden_field_tag "texture[#{pt.id}][kind_main]", km.id
+                  %a.choose_textures{:href => "javascript:;", :data => {:texture_id => pt.texture_id}}= km.name
+                - else
+                  = hidden_field_tag "texture[#{pt.id}][kind_main]", 0
+                  %a.choose_textures{:href => "javascript:;", :data => {:texture_id => pt.texture_id}} выбрать
+            %td
+              - if pt.as_img.to_i == 1
+                - if pt.kind_opt.to_i > 0
+                  - ko = Kind.find(pt.kind_opt)
+                  = image_tag ko.photo.url(:s)
+                  = hidden_field_tag "texture[#{pt.id}][kind_opt]", ko.id
+                  %a.choose_textures{:href => "javascript:;", :data => {:texture_id => pt.texture_id}}= ko.name
+                - else
+                  = hidden_field_tag "texture[#{pt.id}][kind_opt]", 0
+                  %a.choose_textures{:href => "javascript:;", :data => {:texture_id => pt.texture_id}} выбрать
             -#%td
               %a{:href => t.photo.url}
                 = image_tag t.photo.url(:s)

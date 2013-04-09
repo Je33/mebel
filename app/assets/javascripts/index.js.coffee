@@ -182,11 +182,15 @@ $ ->
 
   $('.add_to_shopping_cart').click ->
     id = $(this).attr('data-id')
+    km = $(this).attr('data-kind-main')
+    ko = $(this).attr('data-kind-opt')
     $.ajax
       url: "/ajax/add_to_basket"
       dataType: "json"
       data:
         product_id: id
+        kind_main: km || ""
+        kind_opt: ko || ""
       type: "post"
       success: (resp) ->
         if resp.success
@@ -285,8 +289,9 @@ $ ->
         $('input[name=first_cloth]').val(data_id);
         fir.find('img').attr('src', data_img)
         fir.find('p:first').text 'Основная - ' + data_name
-        fir.find('p:last').text 'Класс '+data_category+' - ('+data_cost+'р.)'
+        fir.find('p:last').text data_category + ' (' + data_cost + ' р.)'
         fir.show()
+        $('#constructor_btn').attr("data-kind-main", data_id)
         fir.animate {marginLeft: 0, height: 61}, 300, ->
           in_sh_bx.removeClass('disabled')
       else if cloth == 1 && el != 'clear'
@@ -296,8 +301,9 @@ $ ->
         $('input[name=second_cloth]').val(data_id)
         sec.find('img').attr('src', data_img)
         sec.find('p:first').text 'Компаньон - ' + data_name
-        sec.find('p:last').text 'Класс '+data_category+' - ('+data_cost+'р.)'
+        sec.find('p:last').text data_category + ' (' + data_cost + ' р.)'
         sec.show()
+        $('#constructor_btn').attr("data-kind-opt", data_id)
         sec.animate {marginLeft: 0, height: 61}, 300, ->
           in_sh_bx.removeClass('disabled')
     else
@@ -325,6 +331,8 @@ $ ->
         sec.animate({marginLeft: 350, height: 0}, 300, ->
           $(this).hide()
         )
+        $('#constructor_btn').attr("data-kind-main", 0)
+        $('#constructor_btn').attr("data-kind-opt", 0)
   $('.cloth_select_cont').find('a').bind 'click', ->
     cloth_work( $(this) )
     _id = $(this).parents('.tab-pane').attr('id')
