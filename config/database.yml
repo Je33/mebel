@@ -3,12 +3,12 @@ development:
   encoding: utf8
   database: mebel_development
   username: root
-  password: "666999"
+  password: ""
 
 production:
   adapter: mysql2
   encoding: utf8
   database: mebel_development
   username: root
-  password: "666999"
+  password: ""
 
